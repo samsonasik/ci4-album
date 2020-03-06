@@ -30,7 +30,7 @@ class Album extends BaseController
 			$data = $this->request->getPost();
 			if ($this->model->save(new $this->model->returnType($data)))
 			{
-				return redirect()->route('album-index');
+				return redirect()->to(base_url('album'));
 			}
 
 			$errors = $this->model->errors();
@@ -51,7 +51,7 @@ class Album extends BaseController
 				$data = $this->request->getPost();
 				if ($this->model->save(new $this->model->returnType($data)))
 				{
-					return redirect()->route('album-index');
+					return redirect()->to(base_url('album'));
 				}
 
 				$errors = $this->model->errors();
@@ -68,7 +68,7 @@ class Album extends BaseController
 		$delete = $this->model->delete($id);
 		if ($delete->connID->affected_rows === 1)
 		{
-			return redirect()->to('album-index');
+			return redirect()->to(base_url('album'));
 		}
 
 		throw new PageNotFoundException();
