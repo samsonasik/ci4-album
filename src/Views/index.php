@@ -20,6 +20,13 @@ echo form_input('keyword', esc($keyword), ['placeholder' => 'Search keyword']);
 echo form_close();
 ?>
 
+<div style="background-color: green;">
+    <?php
+        $session = session();
+        echo $session->getFlashdata('status');
+    ?>
+</div>
+
 <table class="table">
     <tr>
         <th>Title</th>

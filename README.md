@@ -10,10 +10,7 @@ Feature
 - [x] CRUD
 - [x] Search
 - [x] Layout
-
-Todo
-----
-- [ ] Flash messages after edit/delete/add
+- [x] Flash Message after add/edit/delete
 
 Installation
 ------------
