@@ -11,11 +11,6 @@ class AlbumControllerTest extends CIDatabaseTestCase
     protected $basePath =  __DIR__ . '/../src/Database/';
     protected $namespace = 'Album';
 
-    protected function setUp(): void
-    {
-        parent::setUp();
-    }
-
     public function testIndexAlbum()
     {
         $result = $this->controller(Album::class)
