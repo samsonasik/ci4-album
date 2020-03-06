@@ -4,6 +4,18 @@ Example of CodeIgniter 4 Module : Album Module
 ![ci build](https://github.com/samsonasik/ci4-album/workflows/ci%20build/badge.svg)
 [![Code Coverage](https://codecov.io/gh/samsonasik/ci4-album/branch/master/graph/badge.svg)](https://codecov.io/gh/samsonasik/ci4-album)
 
+Feature
+-------
+
+[x] CRUD
+[x] Search
+[x] Layout
+
+Todo
+----
+[ ] More tests
+[ ] Flash messages after edit/delete/add
+
 Installation
 ------------
 
