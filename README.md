@@ -15,7 +15,15 @@ composer require samsonasik/ci4-album:dev-master
 
 OR
 
-manually, by clone and copy to `app/modules`, then register "Album" to `App/Config/Autoload.php`'s psr4 property:\
+manually, by create `modules` directory in project root, and clone this repository to the `modules` directory:
+
+```bash
+mkdir modules
+cd modules
+git clone git@github.com:samsonasik/ci4-album.git
+```
+
+then register "Album" to `App/Config/Autoload.php`'s psr4 property:\
 
 ```php
 		$psr4 = [
