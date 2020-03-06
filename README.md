@@ -7,14 +7,14 @@ Example of CodeIgniter 4 Module : Album Module
 Feature
 -------
 
-[x] CRUD
-[x] Search
-[x] Layout
+- [x] CRUD
+- [x] Search
+- [x] Layout
 
 Todo
 ----
-[ ] More tests
-[ ] Flash messages after edit/delete/add
+- [ ] More tests
+- [ ] Flash messages after edit/delete/add
 
 Installation
 ------------
