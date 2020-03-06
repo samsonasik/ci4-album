@@ -6,6 +6,10 @@ use CodeIgniter\Test\CIDatabaseTestCase;
 use CodeIgniter\Test\ControllerTester;
 use Config\Services;
 
+/**
+ * @runTestsInSeparateProcesses
+ * @preserveGlobalState disabled
+ */
 class AlbumTest extends CIDatabaseTestCase
 {
     use ControllerTester;
@@ -43,6 +47,22 @@ class AlbumTest extends CIDatabaseTestCase
         $this->assertTrue($result->see('The title field is required.'));
     }
 
+    public function testAddAlbumValidData()
+    {
+        $request = Services::request();
+        $request->setMethod('post');
+        $request->setGlobal('post', [
+            'artist' => 'Siti Nurhaliza',
+            'title' => 'Purnama Merindu',
+        ]);
+
+        $result = $this->withRequest($request)
+                       ->controller(Album::class)
+                       ->execute('add');
+
+        $this->assertTrue($result->isRedirect());
+    }
+
     public function testEditExistenceAlbum()
     {
         $result = $this->controller(Album::class)
@@ -53,7 +73,7 @@ class AlbumTest extends CIDatabaseTestCase
 
     public function testEditAlbumInvalidData()
     {
-        $request = Services::request();
+        $request = Services::request(null, false);
         $request->setMethod('post');
 
         $result = $this->withRequest($request)
@@ -62,6 +82,22 @@ class AlbumTest extends CIDatabaseTestCase
 
         $this->assertTrue($result->see('The artist field is required.'));
         $this->assertTrue($result->see('The title field is required.'));
+    }
+
+    public function testEditlbumValidData()
+    {
+        $request = Services::request();
+        $request->setMethod('post');
+        $request->setGlobal('post', [
+            'artist' => 'Siti Nurhaliza',
+            'title' => 'Purnama Merindu',
+        ]);
+
+        $result = $this->withRequest($request)
+                       ->controller(Album::class)
+                       ->execute('edit', 1);
+
+        $this->assertTrue($result->isRedirect());
     }
 
     public function testEditUnexistenceAlbum()

@@ -33,6 +33,8 @@ class Album extends BaseController
 			$data['artist'] = $data['artist'] ?? '';
 			$data['title'] = $data['title'] ?? '';
 
+			//var_dump($data);die;
+
 			if ($this->model->save(new $this->model->returnType($data)))
 			{
 				return redirect()->to(base_url('album'));

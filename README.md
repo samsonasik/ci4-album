@@ -13,7 +13,6 @@ Feature
 
 Todo
 ----
-- [ ] More tests
 - [ ] Flash messages after edit/delete/add
 
 Installation
