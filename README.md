@@ -21,7 +21,7 @@ Installation
 1. require via composer
 
 ```bash
-composer require samsonasik/ci4-album:dev-master
+composer require samsonasik/ci4-album
 ```
 
 OR
