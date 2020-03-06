@@ -55,9 +55,8 @@ class AlbumTest extends CIDatabaseTestCase
 
     public function testDeleteExistenceAlbum()
     {
-        $result = $this->withURI('http://localhost:8080')
-				->controller(Album::class)
-				->execute('delete', 1);
+        $result = $this->controller(Album::class)
+				       ->execute('delete', 1);
 
         $this->assertTrue($result->isRedirect());
     }
