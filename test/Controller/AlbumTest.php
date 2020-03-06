@@ -1,9 +1,9 @@
 <?php namespace AlbumTest\Controller;
 
 use Album\Controllers\Album;
+use AlbumTest\Database\Seeds\AlbumSeeder;
 use CodeIgniter\Test\CIDatabaseTestCase;
 use CodeIgniter\Test\ControllerTester;
-use AlbumTest\Database\Seeds\AlbumSeeder;
 
 class AlbumTest extends CIDatabaseTestCase
 {
@@ -17,15 +17,6 @@ class AlbumTest extends CIDatabaseTestCase
     {
         $result = $this->controller(Album::class)
                         ->execute('index');
-
-        $this->assertTrue($result->isOK());
-    }
-
-    public function testIndexAlbumSearch()
-    {
-        $result = $this->withURI('http://example.com/forums/categories')
-                       ->controller(Album::class)
-                       ->execute('index');
 
         $this->assertTrue($result->isOK());
     }
