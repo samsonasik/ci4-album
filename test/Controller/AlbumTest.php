@@ -51,6 +51,19 @@ class AlbumTest extends CIDatabaseTestCase
         $this->assertTrue($result->isOK());
     }
 
+    public function testEditAlbumInvalidData()
+    {
+        $request = Services::request();
+        $request->setMethod('post');
+
+        $result = $this->withRequest($request)
+                        ->controller(Album::class)
+                        ->execute('edit', 1);
+
+        $this->assertTrue($result->see('The artist field is required.'));
+        $this->assertTrue($result->see('The title field is required.'));
+    }
+
     public function testEditUnexistenceAlbum()
     {
         $result = $this->controller(Album::class)
