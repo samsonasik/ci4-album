@@ -68,7 +68,7 @@ class Album extends BaseController
 		$delete = $this->model->delete($id);
 		if ($delete->connID->affected_rows === 1)
 		{
-			return redirect()->route('album-index');
+			return redirect()->to('album-index');
 		}
 
 		throw new PageNotFoundException();
