@@ -4,6 +4,7 @@ use Album\Controllers\Album;
 use AlbumTest\Database\Seeds\AlbumSeeder;
 use CodeIgniter\Test\CIDatabaseTestCase;
 use CodeIgniter\Test\ControllerTester;
+use Config\Services;
 
 class AlbumTest extends CIDatabaseTestCase
 {
@@ -27,6 +28,19 @@ class AlbumTest extends CIDatabaseTestCase
                         ->execute('add');
 
         $this->assertTrue($result->isOK());
+    }
+
+    public function testAddAlbumInvalidData()
+    {
+        $request = Services::request();
+        $request->setMethod('post');
+
+        $result = $this->withRequest($request)
+                        ->controller(Album::class)
+                        ->execute('add');
+
+        $this->assertTrue($result->see('The artist field is required.'));
+        $this->assertTrue($result->see('The title field is required.'));
     }
 
     public function testEditExistenceAlbum()
