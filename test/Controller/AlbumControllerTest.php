@@ -26,4 +26,20 @@ class AlbumControllerTest extends CIDatabaseTestCase
 
         $this->assertTrue($result->isOK());
     }
+
+    public function testEditUnexistenceAlbum()
+    {
+        $result = $this->controller(Album::class)
+                        ->execute('edit', 1);
+
+        $this->assertEquals(404, $result->response()->getStatusCode());
+    }
+
+    public function testDeleteUnexistenceAlbum()
+    {
+        $result = $this->controller(Album::class)
+                        ->execute('delete', 1);
+
+        $this->assertEquals(404, $result->response()->getStatusCode());
+    }
 }
