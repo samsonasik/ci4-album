@@ -35,7 +35,7 @@ cd modules
 git clone git@github.com:samsonasik/ci4-album.git
 ```
 
-then register "Album" to `App/Config/Autoload.php`'s psr4 property:\
+then register "Album" to `App/Config/Autoload.php`'s psr4 property:
 
 ```php
 		$psr4 = [
