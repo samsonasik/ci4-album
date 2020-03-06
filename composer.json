@@ -1,0 +1,42 @@
+{
+    "name": "samsonasik/ci4-album",
+    "type": "library",
+    "description": "An Album module for ci4 example module",
+    "keywords": [
+        "ci4",
+        "codeigniter4",
+        "codeigniter"
+    ],
+    "homepage": "https://github.com/samsonasik/ci4-album",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Abdul Malik Ikhsan",
+            "email": "samsonasik@gmail.com",
+            "homepage": "http://samsonasik.wordpress.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.2"
+    },
+    "require-dev": {
+        "codeigniter4/framework": "^4",
+        "phpunit/phpunit": "^8"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "Album\\": "src/"
+        }
+    },
+    "autoload-dev": {
+		"psr-4": {
+            "AlbumTest\\": "test/"
+        }
+	},
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
