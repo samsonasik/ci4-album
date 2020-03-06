@@ -1,8 +1,7 @@
 <?php namespace Album\Models;
 
-use Album\Models\AlbumModel;
-use CodeIgniter\Test\CIDatabaseTestCase;
 use AlbumTest\Database\Seeds\AlbumSeeder;
+use CodeIgniter\Test\CIDatabaseTestCase;
 
 class AlbumModelTest extends CIDatabaseTestCase
 {
