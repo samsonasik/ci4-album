@@ -32,16 +32,4 @@
     <rule ref="CodeIgniter4.Commenting.ClassComment">
         <exclude name="CodeIgniter4.Commenting.ClassComment"/>
     </rule>
-
-    <!--
-
-
-    <rule ref="SlevomatCodingStandard.Classes.UnusedPrivateElements">
-        <exclude name="SlevomatCodingStandard.Classes.UnusedPrivateElements"/>
-    </rule>
-
-    <rule ref="WebimpressCodingStandard.NamingConventions.ValidVariableName">
-       <exclude name="WebimpressCodingStandard.NamingConventions.ValidVariableName"/>
-    </rule>
-    -->
 </ruleset>
