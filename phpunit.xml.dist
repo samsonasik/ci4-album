@@ -8,7 +8,8 @@
 		stopOnError="false"
 		stopOnFailure="false"
 		stopOnIncomplete="false"
-		stopOnSkipped="false">
+		stopOnSkipped="false"
+		testdox="true">
 	<testsuites>
 		<testsuite name="album">
 			<directory>./test</directory>

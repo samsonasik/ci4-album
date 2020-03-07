@@ -30,9 +30,6 @@ class Album extends BaseController
 		if ($this->request->getMethod() === 'post')
 		{
 			$data = $this->request->getPost();
-			$data['artist'] = $data['artist'] ?? '';
-			$data['title'] = $data['title'] ?? '';
-
 			if ($this->model->save(new $this->model->returnType($data)))
 			{
 				$session = session();
@@ -57,10 +54,6 @@ class Album extends BaseController
 			if ($this->request->getMethod() === 'post')
 			{
 				$data = $this->request->getPost();
-				$data['id']     = $data['id'] ?? '';
-				$data['artist'] = $data['artist'] ?? '';
-				$data['title']  = $data['title'] ?? '';
-
 				if ($this->model->save(new $this->model->returnType($data)))
 				{
 					$session = session();
