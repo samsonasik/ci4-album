@@ -11,7 +11,7 @@ echo $this->section('content');
 ?>
 <h1> <?php echo esc($title); ?></h1>
 <p>
-    <?php echo anchor('album/add', 'Add new album'); ?>
+	<?php echo anchor('album/add', 'Add new album'); ?>
 </p>
 
 <?php
@@ -21,28 +21,28 @@ echo form_close();
 ?>
 
 <div style="background-color: green;">
-    <?php
-        $session = session();
-        echo $session->getFlashdata('status');
-    ?>
+	<?php
+		$session = session();
+		echo $session->getFlashdata('status');
+	?>
 </div>
 
 <table class="table">
-    <tr>
-        <th>Title</th>
-        <th>Artist</th>
-        <th>&nbsp;</th>
-    </tr>
-    <?php foreach ($albums as $album) : ?>
-        <tr>
-            <td><?php echo esc($album->title) ?></td>
-            <td><?php echo esc($album->artist) ?></td>
-            <td>
-                <?php echo anchor(sprintf('album/edit/%d', $album->id), 'Edit'); ?>
-                <?php echo anchor(sprintf('album/delete/%d', $album->id), 'Delete', ['onclick'=>'return confirm(\'Are you sure?\')']); ?>
-            </td>
-        </tr>
-    <?php endforeach; ?>
+	<tr>
+		<th>Title</th>
+		<th>Artist</th>
+		<th>&nbsp;</th>
+	</tr>
+	<?php foreach ($albums as $album) : ?>
+		<tr>
+			<td><?php echo esc($album->title) ?></td>
+			<td><?php echo esc($album->artist) ?></td>
+			<td>
+				<?php echo anchor(sprintf('album/edit/%d', $album->id), 'Edit'); ?>
+				<?php echo anchor(sprintf('album/delete/%d', $album->id), 'Delete', ['onclick' => 'return confirm(\'Are you sure?\')']); ?>
+			</td>
+		</tr>
+	<?php endforeach; ?>
 </table>
 <?php echo $pager->links() ?>
 

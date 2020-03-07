@@ -3,3 +3,4 @@ composer.lock
 .phpunit.result.cache
 build/logs
 phpunit.xml
+.php_cs_cache

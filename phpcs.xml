@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<ruleset name="Laminas Coding Standard">
+    <rule ref="./vendor/codeigniter4/codeigniter4-standard/CodeIgniter4/ruleset.xml"/>
+
+    <!-- Paths to check -->
+    <file>src/Config</file>
+    <file>src/Controllers</file>
+    <file>src/Entities</file>
+    <file>src/Models</file>
+    <file>test</file>
+
+    <rule ref="Squiz.Commenting.ClassComment">
+        <exclude name="Squiz.Commenting.ClassComment"/>
+    </rule>
+
+    <rule ref="Squiz.Commenting.FunctionComment">
+        <exclude name="Squiz.Commenting.FunctionComment"/>
+    </rule>
+
+    <rule ref="Squiz.Commenting.VariableComment">
+        <exclude name="Squiz.Commenting.VariableComment"/>
+    </rule>
+
+    <rule ref="Generic.Commenting.DocComment">
+        <exclude name="Generic.Commenting.DocComment"/>
+    </rule>
+
+    <rule ref="CodeIgniter4.Commenting.FileComment">
+        <exclude name="CodeIgniter4.Commenting.FileComment"/>
+    </rule>
+
+    <rule ref="CodeIgniter4.Commenting.ClassComment">
+        <exclude name="CodeIgniter4.Commenting.ClassComment"/>
+    </rule>
+
+    <!--
+
+
+    <rule ref="SlevomatCodingStandard.Classes.UnusedPrivateElements">
+        <exclude name="SlevomatCodingStandard.Classes.UnusedPrivateElements"/>
+    </rule>
+
+    <rule ref="WebimpressCodingStandard.NamingConventions.ValidVariableName">
+       <exclude name="WebimpressCodingStandard.NamingConventions.ValidVariableName"/>
+    </rule>
+    -->
+</ruleset>

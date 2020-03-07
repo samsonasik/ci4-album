@@ -1,9 +1,9 @@
 <!doctype html>
 <html>
 <head>
-    <title>CI4 App - <?php echo $this->getData()['title'] ?? ''; ?> </title>
+	<title>CI4 App - <?php echo $this->getData()['title'] ?? ''; ?> </title>
 </head>
 <body>
-    <?= $this->renderSection('content') ?>
+	<?= $this->renderSection('content') ?>
 </body>
 </html>

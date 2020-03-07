@@ -6,4 +6,3 @@ class Album extends BaseConfig
 {
 
 }
-
