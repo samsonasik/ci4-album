@@ -1,6 +1,7 @@
 Example of CodeIgniter 4 Module : Album Module
 ==============================================
 
+[![Latest Version](https://img.shields.io/github/release/samsonasik/ci4-album.svg?style=flat-square)](https://github.com/samsonasik/ci4-album/releases)
 ![ci build](https://github.com/samsonasik/ci4-album/workflows/ci%20build/badge.svg)
 [![Code Coverage](https://codecov.io/gh/samsonasik/ci4-album/branch/master/graph/badge.svg)](https://codecov.io/gh/samsonasik/ci4-album)
 [![PHPStan](https://img.shields.io/badge/style-level%20max-brightgreen.svg?style=flat-square&label=phpstan)](https://github.com/phpstan/phpstan)
