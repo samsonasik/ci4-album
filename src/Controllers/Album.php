@@ -33,9 +33,7 @@ class Album extends BaseController
 			$data = $this->request->getPost();
 			if ($this->model->save(new $this->model->returnType($data)))
 			{
-				$session = session();
-				$session->setFlashdata('status', 'New album has been added');
-
+				session()->setFlashdata('status', 'New album has been added');
 				return redirect()->to(base_url('album'));
 			}
 
@@ -57,9 +55,7 @@ class Album extends BaseController
 				$data = $this->request->getPost();
 				if ($this->model->save(new $this->model->returnType($data)))
 				{
-					$session = session();
-					$session->setFlashdata('status', 'Album has been updated');
-
+					session()->setFlashdata('status', 'Album has been updated');
 					return redirect()->to(base_url('album'));
 				}
 
@@ -77,9 +73,7 @@ class Album extends BaseController
 		$delete = $this->model->delete($id);
 		if ($delete->connID->affected_rows === 1)
 		{
-			$session = session();
-			$session->setFlashdata('status', 'Album has been deleted');
-
+			session()->setFlashdata('status', 'Album has been deleted');
 			return redirect()->to(base_url('album'));
 		}
 
