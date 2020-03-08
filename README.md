@@ -10,7 +10,7 @@ Feature
 -------
 
 - [x] CRUD
-- [x] Pagination, configurable via [`Config\Album`](#settings) class.
+- [x] Pagination, configurable via [`Album\Config\Album`](#settings) class.
 - [x] Search
 - [x] Layout
 - [x] Flash Message after add/edit/delete
