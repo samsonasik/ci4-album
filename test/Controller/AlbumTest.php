@@ -84,7 +84,7 @@ class AlbumTest extends CIDatabaseTestCase
 		$this->assertTrue($result->see('The title field is required.'));
 	}
 
-	public function testEditlbumValidData()
+	public function testEditAlbumValidData()
 	{
 		$request = Services::request();
 		$request->setMethod('post');
