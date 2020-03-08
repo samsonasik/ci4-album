@@ -16,7 +16,7 @@ class AlbumModel extends Model
 		'title'  => 'required|alpha_numeric_space|min_length[3]|max_length[255]',
 	];
 
-	public function getPaginatedData(string $keyword = '')
+	public function getPaginatedData(string $keyword = ''): array
 	{
 		if ($keyword)
 		{

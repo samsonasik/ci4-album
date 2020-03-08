@@ -12,13 +12,13 @@ class Album extends Entity
 		parent::__construct($data);
 	}
 
-	public function setArtist(string $artist)
+	public function setArtist(string $artist): self
 	{
 		$this->attributes['artist'] = ucwords($artist);
 		return $this;
 	}
 
-	public function setTitle(string $title)
+	public function setTitle(string $title): self
 	{
 		$this->attributes['title'] = ucwords($title);
 		return $this;

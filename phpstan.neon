@@ -1,0 +1,21 @@
+includes:
+        - vendor/phpstan/phpstan/conf/bleedingEdge.neon
+
+parameters:
+    inferPrivatePropertyTypeFromConstructor: true
+    checkMissingIterableValueType: false
+    excludes_analyse:
+        - src/Config/*
+        - src/Database/*
+        - src/Views/*
+    autoload_directories:
+        - vendor/codeigniter4/framework/app
+    ignoreErrors:
+        - '#Function helper not found.#'
+        - '#Function session not found.#'
+        - '#Function base_url not found.#'
+        - '#Function redirect not found.#'
+        - '#Function view not found.#'
+        - '#Function model not found.#'
+        - '#Access to protected property [a-zA-Z0-9\\_]+Model::\$returnType.#'
+        - '#Method ([a-zA-Z0-9\\_]+)(Controllers)([a-zA-Z0-9\\_]+)(::)([a-zA-Z0-9]+)(\(\)) has no return typehint specified.#'

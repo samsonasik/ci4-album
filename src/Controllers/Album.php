@@ -6,6 +6,7 @@ use CodeIgniter\Exceptions\PageNotFoundException;
 
 class Album extends BaseController
 {
+	/** @var AlbumModel */
 	private $model;
 
 	public function __construct()
