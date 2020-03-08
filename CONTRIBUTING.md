@@ -3,7 +3,7 @@ CONTRIBUTING
 To contribute, you can send pull requests with :
 
 - Typo fix.
-- Use [CodeIgniter 4 Coding Standard](https://github.com/codeigniter4/coding-standard), you can check with run command:
+- Use [CodeIgniter 4 Coding Standard](https://github.com/codeigniter4/coding-standard), you can fix and check with run commands:
 
 ```bash
 # fix your code style
@@ -13,15 +13,11 @@ composer cs-fix
 # that you need to manually fix
 composer cs-check
 ```
+- Ensure the phpstan check shows No errors with run command:
 
-- patch(es) need new/updated test(s).
-- new feature(s) need test(s).
-
-Tests
------
-You can run test with :
-```shell
-$ composer install
-$ vendor/bin/phpunit
+```bash
+composer analyze
 ```
-and make sure there is no regression.
+
+- patch(es) need new/updated test(s) that ensure there is no regression.
+- new feature(s) need test(s) that ensure there is no regression.

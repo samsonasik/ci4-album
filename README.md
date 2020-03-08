@@ -18,7 +18,7 @@ Feature
 Installation
 ------------
 
-1. require via composer
+**1.** require via composer
 
 ```bash
 composer require samsonasik/ci4-album
@@ -45,7 +45,7 @@ then register "Album" to `App/Config/Autoload.php`'s psr4 property:
 		];
 ```
 
-2. Set CI_ENVIRONMENT, base url, index page, and database config in your `.env` file based on your existing database (If you don't have a `.env` file, you can copy first from `env` file: `cp env .env` first). If the database not exists, create database first.
+**2.** Set CI_ENVIRONMENT, base url, index page, and database config in your `.env` file based on your existing database (If you don't have a `.env` file, you can copy first from `env` file: `cp env .env` first). If the database not exists, create database first.
 
 ```bash
 # .env file
@@ -61,19 +61,19 @@ database.default.password =
 database.default.DBDriver = MySQLi
 ```
 
-3. Run db migration
+**3.** Run db migration
 
 ```bash
 php spark migrate -n Album
 ```
 
-4. Run development server:
+**4.** Run development server:
 
 ```bash
 php spark serve
 ```
 
-5. Open in browser http://localhost:8080/album
+**5.** Open in browser http://localhost:8080/album
 
 Settings
 --------
