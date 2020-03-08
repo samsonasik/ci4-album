@@ -24,7 +24,7 @@ Installation
 composer require samsonasik/ci4-album
 ```
 
-OR
+**OR**
 
 manually, by create `modules` directory in project root, and clone this repository to the `modules` directory:
 
