@@ -20,8 +20,11 @@ class AlbumModel extends Model
 	{
 		if ($keyword)
 		{
-			$this->builder()->like('artist', $keyword);
-			$this->builder()->orLike('title', $keyword);
+			$this->builder()
+				 ->groupStart()
+					 ->like('artist', $keyword)
+					 ->orLike('title', $keyword)
+				 ->groupEnd();
 		}
 
 		return [
