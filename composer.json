@@ -1,7 +1,7 @@
 {
     "name": "samsonasik/ci4-album",
     "type": "library",
-    "description": "An Album module for ci4 example module",
+    "description": "An Example of CodeIgniter 4 Album module",
     "keywords": [
         "ci4",
         "codeigniter4",
