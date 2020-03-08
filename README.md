@@ -8,6 +8,7 @@ Feature
 -------
 
 - [x] CRUD
+- [x] Pagination
 - [x] Search
 - [x] Layout
 - [x] Flash Message after add/edit/delete
