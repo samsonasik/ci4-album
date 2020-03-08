@@ -11,6 +11,7 @@ parameters:
     autoload_directories:
         - vendor/codeigniter4/framework/app
     ignoreErrors:
+        - '#Function config not found.#'
         - '#Function helper not found.#'
         - '#Function session not found.#'
         - '#Function base_url not found.#'

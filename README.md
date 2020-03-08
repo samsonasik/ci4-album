@@ -8,7 +8,7 @@ Feature
 -------
 
 - [x] CRUD
-- [x] Pagination
+- [x] Pagination, configurable via `Config\Album` class.
 - [x] Search
 - [x] Layout
 - [x] Flash Message after add/edit/delete
@@ -72,6 +72,25 @@ php spark serve
 ```
 
 5. Open in browser http://localhost:8080/album
+
+Settings
+--------
+
+Configure pagination per-page, by copy `src/Config/Album.php` file into `app/Config` directory, and modify the namespace to `Config`:
+
+```php
+<?php namespace Config;
+
+use CodeIgniter\Config\BaseConfig;
+
+class Album extends BaseConfig
+{
+    public $paginationPerPage = 10;
+}
+// app/Config/Album.php
+```
+
+In above class, the `paginationPerPage` property's value can be changed.
 
 Testing
 -------

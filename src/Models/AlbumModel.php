@@ -25,7 +25,7 @@ class AlbumModel extends Model
 		}
 
 		return [
-			'albums'  => $this->paginate(10),
+			'albums'  => $this->paginate(config('Album')->paginationPerPage ?? 10),
 			'pager'   => $this->pager,
 			'keyword' => $keyword,
 		];
