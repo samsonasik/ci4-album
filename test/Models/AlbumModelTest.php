@@ -17,15 +17,15 @@ class AlbumModelTest extends CIDatabaseTestCase
 		$this->model = model(AlbumModel::class);
 	}
 
-	public function testSearchKeywordForNonExistingData()
-	{
-		$albums = $this->model->getPaginatedData('test')['albums'];
-		$this->assertEmpty($albums);
-	}
-
 	public function testSearchKeywordForExistingData()
 	{
-		$albums = $this->model->getPaginatedData('melompat')['albums'];
+		$albums = $this->model->getPaginatedData('Sheila')['albums'];
 		$this->assertNotEmpty($albums);
+	}
+
+	public function testSearchKeywordForNonExistingData()
+	{
+		$albums = $this->model->getPaginatedData('Siti')['albums'];
+		$this->assertEmpty($albums);
 	}
 }

@@ -26,6 +26,36 @@ class AlbumTest extends CIDatabaseTestCase
 		$this->assertTrue($result->isOK());
 	}
 
+	public function testIndexSearchAlbumFound()
+	{
+		$request = Services::request();
+		$request->setMethod('get');
+		$request->setGlobal('get', [
+			'keyword' => 'Sheila',
+		]);
+
+		$result = $this->withRequest($request)
+					   ->controller(Album::class)
+					   ->execute('index');
+
+		$this->assertTrue($result->see('Sheila'));
+	}
+
+	public function testIndexSearchAlbumNotFound()
+	{
+		$request = Services::request();
+		$request->setMethod('get');
+		$request->setGlobal('get', [
+			'keyword' => 'Siti',
+		]);
+
+		$result = $this->withRequest($request)
+					   ->controller(Album::class)
+					   ->execute('index');
+
+		$this->assertTrue($result->see('Siti'));
+	}
+
 	public function testAddAlbum()
 	{
 		$result = $this->controller(Album::class)
