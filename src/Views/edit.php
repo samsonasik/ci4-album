@@ -17,11 +17,11 @@ echo $this->section('content');
 echo form_open(sprintf('album/edit/%d', $album->id));
 echo form_label('Artist', 'artist');
 echo form_hidden('id', set_value('id', $album->id));
-echo form_input('artist', set_value('artist', $album->title));
+echo form_input('artist', set_value('artist', $album->artist));
 echo $errors['artist'] ?? '';
 
 echo form_label('Title', 'title');
-echo form_input('title', set_value('title', $album->artist));
+echo form_input('title', set_value('title', $album->title));
 echo $errors['title'] ?? '';
 
 echo form_submit('Save', 'Save New Album');
