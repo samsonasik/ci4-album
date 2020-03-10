@@ -13,7 +13,7 @@ class AlbumModel extends Model
 	];
 	protected $validationRules = [
 		'artist' => 'required|alpha_numeric_space|min_length[3]max_length[255]',
-		'title'  => 'required|alpha_numeric_space|min_length[3]|max_length[255]',
+		'title'  => 'required|alpha_numeric_space|min_length[3]|max_length[255]|is_unique[album.title,id,{id}]',
 	];
 
 	public function getPaginatedData(string $keyword = ''): array
