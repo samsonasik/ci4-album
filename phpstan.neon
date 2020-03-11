@@ -14,7 +14,6 @@ parameters:
         - '#Function config not found.#'
         - '#Function helper not found.#'
         - '#Function session not found.#'
-        - '#Function base_url not found.#'
         - '#Function redirect not found.#'
         - '#Function view not found.#'
         - '#Function model not found.#'
