@@ -19,7 +19,9 @@ Feature
 Installation
 ------------
 
-**1.** require via composer
+**1.** Get The Module
+
+**a.** require via composer
 
 ```bash
 composer require samsonasik/ci4-album
@@ -27,13 +29,14 @@ composer require samsonasik/ci4-album
 
 **OR**
 
-manually, by create `modules` directory in project root, and clone this repository to the `modules` directory:
+**b.** manually, by go to `app/ThirdParty` directory in project root, and clone this repository to the `app/ThirdParty` directory:
 
 ```bash
-mkdir modules
-cd modules
+cd app/ThirdParty
 git clone git@github.com:samsonasik/ci4-album.git
 ```
+
+> see https://help.github.com/en/github/authenticating-to-github/error-permission-denied-publickey# for common clone issue troubleshooting.
 
 then register "Album" to `App/Config/Autoload.php`'s psr4 property:
 
@@ -42,7 +45,7 @@ then register "Album" to `App/Config/Autoload.php`'s psr4 property:
 			'App'         => APPPATH,                // To ensure filters, etc still found,
 			APP_NAMESPACE => APPPATH,                // For custom namespace
 			'Config'      => APPPATH . 'Config',
-			'Album'       => ROOTPATH . 'modules/ci4-album/src', // <-- add this line
+			'Album'       => APPPATH . 'ThirdParty/ci4-album/src', // <-- add this line
 		];
 ```
 
