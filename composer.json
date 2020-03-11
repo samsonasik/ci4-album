@@ -38,7 +38,9 @@
     "autoload-dev": {
         "psr-4": {
             "AlbumTest\\": "test/",
-            "CodeIgniter4\\": "vendor/codeigniter4/codeigniter4-standard/CodeIgniter4/"
+            "App\\": "vendor/codeigniter4/framework/app/",
+            "CodeIgniter4\\": "vendor/codeigniter4/codeigniter4-standard/CodeIgniter4/",
+            "Config\\": "vendor/codeigniter4/framework/app/Config/"
         }
     },
     "minimum-stability": "dev",
