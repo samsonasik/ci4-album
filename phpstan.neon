@@ -12,7 +12,6 @@ parameters:
         - vendor/codeigniter4/framework/app
     ignoreErrors:
         - '#Function config not found.#'
-        - '#Function helper not found.#'
         - '#Function session not found.#'
         - '#Function redirect not found.#'
         - '#Function view not found.#'

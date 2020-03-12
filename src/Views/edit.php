@@ -14,6 +14,7 @@ echo $this->section('content');
 <h1><?php echo esc($title) ?></h1>
 
 <?php
+helper('form');
 echo form_open(sprintf('album/edit/%d', $album->id));
 echo form_label('Artist', 'artist');
 echo form_hidden('id', set_value('id', $album->id));

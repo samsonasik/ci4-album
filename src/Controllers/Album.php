@@ -16,8 +16,6 @@ class Album extends BaseController
 
 	public function index()
 	{
-		helper('form');
-
 		$keyword = $this->request->getGet('keyword') ?? '';
 		$data    = $this->model->getPaginatedData($keyword);
 
@@ -26,8 +24,6 @@ class Album extends BaseController
 
 	public function add()
 	{
-		helper('form');
-
 		if ($this->request->getMethod() === 'post')
 		{
 			$data = $this->request->getPost();
@@ -45,8 +41,6 @@ class Album extends BaseController
 
 	public function edit(int $id)
 	{
-		helper('form');
-
 		$album = $this->model->find($id);
 		if ($album instanceof $this->model->returnType)
 		{

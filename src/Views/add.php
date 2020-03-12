@@ -14,6 +14,7 @@ echo $this->section('content');
 <h1><?php echo esc($title) ?></h1>
 
 <?php
+helper('form');
 echo form_open('album/add');
 echo form_label('Artist', 'artist');
 echo form_input('artist', set_value('artist'));

@@ -15,6 +15,7 @@ echo $this->section('content');
 </p>
 
 <?php
+helper('form');
 echo form_open('album', ['method' => 'get']);
 echo form_input('keyword', esc($keyword), ['placeholder' => 'Search keyword']);
 echo form_close();
