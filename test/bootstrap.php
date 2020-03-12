@@ -2,7 +2,8 @@
 
 require_once 'vendor/codeigniter4/framework/system/Test/bootstrap.php';
 
-$routes = \Config\Services::routes();
-$routes->getRoutes('*');
+//$routes = \Config\Services::routes();
+//$routes->getRoutes('*');
 
 require_once 'vendor/codeigniter4/framework/app/Config/Routes.php';
+$routes->getRoutes('*');
