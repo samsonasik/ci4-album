@@ -1,10 +1,6 @@
 <?php
 
-include 'vendor/codeigniter4/framework/system/Test/bootstrap.php';
-
-helper('url');
+require_once 'vendor/codeigniter4/framework/system/Test/bootstrap.php';
 
 $routes = \Config\Services::routes();
 $routes->getRoutes('*');
-
-include 'src/Config/Routes.php';

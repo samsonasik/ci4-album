@@ -1,4 +1,4 @@
-<?php
+<?php namespace Album\Config;
 
 $routes->group('album', ['namespace' => 'Album\Controllers'], function ($routes) {
 	// URI: /album
