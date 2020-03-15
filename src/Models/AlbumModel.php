@@ -12,7 +12,7 @@ class AlbumModel extends Model
 		'title',
 	];
 	protected $validationRules = [
-		'artist' => 'required|alpha_numeric_space|min_length[3]max_length[255]',
+		'artist' => 'required|alpha_numeric_space|min_length[3]|max_length[255]',
 		'title'  => 'required|alpha_numeric_space|min_length[3]|max_length[255]|is_unique[album.title,id,{id}]',
 	];
 
