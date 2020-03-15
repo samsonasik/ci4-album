@@ -21,6 +21,8 @@ jobs:
           extensions: intl
           php-version: "${{ matrix.php-versions }}"
           coverage: pcov
+      - name: Shutdown Ubuntu MySQL (SUDO)
+        run: sudo service mysql stop
       - name: Setup MySQL
         uses: samin/mysql-action@v1.3
         with:
@@ -28,7 +30,6 @@ jobs:
           mysql password: test
           mysql user: test
           mysql database: ci4_crud_test
-          host port: 13306
       - name: Checkout
         uses: actions/checkout@v2
       - name: "Validate composer.json and composer.lock"
