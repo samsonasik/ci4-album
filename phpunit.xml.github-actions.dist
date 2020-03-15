@@ -46,7 +46,6 @@
 		<env name="database.tests.database" value="ci4_crud_test"/>
 		<env name="database.tests.username" value="test"/>
 		<env name="database.tests.password" value="test"/>
-		<env name="database.tests.port" value="13306"/>
 		<env name="database.tests.DBDriver" value="MySQLi"/>
 		<env name="database.tests.DBPrefix" value=""/>
 	</php>
