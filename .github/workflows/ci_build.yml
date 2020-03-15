@@ -21,10 +21,16 @@ jobs:
           extensions: intl
           php-version: "${{ matrix.php-versions }}"
           coverage: pcov
+      - name: Setup MySQL
+        uses: samin/mysql-action@v1.3
+        with:
+          mysql version: 5.7
+          mysql password: test
+          mysql user: test
+          mysql database: ci4_crud_test
+          host port: 13306
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Create DB
-        run: mysql -uroot -proot -e "CREATE DATABASE ci4_crud_test;"
       - name: "Validate composer.json and composer.lock"
         run: "composer validate"
       - name: "Install dependencies"
