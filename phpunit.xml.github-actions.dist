@@ -42,7 +42,7 @@
 		<const name="HOMEPATH" value="./"/>
 		<const name="CONFIGPATH" value="./vendor/codeigniter4/framework/app/Config/"/>
 		<const name="PUBLICPATH" value="./vendor/codeigniter4/framework/public/"/>
-		<env name="database.tests.hostname" value="localhost"/>
+		<env name="database.tests.hostname" value="127.0.0.1"/>
 		<env name="database.tests.database" value="ci4_crud_test"/>
 		<env name="database.tests.username" value="test"/>
 		<env name="database.tests.password" value="test"/>
