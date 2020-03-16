@@ -4,6 +4,7 @@ use Album\Controllers\Album;
 use AlbumTest\Database\Seeds\AlbumSeeder;
 use CodeIgniter\Test\CIDatabaseTestCase;
 use CodeIgniter\Test\ControllerTester;
+use Config\Database;
 use Config\Services;
 
 /**
@@ -18,12 +19,24 @@ class AlbumTest extends CIDatabaseTestCase
 	protected $namespace = 'Album';
 	protected $seed      = AlbumSeeder::class;
 
-	public function testIndexAlbum()
+	public function testIndexAlbumHasNoData()
+	{
+		Database::connect()->table('album')->truncate();
+
+		$result = $this->controller(Album::class)
+						->execute('index');
+
+		$this->assertTrue($result->isOK());
+		$this->assertTrue($result->see('No album found.'));
+	}
+
+	public function testIndexAlbumHasData()
 	{
 		$result = $this->controller(Album::class)
 						->execute('index');
 
 		$this->assertTrue($result->isOK());
+		$this->assertTrue($result->see('Sheila On 7'));
 	}
 
 	public function testIndexSearchAlbumFound()
@@ -38,7 +51,7 @@ class AlbumTest extends CIDatabaseTestCase
 					   ->controller(Album::class)
 					   ->execute('index');
 
-		$this->assertTrue($result->see('Sheila'));
+		$this->assertTrue($result->see('Sheila On 7'));
 	}
 
 	public function testIndexSearchAlbumNotFound()
@@ -53,7 +66,7 @@ class AlbumTest extends CIDatabaseTestCase
 					   ->controller(Album::class)
 					   ->execute('index');
 
-		$this->assertTrue($result->see('Siti'));
+		$this->assertTrue($result->see('No album found.'));
 	}
 
 	public function testAddAlbum()
