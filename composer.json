@@ -46,6 +46,7 @@
     "scripts": {
         "analyze": "phpstan analyze src --level=max",
         "cs-check": "phpcs",
-        "cs-fix": "phpcbf"
+        "cs-fix": "phpcbf",
+        "test": "phpunit --colors=always -vvv"
     }
 }
