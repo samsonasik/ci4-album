@@ -33,10 +33,11 @@ class Album extends BaseController
 				return redirect()->route('album-index');
 			}
 
-			$errors = $this->model->errors();
+			session()->setFlashdata('errors', $this->model->errors());
+			return redirect()->withInput()->back();
 		}
 
-		return view('Album\Views\add', ['errors' => $errors ?? []]);
+		return view('Album\Views\add', ['errors' => session()->getFlashData('errors')]);
 	}
 
 	public function edit(int $id)
@@ -53,10 +54,11 @@ class Album extends BaseController
 					return redirect()->route('album-index');
 				}
 
-				$errors = $this->model->errors();
+				session()->setFlashdata('errors', $this->model->errors());
+				return redirect()->withInput()->back();
 			}
 
-			return view('Album\Views\edit', ['album' => $album, 'errors' => $errors ?? []]);
+			return view('Album\Views\edit', ['album' => $album, 'errors' => session()->getFlashData('errors')]);
 		}
 
 		throw new PageNotFoundException();

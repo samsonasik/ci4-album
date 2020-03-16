@@ -66,13 +66,21 @@ class AlbumTest extends CIDatabaseTestCase
 
 	public function testAddAlbumInvalidData()
 	{
-		$request = Services::request();
+		$request = Services::request(null, false);
 		$request->setMethod('post');
 
 		$result = $this->withRequest($request)
 						->controller(Album::class)
 						->execute('add');
+		$this->assertTrue($result->isRedirect());
 
+		$request = Services::request(null, false);
+		$request->setMethod('get');
+
+		$result = $this->withRequest($request)
+					   ->controller(Album::class)
+					   ->execute('add');
+		$this->assertTrue($result->isOK());
 		$this->assertTrue($result->see('The artist field is required.'));
 		$this->assertTrue($result->see('The title field is required.'));
 	}
@@ -109,7 +117,15 @@ class AlbumTest extends CIDatabaseTestCase
 		$result = $this->withRequest($request)
 						->controller(Album::class)
 						->execute('edit', 1);
+		$this->assertTrue($result->isRedirect());
 
+		$request = Services::request(null, false);
+		$request->setMethod('get');
+
+		$result = $this->withRequest($request)
+					   ->controller(Album::class)
+					   ->execute('edit', 1);
+		$this->assertTrue($result->isOK());
 		$this->assertTrue($result->see('The artist field is required.'));
 		$this->assertTrue($result->see('The title field is required.'));
 	}
