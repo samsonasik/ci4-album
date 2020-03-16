@@ -40,10 +40,8 @@ jobs:
         run: "composer cs-check"
       - name: "Code analyze"
         run: "composer analyze"
-      - name: "Setup Test"
-        run: "cp phpunit.xml.github-actions.dist phpunit.xml.dist"
       - name: "Run test suite"
-        run: "composer test"
+        run: "composer test -- -c phpunit.xml.github-actions.dist"
       - if: matrix.php-versions == '7.2'
         name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
