@@ -7,6 +7,8 @@
     <file>src/Controllers</file>
     <file>src/Entities</file>
     <file>src/Models</file>
+    <file>src/Views</file>
+    <file>phpstan-bootstrap.php</file>
     <file>test</file>
 
     <rule ref="Squiz.Commenting.ClassComment">
