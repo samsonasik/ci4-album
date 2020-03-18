@@ -1,11 +1,11 @@
 <?php namespace AlbumTest\Database\Infrastructure\Persistence\Album;
 
-use Config\Services;
-use CodeIgniter\Test\CIDatabaseTestCase;
-use CodeIgniter\Pager\PagerInterface;
 use Album\Domain\Album\Album;
 use Album\Domain\Album\AlbumNotFoundException;
 use AlbumTest\Database\Seeds\AlbumSeeder;
+use CodeIgniter\Pager\PagerInterface;
+use CodeIgniter\Test\CIDatabaseTestCase;
+use Config\Services;
 
 class SQLAlbumRepositoryTest extends CIDatabaseTestCase
 {
