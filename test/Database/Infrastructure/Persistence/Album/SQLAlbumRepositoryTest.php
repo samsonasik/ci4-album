@@ -54,6 +54,21 @@ class SQLAlbumRepositoryTest extends CIDatabaseTestCase
 		$this->assertInstanceOf(Album::class, $this->repository->findAlbumOfId(1));
 	}
 
+	public function invalidData()
+	{
+		return [
+			'empty array' => [
+				[],
+			],
+			'null'        => [
+				null
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider invalidData
+	 */
 	public function testSaveInvalidData()
 	{
 		$this->assertFalse($this->repository->save([]));
