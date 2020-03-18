@@ -69,9 +69,9 @@ class SQLAlbumRepositoryTest extends CIDatabaseTestCase
 	/**
 	 * @dataProvider invalidData
 	 */
-	public function testSaveInvalidData()
+	public function testSaveInvalidData($data)
 	{
-		$this->assertFalse($this->repository->save([]));
+		$this->assertFalse($this->repository->save($data));
 	}
 
 	public function validData()

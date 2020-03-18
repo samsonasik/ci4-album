@@ -4,7 +4,7 @@ use CodeIgniter\Entity;
 
 class Album extends Entity
 {
-	public function __construct(array $data = [])
+	public function __construct(array $data = null)
 	{
 		$data['artist'] = $data['artist'] ?? '';
 		$data['title']  = $data['title'] ?? '';
