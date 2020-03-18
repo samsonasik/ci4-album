@@ -29,7 +29,7 @@ class SQLAlbumRepository implements AlbumRepository
 		return $this->model->paginate(config('Album')->paginationPerPage);
 	}
 
-	public function pager(): PagerInterface
+	public function pager(): ?PagerInterface
 	{
 		return $this->model->pager;
 	}

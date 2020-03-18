@@ -21,6 +21,11 @@ class SQLAlbumRepositoryTest extends CIDatabaseTestCase
 		$this->repository = Services::albumRepository();
 	}
 
+	public function testPagerIsNullBeforeFindPaginatedDataCalled()
+	{
+		$this->assertNull($this->repository->pager());
+	}
+
 	public function testfindPaginatedDataWithKeywordNotFoundInDatabase()
 	{
 		$albums = $this->repository->findPaginatedData('Siti');
