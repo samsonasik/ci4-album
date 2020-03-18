@@ -10,7 +10,9 @@ Example of CodeIgniter 4 Module : Album Module
 Feature
 -------
 
-- [x] CRUD with [Post/Redirect/Get pattern](https://en.wikipedia.org/wiki/Post/Redirect/Get)
+- [x] CRUD with
+   - [x] [Domain Driven Design Architecture](https://en.wikipedia.org/wiki/Domain-driven_design)
+   - [x] [Post/Redirect/Get pattern](https://en.wikipedia.org/wiki/Post/Redirect/Get)
 - [x] Pagination, configurable via [`Album\Config\Album`](#settings) class.
 - [x] Search
 - [x] Layout
