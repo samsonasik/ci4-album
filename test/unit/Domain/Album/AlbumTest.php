@@ -1,8 +1,8 @@
 <?php
 
-namespace AlbumTest\Unit\Entities;
+namespace AlbumTest\Unit\Domain\Album;
 
-use Album\Entities\Album;
+use Album\Domain\Album\Album;
 use PHPUnit\Framework\TestCase;
 
 class AlbumTest extends TestCase

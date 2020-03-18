@@ -12,3 +12,5 @@ parameters:
     ignoreErrors:
         - '#Access to protected property [a-zA-Z0-9\\_]+Model::\$returnType.#'
         - '#Method ([a-zA-Z0-9\\_]+)(Controllers)([a-zA-Z0-9\\_]+)(::)([a-zA-Z0-9]+)(\(\)) has no return typehint specified.#'
+        - '#Call to an undefined static method Config\\Services::albumRepository()#'
+        - '#Call to protected method builder\(\) of class CodeIgniter\\Model.#'

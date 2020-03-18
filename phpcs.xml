@@ -5,7 +5,8 @@
     <!-- Paths to check -->
     <file>src/Config</file>
     <file>src/Controllers</file>
-    <file>src/Entities</file>
+    <file>src/Domain</file>
+    <file>src/Infrastructure</file>
     <file>src/Models</file>
     <file>src/Views</file>
     <file>phpstan-bootstrap.php</file>

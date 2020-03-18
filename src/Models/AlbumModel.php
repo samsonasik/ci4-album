@@ -1,6 +1,6 @@
 <?php namespace Album\Models;
 
-use Album\Entities\Album;
+use Album\Domain\Album\Album;
 use CodeIgniter\Model;
 
 class AlbumModel extends Model
@@ -15,22 +15,4 @@ class AlbumModel extends Model
 		'artist' => 'required|alpha_numeric_space|min_length[3]|max_length[255]',
 		'title'  => 'required|alpha_numeric_space|min_length[3]|max_length[255]|is_unique[album.title,id,{id}]',
 	];
-
-	public function getPaginatedData(string $keyword = ''): array
-	{
-		if ($keyword)
-		{
-			$this->builder()
-				 ->groupStart()
-					 ->like('artist', $keyword)
-					 ->orLike('title', $keyword)
-				 ->groupEnd();
-		}
-
-		return [
-			'albums'  => $this->paginate(config('Album')->paginationPerPage),
-			'pager'   => $this->pager,
-			'keyword' => $keyword,
-		];
-	}
 }

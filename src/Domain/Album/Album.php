@@ -1,4 +1,4 @@
-<?php namespace Album\Entities;
+<?php namespace Album\Domain\Album;
 
 use CodeIgniter\Entity;
 

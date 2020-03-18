@@ -114,6 +114,14 @@ class AlbumTest extends CIDatabaseTestCase
 		$this->assertTrue($result->isRedirect());
 	}
 
+	public function testEditUnexistenceAlbum()
+	{
+		$result = $this->controller(Album::class)
+						->execute('edit', rand(1000, 2000));
+
+		$this->assertEquals(404, $result->response()->getStatusCode());
+	}
+
 	public function testEditExistenceAlbum()
 	{
 		$result = $this->controller(Album::class)
@@ -159,18 +167,10 @@ class AlbumTest extends CIDatabaseTestCase
 		$this->assertTrue($result->isRedirect());
 	}
 
-	public function testEditUnexistenceAlbum()
-	{
-		$result = $this->controller(Album::class)
-						->execute('edit', 1000);
-
-		$this->assertEquals(404, $result->response()->getStatusCode());
-	}
-
 	public function testDeleteUnexistenceAlbum()
 	{
 		$result = $this->controller(Album::class)
-						->execute('delete', 1000);
+						->execute('delete', rand(1000, 2000));
 
 		$this->assertEquals(404, $result->response()->getStatusCode());
 	}

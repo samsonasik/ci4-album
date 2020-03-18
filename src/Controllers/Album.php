@@ -1,23 +1,26 @@
 <?php namespace Album\Controllers;
 
-use Album\Models\AlbumModel;
+use Album\Domain\Album\AlbumRepository;
+use Album\Domain\Exception\RecordNotFoundException;
 use App\Controllers\BaseController;
 use CodeIgniter\Exceptions\PageNotFoundException;
+use Config\Services;
 
 class Album extends BaseController
 {
-	/** @var AlbumModel */
-	private $model;
+	/** @var AlbumRepository */
+	private $repository;
 
 	public function __construct()
 	{
-		$this->model = model(AlbumModel::class);
+		$this->repository = Services::albumRepository();
 	}
 
 	public function index()
 	{
-		$keyword = $this->request->getGet('keyword') ?? '';
-		$data    = $this->model->getPaginatedData($keyword);
+		$data['keyword'] = $this->request->getGet('keyword') ?? '';
+		$data['albums']  = $this->repository->findPaginatedData($data['keyword']);
+		$data['pager']   = $this->repository->pager();
 
 		return view('Album\Views\index', $data);
 	}
@@ -27,13 +30,13 @@ class Album extends BaseController
 		if ($this->request->getMethod() === 'post')
 		{
 			$data = $this->request->getPost();
-			if ($this->model->save(new $this->model->returnType($data)))
+			if ($this->repository->save($data))
 			{
 				session()->setFlashdata('status', 'New album has been added');
 				return redirect()->route('album-index');
 			}
 
-			session()->setFlashdata('errors', $this->model->errors());
+			session()->setFlashdata('errors', $this->repository->errors());
 			return redirect()->withInput()->back();
 		}
 
@@ -42,37 +45,43 @@ class Album extends BaseController
 
 	public function edit(int $id)
 	{
-		$album = $this->model->find($id);
-		if ($album instanceof $this->model->returnType)
+		try
 		{
-			if ($this->request->getMethod() === 'post')
-			{
-				$data = $this->request->getPost();
-				if ($this->model->save(new $this->model->returnType($data)))
-				{
-					session()->setFlashdata('status', 'Album has been updated');
-					return redirect()->route('album-index');
-				}
-
-				session()->setFlashdata('errors', $this->model->errors());
-				return redirect()->withInput()->back();
-			}
-
-			return view('Album\Views\edit', ['album' => $album, 'errors' => session()->getFlashData('errors')]);
+			$album = $this->repository->findAlbumOfId($id);
+		}
+		catch (RecordNotFoundException $e)
+		{
+			throw new PageNotFoundException($e->getMessage());
 		}
 
-		throw new PageNotFoundException();
+		if ($this->request->getMethod() === 'post')
+		{
+			$data = $this->request->getPost();
+			if ($this->repository->save($data))
+			{
+				session()->setFlashdata('status', 'Album has been updated');
+				return redirect()->route('album-index');
+			}
+
+			session()->setFlashdata('errors', $this->repository->errors());
+			return redirect()->withInput()->back();
+		}
+
+		return view('Album\Views\edit', ['album' => $album, 'errors' => session()->getFlashData('errors')]);
 	}
 
 	public function delete(int $id)
 	{
-		$delete = $this->model->delete($id);
-		if ($delete->connID->affected_rows === 1)
+		try
 		{
-			session()->setFlashdata('status', 'Album has been deleted');
-			return redirect()->route('album-index');
+			$this->repository->deleteOfId($id);
+		}
+		catch (RecordNotFoundException $e)
+		{
+			throw new PageNotFoundException($e->getMessage());
 		}
 
-		throw new PageNotFoundException();
+		session()->setFlashdata('status', 'Album has been deleted');
+		return redirect()->route('album-index');
 	}
 }
