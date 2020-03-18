@@ -102,4 +102,46 @@ class SQLAlbumRepositoryTest extends CIDatabaseTestCase
 	{
 		$this->assertTrue($this->repository->save($data));
 	}
+
+	/**
+	 * @runInSeparateProcess
+	 * @preserveGlobalState         disabled
+	 */
+	public function testErrorIsNullOnNoSaveCalled()
+	{
+		$this->assertNull($this->repository->errors());
+	}
+
+	/**
+	 * @dataProvider validData
+	 * @runInSeparateProcess
+	 * @preserveGlobalState         disabled
+	 */
+	public function testErrorIsNullAfterSaveCalledWithValidData($data)
+	{
+		$this->repository->save($data);
+		$this->assertNull($this->repository->errors());
+	}
+
+	/**
+	 * @dataProvider invalidData
+	 * @runInSeparateProcess
+	 * @preserveGlobalState         disabled
+	 */
+	public function testErrorIsArrayAfterSaveCalledWithInValidData($data)
+	{
+		$this->repository->save($data);
+		$this->assertIsArray($this->repository->errors());
+	}
+
+	public function testDeleteAlbumOfIdWithNotFoundIdInDatabase()
+	{
+		$this->expectException(AlbumNotFoundException::class);
+		$this->repository->deleteOfId(rand(1000, 2000));
+	}
+
+	public function testDeleteAlbumOfIdWithFoundIdInDatabase()
+	{
+		$this->assertTrue($this->repository->deleteOfId(1));
+	}
 }
