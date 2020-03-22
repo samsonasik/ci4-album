@@ -71,14 +71,6 @@ class Track extends BaseController
 		try
 		{
 			$this->albumRepository->findAlbumOfId($albumId);
-		}
-		catch (RecordNotFoundException $e)
-		{
-			throw new PageNotFoundException($e->getMessage());
-		}
-
-		try
-		{
 			$track = $this->trackRepository->findTrackOfId($trackId);
 		}
 		catch (RecordNotFoundException $e)
@@ -107,14 +99,6 @@ class Track extends BaseController
 		try
 		{
 			$this->albumRepository->findAlbumOfId($albumId);
-		}
-		catch (RecordNotFoundException $e)
-		{
-			throw new PageNotFoundException($e->getMessage());
-		}
-
-		try
-		{
 			$this->trackRepository->deleteOfId($trackId);
 		}
 		catch (RecordNotFoundException $e)
