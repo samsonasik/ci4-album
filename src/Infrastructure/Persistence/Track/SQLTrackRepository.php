@@ -1,5 +1,6 @@
 <?php namespace Album\Infrastructure\Persistence\Track;
 
+use Album\Domain\Album\Album;
 use Album\Domain\Track\Track;
 use Album\Domain\Track\TrackNotFoundException;
 use Album\Domain\Track\TrackRepository;
@@ -15,13 +16,13 @@ class SQLTrackRepository implements TrackRepository
 		$this->model = $model;
 	}
 
-	public function findPaginatedData(int $albumId, string $keyword = ''): ?array
+	public function findPaginatedData(Album $album, string $keyword = ''): ?array
 	{
 		if ($keyword)
 		{
 			$this->model
 				 ->builder()
-				 ->where('album_id', $albumId)
+				 ->where('album_id', $album->id)
 				 ->groupStart()
 					 ->like('artist', $keyword)
 					 ->orLike('title', $keyword)

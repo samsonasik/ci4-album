@@ -2,6 +2,11 @@
 
 use CodeIgniter\Entity;
 
+/**
+ * @property int $id
+ * @property int $album_id
+ * @property string $title
+ */
 class Track extends Entity
 {
 	public function __construct(array $data = null)
