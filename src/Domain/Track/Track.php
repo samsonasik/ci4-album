@@ -16,7 +16,7 @@ class Track extends Entity
 		{
 			throw new InvalidArgumentException('album_id key must be exists');
 		}
-		$data['title']    = $data['title'] ?? '';
+		$data['title'] = $data['title'] ?? '';
 
 		parent::__construct($data);
 	}

@@ -41,7 +41,7 @@ echo form_close();
 			<td><?php echo esc($album->title) ?></td>
 			<td><?php echo esc($album->artist) ?></td>
 			<td>
-   			    <?php echo anchor(sprintf('album/edit/%d', $album->id), 'Edit'); ?>
+				<?php echo anchor(sprintf('album/edit/%d', $album->id), 'Edit'); ?>
 				<?php echo anchor(
 						  sprintf('album/delete/%d', $album->id),
 						  'Delete',
