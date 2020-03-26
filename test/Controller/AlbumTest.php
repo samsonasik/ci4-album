@@ -19,6 +19,12 @@ class AlbumTest extends CIDatabaseTestCase
 	protected $namespace = 'Album';
 	protected $seed      = AlbumSeeder::class;
 
+	protected function setUp(): void
+	{
+		parent::setUp();
+		\Config\Database::connect()->disableForeignKeyChecks();
+	}
+
 	public function testIndexAlbumHasNoData()
 	{
 		Database::connect()->table('album')->truncate();
@@ -181,5 +187,11 @@ class AlbumTest extends CIDatabaseTestCase
 					   ->execute('delete', 1);
 
 		$this->assertTrue($result->isRedirect());
+	}
+
+	public function tearDown(): void
+	{
+		parent::tearDown();
+		\Config\Database::connect()->enableForeignKeyChecks();
 	}
 }

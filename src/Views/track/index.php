@@ -1,6 +1,6 @@
 <?php
 // set title
-$title = 'Albums';
+$title = 'Album Tracks';
 $this->setVar('title', $title);
 
 // extends layout
@@ -31,15 +31,15 @@ echo form_close();
 		<th>Artist</th>
 		<th>&nbsp;</th>
 	</tr>
-	<?php if (! $albums) : ?>
+	<?php if (! $tracks) : ?>
 		<tr>
 			<td colspan="3">No album found.</td>
 		</tr>
 	<?php else:
-		foreach ($albums as $album) : ?>
+		foreach ($tracks as $track) : ?>
 		<tr>
-			<td><?php echo esc($album->title) ?></td>
-			<td><?php echo esc($album->artist) ?></td>
+			<td><?php echo esc($track->title) ?></td>
+			<td><?php echo esc($track->author) ?></td>
 			<td>
 				<?php echo anchor(sprintf('album/edit/%d', $album->id), 'Edit'); ?>
 				<?php echo anchor(
