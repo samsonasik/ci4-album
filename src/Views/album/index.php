@@ -41,14 +41,14 @@ echo form_close();
 			<td><?php echo esc($album->title) ?></td>
 			<td><?php echo esc($album->artist) ?></td>
 			<td>
-				<?php echo anchor(sprintf('album/edit/%d', $album->id), 'Edit'); ?>
+				<?php echo anchor(sprintf('track/%d', $album->id), 'Album Tracks Details'); ?> &nbsp;|&nbsp;
+				<?php echo anchor(sprintf('album/edit/%d', $album->id), 'Edit'); ?> &nbsp;|&nbsp;
 				<?php echo anchor(
 						  sprintf('album/delete/%d', $album->id),
 						  'Delete',
-						  ['onclick' => 'return confirm(\'Are you sure?\')']
+						  ['onclick' => 'return confirm(\'Track records will also deleted, are you sure?\')']
 					  );
 				?>
-				<?php echo anchor(sprintf('track/%d', $album->id), 'Album Tracks', ['style' => 'color: red;']); ?>
 			</td>
 		</tr>
 	<?php endforeach;

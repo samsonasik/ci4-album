@@ -22,8 +22,8 @@ $routes->group('track', ['namespace' => 'Album\Controllers'], function ($routes)
 	$routes->match(['get', 'post'], 'add/(:num)', 'Track::add/$1', ['as' => 'track-add']);
 
 	// example URI: /track/delete/1
-	$routes->get('delete/(:num)', 'Track::delete/$1', ['as' => 'track-delete']);
+	$routes->get('delete/(:num)/(:num)', 'Track::delete/$1/$2', ['as' => 'track-delete']);
 
 	// example URI: /track/1
-	$routes->match(['get', 'post'], 'edit/(:num)', 'Track::edit/$1', ['as' => 'track-edit']);
+	$routes->match(['get', 'post'], 'edit/(:num)/(:num)', 'Track::edit/$1/$2', ['as' => 'track-edit']);
 });

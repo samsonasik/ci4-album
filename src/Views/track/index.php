@@ -1,6 +1,6 @@
 <?php
 // set title
-$title = sprintf('Album Tracks of %s', $album->title);
+$title = sprintf('Album Tracks of %s:%s', $album->artist, $album->title);
 $this->setVar('title', $title);
 
 // extends layout
@@ -11,7 +11,9 @@ echo $this->section('content');
 ?>
 <h1> <?php echo esc($title); ?></h1>
 <p>
-	<?php echo anchor('album/add', 'Add new album'); ?>
+	<?php echo anchor('album', 'Back to Album lists'); ?>
+	&nbsp;|&nbsp;
+	<?php echo anchor(sprintf('track/add/%d', $album->id), 'Add new album track'); ?>
 </p>
 
 <?php
@@ -28,7 +30,7 @@ echo form_close();
 <table class="table">
 	<tr>
 		<th>Title</th>
-		<th>Artist</th>
+		<th>Author</th>
 		<th>&nbsp;</th>
 	</tr>
 	<?php if (! $tracks) : ?>
@@ -41,9 +43,9 @@ echo form_close();
 			<td><?php echo esc($track->title) ?></td>
 			<td><?php echo esc($track->author) ?></td>
 			<td>
-				<?php echo anchor(sprintf('album/edit/%d', $album->id), 'Edit'); ?>
+				<?php echo anchor(sprintf('track/edit/%d/%d', $album->id, $track->id), 'Edit'); ?>&nbsp;|&nbsp;
 				<?php echo anchor(
-						  sprintf('album/delete/%d', $album->id),
+						  sprintf('track/delete/%d/%d', $album->id, $track->id),
 						  'Delete',
 						  ['onclick' => 'return confirm(\'Are you sure?\')']
 					  );

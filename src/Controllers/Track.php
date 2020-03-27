@@ -33,6 +33,7 @@ class Track extends BaseController
 		}
 
 		$data['keyword'] = $this->request->getGet('keyword') ?? '';
+		$data['album']   = $album;
 		$data['tracks']  = $this->trackRepository->findPaginatedData($album, $data['keyword']);
 		$data['pager']   = $this->trackRepository->pager();
 
@@ -70,7 +71,7 @@ class Track extends BaseController
 	{
 		try
 		{
-			$this->albumRepository->findAlbumOfId($albumId);
+			$album = $this->albumRepository->findAlbumOfId($albumId);
 			$track = $this->trackRepository->findTrackOfId($trackId);
 		}
 		catch (RecordNotFoundException $e)
@@ -91,7 +92,11 @@ class Track extends BaseController
 			return redirect()->withInput()->back();
 		}
 
-		return view('Album\Views\track\edit', ['track' => $track, 'errors' => session()->getFlashData('errors')]);
+		return view('Album\Views\track\edit', [
+			'album' => $album,
+			'track' => $track,
+			'errors' => session()->getFlashData('errors')
+		]);
 	}
 
 	public function delete(int $albumId, int $trackId)
