@@ -65,8 +65,8 @@ class Track extends BaseController
 		}
 
 		return view('Album\Views\track\add', [
-			'album' => $album,
-			'errors' => session()->getFlashData('errors')
+			'album'  => $album,
+			'errors' => session()->getFlashData('errors'),
 		]);
 	}
 
@@ -96,9 +96,9 @@ class Track extends BaseController
 		}
 
 		return view('Album\Views\track\edit', [
-			'album' => $album,
-			'track' => $track,
-			'errors' => session()->getFlashData('errors')
+			'album'  => $album,
+			'track'  => $track,
+			'errors' => session()->getFlashData('errors'),
 		]);
 	}
 
