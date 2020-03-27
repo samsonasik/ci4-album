@@ -14,4 +14,5 @@ parameters:
         - '#Method ([a-zA-Z0-9\\_]+)(Controllers)([a-zA-Z0-9\\_]+)(::)([a-zA-Z0-9]+)(\(\)) has no return typehint specified.#'
         - '#Call to an undefined static method Config\\Services::albumRepository()#'
         - '#Call to an undefined static method Config\\Services::trackRepository()#'
+        - '#Call to an undefined static method Config\\Services::albumTrackSummary()#'
         - '#Call to protected method builder\(\) of class CodeIgniter\\Model.#'

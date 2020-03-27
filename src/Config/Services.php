@@ -1,6 +1,7 @@
 <?php namespace Album\Config;
 
 use Album\Infrastructure\Persistence\Album\SQLAlbumRepository;
+use Album\Infrastructure\Persistence\AlbumTrackSummary\SQLAlbumTrackSummaryRepository;
 use Album\Infrastructure\Persistence\Track\SQLTrackRepository;
 use Album\Models;
 use CodeIgniter\Config\BaseService;
@@ -25,5 +26,15 @@ class Services extends BaseService
 		}
 
 		return new SQLTrackRepository(model(Models\TrackModel::class));
+	}
+
+	public static function albumTrackSummary($getShared = true)
+	{
+		if ($getShared)
+		{
+			return static::getSharedInstance('albumTrackSummary');
+		}
+
+		return new SQLAlbumTrackSummaryRepository();
 	}
 }

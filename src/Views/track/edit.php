@@ -15,7 +15,7 @@ echo $this->section('content');
 
 <?php
 helper('form');
-echo form_open(sprintf('track/edit/%d/%d', $album->id, $track->id));
+echo form_open(sprintf('album-track/edit/%d/%d', $album->id, $track->id));
 echo form_hidden('album_id', set_value('album_id', $album->id));
 echo form_hidden('id', set_value('id', $track->id));
 ?>
@@ -47,7 +47,7 @@ echo form_hidden('id', set_value('id', $track->id));
 
 <br /> <br />
 <?php echo anchor(
-	sprintf('track/%d', $album->id),
+	sprintf('album-track/%d', $album->id),
 	sprintf('Back to Track Index of %s:%s', $album->artist, $album->title)
 	);
 ?>

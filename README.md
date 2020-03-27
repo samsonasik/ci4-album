@@ -11,7 +11,7 @@ Feature
 -------
 
 - [x] CRUD with
-   - [x] [Domain Driven Design Architecture](https://en.wikipedia.org/wiki/Domain-driven_design)
+   - [x] [Domain Driven Design Architecture](https://en.wikipedia.org/wiki/Domain-driven_design) with [Tactical Pattern](http://gorodinski.com/blog/2012/04/25/read-models-as-a-tactical-pattern-in-domain-driven-design-ddd/)
    - [x] [Post/Redirect/Get pattern](https://en.wikipedia.org/wiki/Post/Redirect/Get)
 - [x] Pagination, configurable via [`Album\Config\Album`](#settings) class.
 - [x] Search

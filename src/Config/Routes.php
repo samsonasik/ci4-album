@@ -14,7 +14,7 @@ $routes->group('album', ['namespace' => 'Album\Controllers'], function ($routes)
 	$routes->match(['get', 'post'], 'edit/(:num)', 'Album::edit/$1', ['as' => 'album-edit']);
 });
 
-$routes->group('track', ['namespace' => 'Album\Controllers'], function ($routes) {
+$routes->group('album-track', ['namespace' => 'Album\Controllers'], function ($routes) {
 	// URI: /track/1
 	$routes->get('(:num)', 'Track::index/$1', ['as' => 'track-index']);
 
@@ -26,4 +26,9 @@ $routes->group('track', ['namespace' => 'Album\Controllers'], function ($routes)
 
 	// example URI: /track/1
 	$routes->match(['get', 'post'], 'edit/(:num)/(:num)', 'Track::edit/$1/$2', ['as' => 'track-edit']);
+});
+
+$routes->group('album-track-summary', ['namespace' => 'Album\Controllers'], function ($routes) {
+	// URI: /album-track-summary/totalsong
+	$routes->get('totalsong', 'AlbumTrackSummary::totalsong', ['as' => 'album-track-summary-totalsong']);
 });

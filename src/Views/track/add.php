@@ -15,7 +15,7 @@ echo $this->section('content');
 
 <?php
 helper('form');
-echo form_open(sprintf('track/add/%d', $album->id));
+echo form_open(sprintf('album-track/add/%d', $album->id));
 echo form_hidden('album_id', set_value('album_id', $album->id));
 ?>
 
@@ -44,7 +44,7 @@ echo form_submit('Save', 'Save New Album Track', ['class' => 'btn btn-primary'])
 
 <br /> <br />
 <?php echo anchor(
-	sprintf('track/%d', $album->id),
+	sprintf('album-track/%d', $album->id),
 	sprintf('Back to Track Index of %s:%s', $album->artist, $album->title)
 	);
 ?>
