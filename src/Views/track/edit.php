@@ -30,11 +30,11 @@ echo form_hidden('id', set_value('id', $track->id));
 </div>
 
 <div class="form-group">
-		<?php
-			echo form_label('Author', 'author', ['for' => 'author']);
-			echo form_input('author', set_value('author', $track->author), ['class' => 'form-control']);
-		?>
-		<span class="error text-danger"><?php echo $errors['author'] ?? '' ?></span>
+	<?php
+		echo form_label('Author', 'author', ['for' => 'author']);
+		echo form_input('author', set_value('author', $track->author), ['class' => 'form-control']);
+	?>
+	<span class="error text-danger"><?php echo $errors['author'] ?? '' ?></span>
 </div>
 
 <div class="form-group">
