@@ -6,6 +6,7 @@ use CodeIgniter\Entity;
  * @property int $id
  * @property int $album_id
  * @property string $title
+ * @property string $author
  */
 class Track extends Entity
 {
