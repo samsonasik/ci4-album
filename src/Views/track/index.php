@@ -35,7 +35,7 @@ echo form_close();
 	</tr>
 	<?php if (! $tracks) : ?>
 		<tr>
-			<td colspan="3">No album found.</td>
+			<td colspan="3">No album track found.</td>
 		</tr>
 	<?php else:
 		foreach ($tracks as $track) : ?>

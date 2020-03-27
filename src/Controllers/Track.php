@@ -64,7 +64,10 @@ class Track extends BaseController
 			return redirect()->withInput()->back();
 		}
 
-		return view('Album\Views\track\add', ['albumId' => $album->id, 'errors' => session()->getFlashData('errors')]);
+		return view('Album\Views\track\add', [
+			'album' => $album,
+			'errors' => session()->getFlashData('errors')
+		]);
 	}
 
 	public function edit(int $albumId, int $trackId)
