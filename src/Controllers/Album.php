@@ -2,6 +2,7 @@
 
 use Album\Domain\Album\AlbumRepository;
 use Album\Domain\Exception\RecordNotFoundException;
+use Album\Models\AlbumModel;
 use App\Controllers\BaseController;
 use CodeIgniter\Exceptions\PageNotFoundException;
 use Config\Services;
@@ -20,7 +21,7 @@ class Album extends BaseController
 	{
 		$data['keyword'] = $this->request->getGet('keyword') ?? '';
 		$data['albums']  = $this->repository->findPaginatedData($data['keyword']);
-		$data['pager']   = $this->repository->pager();
+		$data['pager']   = model(AlbumModel::class)->pager;
 
 		return view('Album\Views\album\index', $data);
 	}
@@ -36,7 +37,7 @@ class Album extends BaseController
 				return redirect()->route('album-index');
 			}
 
-			session()->setFlashdata('errors', $this->repository->errors());
+			session()->setFlashdata('errors', model(AlbumModel::class)->errors());
 			return redirect()->withInput()->back();
 		}
 
@@ -63,7 +64,7 @@ class Album extends BaseController
 				return redirect()->route('album-index');
 			}
 
-			session()->setFlashdata('errors', $this->repository->errors());
+			session()->setFlashdata('errors', model(AlbumModel::class)->errors());
 			return redirect()->withInput()->back();
 		}
 

@@ -3,6 +3,7 @@
 use Album\Domain\Album\AlbumRepository;
 use Album\Domain\Exception\RecordNotFoundException;
 use Album\Domain\Track\TrackRepository;
+use Album\Models\TrackModel;
 use App\Controllers\BaseController;
 use CodeIgniter\Exceptions\PageNotFoundException;
 use Config\Services;
@@ -35,7 +36,7 @@ class Track extends BaseController
 		$data['keyword'] = $this->request->getGet('keyword') ?? '';
 		$data['album']   = $album;
 		$data['tracks']  = $this->trackRepository->findPaginatedData($album, $data['keyword']);
-		$data['pager']   = $this->trackRepository->pager();
+		$data['pager']   = model(TrackModel::class)->pager;
 
 		return view('Album\Views\track\index', $data);
 	}
@@ -60,7 +61,7 @@ class Track extends BaseController
 				return redirect()->route('track-index', [$albumId]);
 			}
 
-			session()->setFlashdata('errors', $this->trackRepository->errors());
+			session()->setFlashdata('errors', model(TrackModel::class)->errors());
 			return redirect()->withInput()->back();
 		}
 
@@ -91,7 +92,7 @@ class Track extends BaseController
 				return redirect()->route('track-index', [$albumId]);
 			}
 
-			session()->setFlashdata('errors', $this->trackRepository->errors());
+			session()->setFlashdata('errors', model(TrackModel::class)->errors());
 			return redirect()->withInput()->back();
 		}
 

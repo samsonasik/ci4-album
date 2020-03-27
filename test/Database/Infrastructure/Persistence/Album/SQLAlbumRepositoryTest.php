@@ -3,7 +3,6 @@
 use Album\Database\Seeds\AlbumSeeder;
 use Album\Domain\Album\Album;
 use Album\Domain\Album\AlbumNotFoundException;
-use CodeIgniter\Pager\PagerInterface;
 use CodeIgniter\Test\CIDatabaseTestCase;
 use Config\Services;
 
@@ -21,11 +20,6 @@ class SQLAlbumRepositoryTest extends CIDatabaseTestCase
 		$this->repository = Services::albumRepository();
 	}
 
-	public function testPagerIsNullBeforeFindPaginatedDataCalled()
-	{
-		$this->assertNull($this->repository->pager());
-	}
-
 	public function testfindPaginatedDataWithKeywordNotFoundInDatabase()
 	{
 		$albums = $this->repository->findPaginatedData('Siti');
@@ -36,11 +30,6 @@ class SQLAlbumRepositoryTest extends CIDatabaseTestCase
 	{
 		$albums = $this->repository->findPaginatedData('Sheila');
 		$this->assertNotEmpty($albums);
-	}
-
-	public function testPager()
-	{
-		$this->assertInstanceOf(PagerInterface::class, $this->repository->pager());
 	}
 
 	public function testFindAlbumOfIdWithNotFoundIdInDatabase()
@@ -101,37 +90,6 @@ class SQLAlbumRepositoryTest extends CIDatabaseTestCase
 	public function testSaveValidData(array $data)
 	{
 		$this->assertTrue($this->repository->save($data));
-	}
-
-	/**
-	 * @runInSeparateProcess
-	 * @preserveGlobalState         disabled
-	 */
-	public function testErrorIsNullOnNoSaveCalled()
-	{
-		$this->assertNull($this->repository->errors());
-	}
-
-	/**
-	 * @dataProvider validData
-	 * @runInSeparateProcess
-	 * @preserveGlobalState         disabled
-	 */
-	public function testErrorIsNullAfterSaveCalledWithValidData($data)
-	{
-		$this->repository->save($data);
-		$this->assertNull($this->repository->errors());
-	}
-
-	/**
-	 * @dataProvider invalidData
-	 * @runInSeparateProcess
-	 * @preserveGlobalState         disabled
-	 */
-	public function testErrorIsArrayAfterSaveCalledWithInValidData($data)
-	{
-		$this->repository->save($data);
-		$this->assertIsArray($this->repository->errors());
 	}
 
 	public function testDeleteAlbumOfIdWithNotFoundIdInDatabase()
