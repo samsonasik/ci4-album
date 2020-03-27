@@ -10,16 +10,12 @@ use InvalidArgumentException;
  */
 class Track extends Entity
 {
-	public function __construct(array $data = null)
-	{
-		if (! isset($data['album_id']))
-		{
-			throw new InvalidArgumentException('album_id key must be exists');
-		}
-		$data['title'] = $data['title'] ?? '';
-
-		parent::__construct($data);
-	}
+	protected $attributes = [
+		'id'       => null,
+		'album_id' => null,
+		'title'    => null,
+		'author'   => null,
+	];
 
 	public function setTitle(string $title): self
 	{

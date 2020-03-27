@@ -9,13 +9,11 @@ use CodeIgniter\Entity;
  */
 class Album extends Entity
 {
-	public function __construct(array $data = null)
-	{
-		$data['artist'] = $data['artist'] ?? '';
-		$data['title']  = $data['title'] ?? '';
-
-		parent::__construct($data);
-	}
+	protected $attributes = [
+		'id'     => null,
+		'artist' => null,
+		'title'  => null,
+	];
 
 	public function setArtist(string $artist): self
 	{

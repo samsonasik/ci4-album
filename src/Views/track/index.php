@@ -1,6 +1,6 @@
 <?php
 // set title
-$title = 'Album Tracks';
+$title = sprintf('Album Tracks of %s', $album->title);
 $this->setVar('title', $title);
 
 // extends layout
