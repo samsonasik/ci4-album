@@ -29,11 +29,11 @@ echo form_close();
 	<tr>
 		<th>Title</th>
 		<th>Artist</th>
-		<th>&nbsp;</th>
+		<th>Options</th>
 	</tr>
 	<?php if (! $albums) : ?>
 		<tr>
-			<td colspan="3">No album found.</td>
+			<td colspan="3" align="center">No album found.</td>
 		</tr>
 	<?php else:
 		foreach ($albums as $album) : ?>

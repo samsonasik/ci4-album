@@ -19,7 +19,8 @@ class SQLAlbumRepository implements AlbumRepository
 	{
 		if ($keyword)
 		{
-			$this->model->builder()
+			$this->model
+				 ->builder()
 				 ->groupStart()
 					 ->like('artist', $keyword)
 					 ->orLike('title', $keyword)

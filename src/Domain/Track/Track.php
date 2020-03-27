@@ -22,4 +22,10 @@ class Track extends Entity
 		$this->attributes['title'] = ucwords($title);
 		return $this;
 	}
+
+	public function setAuthor(string $author): self
+	{
+		$this->attributes['author'] = ucwords($author);
+		return $this;
+	}
 }

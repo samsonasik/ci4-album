@@ -18,7 +18,7 @@ echo $this->section('content');
 
 <?php
 helper('form');
-echo form_open('album', ['method' => 'get']);
+echo form_open(sprintf('track/%d', $album->id), ['method' => 'get']);
 echo form_input('keyword', esc($keyword), ['placeholder' => 'Search keyword']);
 echo form_close();
 ?>
@@ -31,11 +31,11 @@ echo form_close();
 	<tr>
 		<th>Title</th>
 		<th>Author</th>
-		<th>&nbsp;</th>
+		<th>Options</th>
 	</tr>
 	<?php if (! $tracks) : ?>
 		<tr>
-			<td colspan="3">No album track found.</td>
+			<td colspan="3" align="center">No album track found.</td>
 		</tr>
 	<?php else:
 		foreach ($tracks as $track) : ?>

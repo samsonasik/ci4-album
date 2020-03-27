@@ -18,14 +18,17 @@ class SQLTrackRepository implements TrackRepository
 
 	public function findPaginatedData(Album $album, string $keyword = ''): ?array
 	{
+		$this->model
+			 ->builder()
+			 ->where('album_id', $album->id);
+
 		if ($keyword)
 		{
 			$this->model
 				 ->builder()
-				 ->where('album_id', $album->id)
 				 ->groupStart()
-					 ->like('artist', $keyword)
-					 ->orLike('title', $keyword)
+					 ->like('title', $keyword)
+					 ->orLike('author', $keyword)
 				 ->groupEnd();
 		}
 
