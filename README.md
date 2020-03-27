@@ -80,13 +80,13 @@ php spark db:seed "Album\Database\Seeds\AlbumSeeder"
 php spark db:seed "Album\Database\Seeds\TrackSeeder"
 ```
 
-**4.** Run development server:
+**5.** Run development server:
 
 ```bash
 php spark serve
 ```
 
-**5.** Open in browser http://localhost:8080/album
+**6.** Open in browser http://localhost:8080/album
 
 Settings
 --------
