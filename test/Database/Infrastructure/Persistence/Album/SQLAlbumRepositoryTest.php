@@ -80,7 +80,7 @@ class SQLAlbumRepositoryTest extends CIDatabaseTestCase
 			'insert' => [
 				[
 					'artist' => 'Siti Nurhaliza',
-					'title'  => 'Purnama Merindu',
+					'title'  => 'Anugrah Aidilfitri',
 				],
 			],
 			'update' => [

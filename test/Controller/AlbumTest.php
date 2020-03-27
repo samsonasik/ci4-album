@@ -106,7 +106,7 @@ class AlbumTest extends CIDatabaseTestCase
 		$request->setMethod('post');
 		$request->setGlobal('post', [
 			'artist' => 'Siti Nurhaliza',
-			'title'  => 'Purnama Merindu',
+			'title'  => 'Anugrah Aidilfitri',
 		]);
 
 		$result = $this->withRequest($request)
@@ -159,7 +159,7 @@ class AlbumTest extends CIDatabaseTestCase
 		$request->setMethod('post');
 		$request->setGlobal('post', [
 			'artist' => 'Siti Nurhaliza',
-			'title'  => 'Purnama Merindu',
+			'title'  => 'Anugrah Aidilfitri',
 		]);
 
 		$result = $this->withRequest($request)
