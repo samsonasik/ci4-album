@@ -3,11 +3,15 @@
 use Album\Domain\Album\Album;
 use Album\Domain\Album\AlbumNotFoundException;
 use Album\Domain\Album\AlbumRepository;
+use Album\Infrastructure\Persistence\DMLPersistence;
 use Album\Models\AlbumModel;
 
 class SQLAlbumRepository implements AlbumRepository
 {
-	private $model;
+	use DMLPersistence;
+
+	/** @var AlbumModel */
+	protected $model;
 
 	public function __construct(AlbumModel $model)
 	{
@@ -38,11 +42,6 @@ class SQLAlbumRepository implements AlbumRepository
 		}
 
 		return $album;
-	}
-
-	public function save(array $data = null): bool
-	{
-		return $this->model->save(new $this->model->returnType($data));
 	}
 
 	public function deleteOfId(int $id) : bool

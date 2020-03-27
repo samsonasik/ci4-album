@@ -4,11 +4,15 @@ use Album\Domain\Album\Album;
 use Album\Domain\Track\Track;
 use Album\Domain\Track\TrackNotFoundException;
 use Album\Domain\Track\TrackRepository;
+use Album\Infrastructure\Persistence\DMLPersistence;
 use Album\Models\TrackModel;
 
 class SQLTrackRepository implements TrackRepository
 {
-	private $model;
+	use DMLPersistence;
+
+	/** @var TrackModel */
+	protected $model;
 
 	public function __construct(TrackModel $model)
 	{
@@ -43,11 +47,6 @@ class SQLTrackRepository implements TrackRepository
 		}
 
 		return $track;
-	}
-
-	public function save(array $data = null): bool
-	{
-		return $this->model->save(new $this->model->returnType($data));
 	}
 
 	public function deleteOfId(int $id) : bool
