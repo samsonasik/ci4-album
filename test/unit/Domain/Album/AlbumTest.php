@@ -22,7 +22,7 @@ class AlbumTest extends TestCase
 
 	public function testSetTitle()
 	{
-		$this->entity->setTitle('melompat lebih tinggi');
-		$this->assertEquals('Melompat Lebih Tinggi', $this->entity->title);
+		$this->entity->setTitle('kisah klasik untuk masa depan');
+		$this->assertEquals('Kisah Klasik Untuk Masa Depan', $this->entity->title);
 	}
 }

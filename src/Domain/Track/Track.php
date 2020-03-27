@@ -1,7 +1,6 @@
 <?php namespace Album\Domain\Track;
 
 use CodeIgniter\Entity;
-use InvalidArgumentException;
 
 /**
  * @property int $id
@@ -16,6 +15,12 @@ class Track extends Entity
 		'title'    => null,
 		'author'   => null,
 	];
+
+	public function setAlbumId(int $album_id): self
+	{
+		$this->attributes['album_id'] = $album_id;
+		return $this;
+	}
 
 	public function setTitle(string $title): self
 	{

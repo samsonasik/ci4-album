@@ -158,6 +158,7 @@ class AlbumTest extends CIDatabaseTestCase
 		$request = Services::request();
 		$request->setMethod('post');
 		$request->setGlobal('post', [
+			'id'     => 1,
 			'artist' => 'Siti Nurhaliza',
 			'title'  => 'Anugrah Aidilfitri',
 		]);
