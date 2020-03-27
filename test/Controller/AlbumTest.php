@@ -1,7 +1,7 @@
 <?php namespace AlbumTest\Controller;
 
 use Album\Controllers\Album;
-use AlbumTest\Database\Seeds\AlbumSeeder;
+use Album\Database\Seeds\AlbumSeeder;
 use CodeIgniter\Test\CIDatabaseTestCase;
 use CodeIgniter\Test\ControllerTester;
 use Config\Database;
@@ -21,7 +21,9 @@ class AlbumTest extends CIDatabaseTestCase
 
 	public function testIndexAlbumHasNoData()
 	{
+		Database::connect()->disableForeignKeyChecks();
 		Database::connect()->table('album')->truncate();
+		Database::connect()->enableForeignKeyChecks();
 
 		$result = $this->controller(Album::class)
 						->execute('index');
@@ -104,7 +106,7 @@ class AlbumTest extends CIDatabaseTestCase
 		$request->setMethod('post');
 		$request->setGlobal('post', [
 			'artist' => 'Siti Nurhaliza',
-			'title'  => 'Purnama Merindu',
+			'title'  => 'Anugrah Aidilfitri',
 		]);
 
 		$result = $this->withRequest($request)
@@ -156,8 +158,9 @@ class AlbumTest extends CIDatabaseTestCase
 		$request = Services::request();
 		$request->setMethod('post');
 		$request->setGlobal('post', [
+			'id'     => 1,
 			'artist' => 'Siti Nurhaliza',
-			'title'  => 'Purnama Merindu',
+			'title'  => 'Anugrah Aidilfitri',
 		]);
 
 		$result = $this->withRequest($request)

@@ -1,24 +1,29 @@
 <?php namespace AlbumTest\Database\Infrastructure\Persistence\Album;
 
 use Album\Database\Seeds\AlbumSeeder;
+use Album\Database\Seeds\TrackSeeder;
 use Album\Domain\Album\Album;
-use Album\Domain\Album\AlbumNotFoundException;
+use Album\Domain\Track\Track;
+use Album\Domain\Track\TrackNotFoundException;
 use CodeIgniter\Pager\PagerInterface;
 use CodeIgniter\Test\CIDatabaseTestCase;
 use Config\Services;
 
-class SQLAlbumRepositoryTest extends CIDatabaseTestCase
+class SQLTrackRepositoryTest extends CIDatabaseTestCase
 {
 	protected $basePath  = __DIR__ . '/../src/Database/';
 	protected $namespace = 'Album';
-	protected $seed      = AlbumSeeder::class;
+	protected $seed      = [
+		AlbumSeeder::class,
+		TrackSeeder::class,
+	];
 	private $repository;
 
 	protected function setUp(): void
 	{
 		parent::setUp();
 
-		$this->repository = Services::albumRepository();
+		$this->repository = Services::trackRepository();
 	}
 
 	public function testPagerIsNullBeforeFindPaginatedDataCalled()
@@ -28,14 +33,20 @@ class SQLAlbumRepositoryTest extends CIDatabaseTestCase
 
 	public function testfindPaginatedDataWithKeywordNotFoundInDatabase()
 	{
-		$albums = $this->repository->findPaginatedData('Siti');
-		$this->assertEmpty($albums);
+		$album     = new Album();
+		$album->id = 1;
+
+		$tracks = $this->repository->findPaginatedData($album, 'Pak Ngah');
+		$this->assertEmpty($tracks);
 	}
 
 	public function testfindPaginatedDataWithKeywordFoundInDatabase()
 	{
-		$albums = $this->repository->findPaginatedData('Sheila');
-		$this->assertNotEmpty($albums);
+		$album     = new Album();
+		$album->id = 1;
+
+		$tracks = $this->repository->findPaginatedData($album, 'Eross Chandra');
+		$this->assertNotEmpty($tracks);
 	}
 
 	public function testPager()
@@ -43,15 +54,15 @@ class SQLAlbumRepositoryTest extends CIDatabaseTestCase
 		$this->assertInstanceOf(PagerInterface::class, $this->repository->pager());
 	}
 
-	public function testFindAlbumOfIdWithNotFoundIdInDatabase()
+	public function testFindTrackOfIdWithNotFoundIdInDatabase()
 	{
-		$this->expectException(AlbumNotFoundException::class);
-		$this->repository->findAlbumOfId(rand(1000, 2000));
+		$this->expectException(TrackNotFoundException::class);
+		$this->repository->findTrackOfId(rand(1000, 2000));
 	}
 
-	public function testFindAlbumOfIdWithFoundIdInDatabase()
+	public function testFindTrackOfIdWithFoundIdInDatabase()
 	{
-		$this->assertInstanceOf(Album::class, $this->repository->findAlbumOfId(1));
+		$this->assertInstanceOf(Track::class, $this->repository->findTrackOfId(1));
 	}
 
 	public function invalidData()
@@ -79,15 +90,17 @@ class SQLAlbumRepositoryTest extends CIDatabaseTestCase
 		return [
 			'insert' => [
 				[
-					'artist' => 'Siti Nurhaliza',
-					'title'  => 'Anugrah Aidilfitri',
+					'album_id' => 1,
+					'title'    => 'Sahabat Sejati',
+					'author'   => 'Erros Chandra',
 				],
 			],
 			'update' => [
 				[
-					'id'     => 1,
-					'artist' => 'Sheila On 7',
-					'title'  => 'Pejantan Tangguh',
+					'id'       => 1,
+					'album_id' => 1,
+					'title'    => 'Temani Aku',
+					'author'   => 'Erros Chandra',
 				],
 			],
 		];
@@ -134,13 +147,13 @@ class SQLAlbumRepositoryTest extends CIDatabaseTestCase
 		$this->assertIsArray($this->repository->errors());
 	}
 
-	public function testDeleteAlbumOfIdWithNotFoundIdInDatabase()
+	public function testDeleteTrackOfIdWithNotFoundIdInDatabase()
 	{
-		$this->expectException(AlbumNotFoundException::class);
+		$this->expectException(TrackNotFoundException::class);
 		$this->repository->deleteOfId(rand(1000, 2000));
 	}
 
-	public function testDeleteAlbumOfIdWithFoundIdInDatabase()
+	public function testDeleteTrackOfIdWithFoundIdInDatabase()
 	{
 		$this->assertTrue($this->repository->deleteOfId(1));
 	}

@@ -28,6 +28,7 @@ echo form_submit('Save', 'Save New Album');
 echo form_close();
 ?>
 
+<br />
 <?php echo anchor('album', 'Back to Album Index'); ?>
 
 <?php

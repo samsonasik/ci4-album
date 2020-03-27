@@ -25,10 +25,11 @@ echo form_label('Title', 'title');
 echo form_input('title', set_value('title', $album->title));
 echo $errors['title'] ?? '';
 
-echo form_submit('Save', 'Save New Album');
+echo form_submit('Save', 'Update Album');
 echo form_close();
 ?>
 
+<br />
 <?php echo anchor('album', 'Back to Album Index'); ?>
 
 <?php

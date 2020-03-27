@@ -1,6 +1,6 @@
 <?php
 // set title
-$title = 'Albums';
+$title = sprintf('Album Tracks of %s:%s', $album->artist, $album->title);
 $this->setVar('title', $title);
 
 // extends layout
@@ -11,12 +11,14 @@ echo $this->section('content');
 ?>
 <h1> <?php echo esc($title); ?></h1>
 <p>
-	<?php echo anchor('album/add', 'Add new album'); ?>
+	<?php echo anchor('album', 'Back to Album lists'); ?>
+	&nbsp;|&nbsp;
+	<?php echo anchor(sprintf('track/add/%d', $album->id), 'Add new album track'); ?>
 </p>
 
 <?php
 helper('form');
-echo form_open('album', ['method' => 'get']);
+echo form_open(sprintf('track/%d', $album->id), ['method' => 'get']);
 echo form_input('keyword', esc($keyword), ['placeholder' => 'Search keyword']);
 echo form_close();
 ?>
@@ -28,22 +30,22 @@ echo form_close();
 <table class="table">
 	<tr>
 		<th>Title</th>
-		<th>Artist</th>
-		<th>&nbsp;</th>
+		<th>Author</th>
+		<th>Options</th>
 	</tr>
-	<?php if (! $albums) : ?>
+	<?php if (! $tracks) : ?>
 		<tr>
-			<td colspan="3">No album found.</td>
+			<td colspan="3" align="center">No album track found.</td>
 		</tr>
 	<?php else:
-		foreach ($albums as $album) : ?>
+		foreach ($tracks as $track) : ?>
 		<tr>
-			<td><?php echo esc($album->title) ?></td>
-			<td><?php echo esc($album->artist) ?></td>
+			<td><?php echo esc($track->title) ?></td>
+			<td><?php echo esc($track->author) ?></td>
 			<td>
-				<?php echo anchor(sprintf('album/edit/%d', $album->id), 'Edit'); ?>
+				<?php echo anchor(sprintf('track/edit/%d/%d', $album->id, $track->id), 'Edit'); ?>&nbsp;|&nbsp;
 				<?php echo anchor(
-						  sprintf('album/delete/%d', $album->id),
+						  sprintf('track/delete/%d/%d', $album->id, $track->id),
 						  'Delete',
 						  ['onclick' => 'return confirm(\'Are you sure?\')']
 					  );

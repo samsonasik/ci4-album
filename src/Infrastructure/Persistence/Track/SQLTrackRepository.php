@@ -1,29 +1,34 @@
-<?php namespace Album\Infrastructure\Persistence\Album;
+<?php namespace Album\Infrastructure\Persistence\Track;
 
 use Album\Domain\Album\Album;
-use Album\Domain\Album\AlbumNotFoundException;
-use Album\Domain\Album\AlbumRepository;
-use Album\Models\AlbumModel;
+use Album\Domain\Track\Track;
+use Album\Domain\Track\TrackNotFoundException;
+use Album\Domain\Track\TrackRepository;
+use Album\Models\TrackModel;
 use CodeIgniter\Pager\PagerInterface;
 
-class SQLAlbumRepository implements AlbumRepository
+class SQLTrackRepository implements TrackRepository
 {
 	private $model;
 
-	public function __construct(AlbumModel $model)
+	public function __construct(TrackModel $model)
 	{
 		$this->model = $model;
 	}
 
-	public function findPaginatedData(string $keyword = ''): ?array
+	public function findPaginatedData(Album $album, string $keyword = ''): ?array
 	{
+		$this->model
+			 ->builder()
+			 ->where('album_id', $album->id);
+
 		if ($keyword)
 		{
 			$this->model
 				 ->builder()
 				 ->groupStart()
-					 ->like('artist', $keyword)
-					 ->orLike('title', $keyword)
+					 ->like('title', $keyword)
+					 ->orLike('author', $keyword)
 				 ->groupEnd();
 		}
 
@@ -35,15 +40,15 @@ class SQLAlbumRepository implements AlbumRepository
 		return $this->model->pager;
 	}
 
-	public function findAlbumOfId(int $id): Album
+	public function findTrackOfId(int $id): Track
 	{
-		$album = $this->model->find($id);
-		if (! $album instanceof Album)
+		$track = $this->model->find($id);
+		if (! $track instanceof Track)
 		{
-			throw new AlbumNotFoundException();
+			throw new TrackNotFoundException();
 		}
 
-		return $album;
+		return $track;
 	}
 
 	public function save(array $data = null): bool
@@ -61,7 +66,7 @@ class SQLAlbumRepository implements AlbumRepository
 		$delete = $this->model->delete($id);
 		if ($delete->connID->affected_rows === 0)
 		{
-			throw new AlbumNotFoundException();
+			throw new TrackNotFoundException();
 		}
 
 		return true;

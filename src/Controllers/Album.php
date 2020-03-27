@@ -22,7 +22,7 @@ class Album extends BaseController
 		$data['albums']  = $this->repository->findPaginatedData($data['keyword']);
 		$data['pager']   = $this->repository->pager();
 
-		return view('Album\Views\index', $data);
+		return view('Album\Views\album\index', $data);
 	}
 
 	public function add()
@@ -40,7 +40,7 @@ class Album extends BaseController
 			return redirect()->withInput()->back();
 		}
 
-		return view('Album\Views\add', ['errors' => session()->getFlashData('errors')]);
+		return view('Album\Views\album\add', ['errors' => session()->getFlashData('errors')]);
 	}
 
 	public function edit(int $id)
@@ -67,7 +67,7 @@ class Album extends BaseController
 			return redirect()->withInput()->back();
 		}
 
-		return view('Album\Views\edit', ['album' => $album, 'errors' => session()->getFlashData('errors')]);
+		return view('Album\Views\album\edit', ['album' => $album, 'errors' => session()->getFlashData('errors')]);
 	}
 
 	public function delete(int $id)
