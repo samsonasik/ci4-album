@@ -35,4 +35,9 @@
     <rule ref="CodeIgniter4.Commenting.ClassComment">
         <exclude name="CodeIgniter4.Commenting.ClassComment"/>
     </rule>
+
+    <rule ref="CodeIgniter4.NamingConventions.ValidVariableName">
+        <exclude name="CodeIgniter4.NamingConventions.ValidVariableName"/>
+    </rule>
+
 </ruleset>

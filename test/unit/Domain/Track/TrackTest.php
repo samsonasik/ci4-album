@@ -7,28 +7,18 @@ use PHPUnit\Framework\TestCase;
 
 class TrackTest extends TestCase
 {
-	private $entity;
-
-	protected function setUp(): void
+	public function testFillGetAttributes()
 	{
-		$this->entity = new Track();
-	}
+		$entity = new Track([
+			'id'       => 1,
+			'album_id' => 1,
+			'title'    => 'sebuah kisah klasik',
+			'author'   => 'eross chandra',
+		]);
 
-	public function testSetAlbumId()
-	{
-		$this->entity->setAlbumId(1);
-		$this->assertEquals(1, $this->entity->album_id);
-	}
-
-	public function testSetTitle()
-	{
-		$this->entity->setTitle('sebuah kisah klasik');
-		$this->assertEquals('Sebuah Kisah Klasik', $this->entity->title);
-	}
-
-	public function testSetAuthor()
-	{
-		$this->entity->setAuthor('eross chandra');
-		$this->assertEquals('Eross Chandra', $this->entity->author);
+		$this->assertEquals(1, $entity->id);
+		$this->assertEquals(1, $entity->album_id);
+		$this->assertEquals('Sebuah Kisah Klasik', $entity->title);
+		$this->assertEquals('Eross Chandra', $entity->author);
 	}
 }

@@ -17,12 +17,6 @@ class Track extends Entity
 		'author'   => null,
 	];
 
-	public function setAlbumId(int $albumId): self
-	{
-		$this->attributes['album_id'] = $albumId;
-		return $this;
-	}
-
 	public function setTitle(string $title): self
 	{
 		$this->attributes['title'] = ucwords($title);

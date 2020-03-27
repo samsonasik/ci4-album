@@ -7,22 +7,16 @@ use PHPUnit\Framework\TestCase;
 
 class AlbumTest extends TestCase
 {
-	private $entity;
-
-	protected function setUp(): void
+	public function testFillGetAttributes()
 	{
-		$this->entity = new Album();
-	}
+		$entity = new Album([
+			'id'     => 1,
+			'artist' => 'sheila on 7',
+			'title'  => 'kisah klasik untuk masa depan',
+		]);
 
-	public function testSetArtist()
-	{
-		$this->entity->setArtist('sheila on 7');
-		$this->assertEquals('Sheila On 7', $this->entity->artist);
-	}
-
-	public function testSetTitle()
-	{
-		$this->entity->setTitle('kisah klasik untuk masa depan');
-		$this->assertEquals('Kisah Klasik Untuk Masa Depan', $this->entity->title);
+		$this->assertEquals(1, $entity->id);
+		$this->assertEquals('Sheila On 7', $entity->artist);
+		$this->assertEquals('Kisah Klasik Untuk Masa Depan', $entity->title);
 	}
 }
