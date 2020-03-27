@@ -31,7 +31,11 @@ echo form_close();
 ?>
 
 <br />
-<?php echo anchor(sprintf('track/%d', $album->id), sprintf('Back to Track Index of %s:%s', $album->artist, $album->title)); ?>
+<?php echo anchor(
+	sprintf('track/%d', $album->id),
+	sprintf('Back to Track Index of %s:%s', $album->artist, $album->title)
+	);
+?>
 
 <?php
 // end section content

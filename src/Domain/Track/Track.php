@@ -16,9 +16,9 @@ class Track extends Entity
 		'author'   => null,
 	];
 
-	public function setAlbumId(int $album_id): self
+	public function setAlbumId(int $albumId): self
 	{
-		$this->attributes['album_id'] = $album_id;
+		$this->attributes['album_id'] = $albumId;
 		return $this;
 	}
 
