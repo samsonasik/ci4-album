@@ -9,8 +9,8 @@ class TrackSeeder extends Seeder
 		$row = [
 			'id'       => 1,
 			'album_id' => 1,
-			'title'    => 'Melompat Lebih Tinggi',
-			'author'   => 'Eros Chandra',
+			'title'    => 'Sebuah Kisah Klasik',
+			'author'   => 'Eross Chandra',
 		];
 
 		$this->db->table('album')->insert($row);
