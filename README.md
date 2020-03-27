@@ -73,6 +73,13 @@ database.default.DBDriver = MySQLi
 php spark migrate -n Album
 ```
 
+**4.** Run db seed (Optional)
+
+```bash
+php spark db:seed "Album\Database\Seeds\AlbumSeeder"
+php spark db:seed "Album\Database\Seeds\TrackSeeder"
+```
+
 **4.** Run development server:
 
 ```bash

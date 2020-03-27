@@ -1,7 +1,7 @@
 <?php namespace AlbumTest\Controller;
 
 use Album\Controllers\Album;
-use AlbumTest\Database\Seeds\AlbumSeeder;
+use Album\Database\Seeds\AlbumSeeder;
 use CodeIgniter\Test\CIDatabaseTestCase;
 use CodeIgniter\Test\ControllerTester;
 use Config\Database;

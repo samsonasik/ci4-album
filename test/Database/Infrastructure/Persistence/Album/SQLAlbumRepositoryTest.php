@@ -1,8 +1,8 @@
 <?php namespace AlbumTest\Database\Infrastructure\Persistence\Album;
 
+use Album\Database\Seeds\AlbumSeeder;
 use Album\Domain\Album\Album;
 use Album\Domain\Album\AlbumNotFoundException;
-use AlbumTest\Database\Seeds\AlbumSeeder;
 use CodeIgniter\Pager\PagerInterface;
 use CodeIgniter\Test\CIDatabaseTestCase;
 use Config\Services;

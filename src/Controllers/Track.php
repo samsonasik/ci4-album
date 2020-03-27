@@ -1,7 +1,7 @@
 <?php namespace Album\Controllers;
 
-use Album\Domain\Exception\RecordNotFoundException;
 use Album\Domain\Album\AlbumRepository;
+use Album\Domain\Exception\RecordNotFoundException;
 use Album\Domain\Track\TrackRepository;
 use App\Controllers\BaseController;
 use CodeIgniter\Exceptions\PageNotFoundException;

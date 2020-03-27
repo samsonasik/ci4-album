@@ -1,4 +1,4 @@
-<?php namespace AlbumTest\Database\Seeds;
+<?php namespace Album\Database\Seeds;
 
 use CodeIgniter\Database\Seeder;
 
@@ -13,6 +13,6 @@ class TrackSeeder extends Seeder
 			'author'   => 'Eross Chandra',
 		];
 
-		$this->db->table('album')->insert($row);
+		$this->db->table('track')->insert($row);
 	}
 }

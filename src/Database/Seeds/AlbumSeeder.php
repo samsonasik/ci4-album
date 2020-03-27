@@ -1,4 +1,4 @@
-<?php namespace AlbumTest\Database\Seeds;
+<?php namespace Album\Database\Seeds;
 
 use CodeIgniter\Database\Seeder;
 
