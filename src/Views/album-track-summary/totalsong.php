@@ -20,7 +20,7 @@ echo $this->section('content');
 	</tr>
 	<?php if (! $summary) : ?>
 		<tr>
-			<td colspan="3" align="center">No album found.</td>
+			<td colspan="4" align="center">No album track summary found.</td>
 		</tr>
 	<?php else:
 		foreach ($summary as $result) : ?>
