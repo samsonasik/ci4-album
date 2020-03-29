@@ -35,6 +35,9 @@ class Services extends BaseService
 			return static::getSharedInstance('albumTrackSummary');
 		}
 
-		return new SQLAlbumTrackSummaryRepository();
+		return new SQLAlbumTrackSummaryRepository(
+			model(Models\AlbumModel::class),
+			model(Models\TrackModel::class)
+		);
 	}
 }

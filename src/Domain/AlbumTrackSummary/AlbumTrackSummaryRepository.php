@@ -2,5 +2,5 @@
 
 interface AlbumTrackSummaryRepository
 {
-	public function getSummaryAlbumTrackTotalSong(): array;
+	public function getPaginatedSummaryAlbumTrackTotalSong(): ?array;
 }

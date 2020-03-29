@@ -1,6 +1,7 @@
 <?php namespace Album\Controllers;
 
 use Album\Domain\AlbumTrackSummary\AlbumTrackSummaryRepository;
+use Album\Models\AlbumModel;
 use App\Controllers\BaseController;
 use Config\Services;
 
@@ -16,7 +17,9 @@ class AlbumTrackSummary extends BaseController
 
 	public function totalsong()
 	{
-		$data['summary'] = $this->repository->getSummaryAlbumTrackTotalSong();
+		$data['summary'] = $this->repository->getPaginatedSummaryAlbumTrackTotalSong();
+		$data['pager']   = model(AlbumModel::class)->pager;
+
 		return view('Album\Views\album-track-summary\totalsong', $data);
 	}
 }

@@ -34,6 +34,8 @@ echo $this->section('content');
 	endif; ?>
 </table>
 
+<?php echo $pager->links() ?>
+
 <br /> <br />
 <?php echo anchor('album', 'Back to Album Index'); ?>
 

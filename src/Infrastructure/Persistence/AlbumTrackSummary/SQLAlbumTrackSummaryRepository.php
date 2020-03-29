@@ -2,24 +2,36 @@
 
 use Album\Domain\AlbumTrackSummary\AlbumTrackSummary;
 use Album\Domain\AlbumTrackSummary\AlbumTrackSummaryRepository;
-use Config\Database;
+use Album\Models\AlbumModel;
+use Album\Models\TrackModel;
 
 class SQLAlbumTrackSummaryRepository implements AlbumTrackSummaryRepository
 {
-	public function getSummaryAlbumTrackTotalSong(): array
-	{
-		$db      = Database::connect();
-		$builder = $db->table('album');
-		$builder->select([
-			'*',
-			'('
-				. $db->table('track')
-					 ->select('count(*)')
-					 ->where('album_id = album.id')
-					 ->getCompiledSelect() .
-			') AS total_song',
-		]);
+	/** @var AlbumModel */
+	private $albumModel;
 
-		return $builder->get()->getResult(AlbumTrackSummary::class);
+	/** @var TrackModel */
+	private $trackModel;
+
+	public function __construct(AlbumModel $albumModel, TrackModel $trackModel)
+	{
+		$this->albumModel = $albumModel;
+		$this->trackModel = $trackModel;
+	}
+
+	public function getPaginatedSummaryAlbumTrackTotalSong(): ?array
+	{
+		$albumTable = $this->albumModel->table;
+		$trackTable = $this->trackModel->table;
+
+		$this->albumModel->builder()
+						 ->select([
+							 sprintf('%s.*', $albumTable),
+							 sprintf('COUNT(%s.id) as total_song', $trackTable),
+						 ])
+						->join($trackTable, sprintf('%s.id = %s.album_id', $albumTable, $trackTable), 'LEFT')
+						->groupBy(sprintf('%s.id', $albumTable));
+
+		return $this->albumModel->asObject(AlbumTrackSummary::class)->paginate();
 	}
 }
