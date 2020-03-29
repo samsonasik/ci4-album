@@ -25,7 +25,7 @@ class SQLTrackRepositoryTest extends CIDatabaseTestCase
 		$this->repository = Services::trackRepository();
 	}
 
-	public function testfindPaginatedDataWithKeywordNotFoundInDatabase()
+	public function testfindPaginatedDataWithKeywordNotFoundInDB()
 	{
 		$album     = new Album();
 		$album->id = 1;
@@ -34,7 +34,7 @@ class SQLTrackRepositoryTest extends CIDatabaseTestCase
 		$this->assertEmpty($tracks);
 	}
 
-	public function testfindPaginatedDataWithKeywordFoundInDatabase()
+	public function testfindPaginatedDataWithKeywordFoundInDB()
 	{
 		$album     = new Album();
 		$album->id = 1;

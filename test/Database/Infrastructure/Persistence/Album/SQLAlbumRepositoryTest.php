@@ -20,19 +20,19 @@ class SQLAlbumRepositoryTest extends CIDatabaseTestCase
 		$this->repository = Services::albumRepository();
 	}
 
-	public function testfindPaginatedDataWithKeywordNotFoundInDatabase()
+	public function testfindPaginatedDataWithKeywordNotFoundInDB()
 	{
 		$albums = $this->repository->findPaginatedData('Siti');
 		$this->assertEmpty($albums);
 	}
 
-	public function testfindPaginatedDataWithKeywordFoundInDatabase()
+	public function testfindPaginatedDataWithKeywordFoundInDB()
 	{
 		$albums = $this->repository->findPaginatedData('Sheila');
 		$this->assertNotEmpty($albums);
 	}
 
-	public function testFindAlbumOfIdWithNotFoundIdInDatabase()
+	public function testFindAlbumOfIdWithNotFoundIdInDB()
 	{
 		$this->expectException(AlbumNotFoundException::class);
 		$this->repository->findAlbumOfId(rand(1000, 2000));
