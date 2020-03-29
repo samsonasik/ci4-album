@@ -32,6 +32,6 @@ class SQLAlbumTrackSummaryRepository implements AlbumTrackSummaryRepository
 						->join($trackTable, sprintf('%s.id = %s.album_id', $albumTable, $trackTable), 'LEFT')
 						->groupBy(sprintf('%s.id', $albumTable));
 
-		return $this->albumModel->asObject(AlbumTrackSummary::class)->paginate();
+		return $this->albumModel->asObject(AlbumTrackSummary::class)->paginate(config('Album')->paginationPerPage);
 	}
 }
