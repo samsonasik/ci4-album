@@ -17,7 +17,7 @@ class AlbumTrackSummary extends BaseController
 
 	public function totalsong()
 	{
-		$data['summary'] = $this->repository->getPaginatedSummaryAlbumTrackTotalSong();
+		$data['summary'] = $this->repository->findPaginatedSummaryTotalSongData();
 		$data['pager']   = model(AlbumModel::class)->pager;
 
 		return view('Album\Views\album-track-summary\totalsong', $data);

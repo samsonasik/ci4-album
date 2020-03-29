@@ -22,9 +22,9 @@ class SQLAlbumTrackSummaryRepositoryTest extends CIDatabaseTestCase
 		$this->repository = Services::albumTrackSummary();
 	}
 
-	public function testGetPaginatedSummaryAlbumTrackTotalSongFoundInDatabase()
+	public function testFindPaginatedSummaryTotalSongDataFoundInDatabase()
 	{
-		$albumtracksummary = $this->repository->getPaginatedSummaryAlbumTrackTotalSong();
+		$albumtracksummary = $this->repository->findPaginatedSummaryTotalSongData();
 		$this->assertNotEmpty($albumtracksummary);
 	}
 }

@@ -19,7 +19,7 @@ class SQLAlbumTrackSummaryRepository implements AlbumTrackSummaryRepository
 		$this->trackModel = $trackModel;
 	}
 
-	public function getPaginatedSummaryAlbumTrackTotalSong(): ?array
+	public function findPaginatedSummaryTotalSongData(): ?array
 	{
 		$albumTable = $this->albumModel->table;
 		$trackTable = $this->trackModel->table;
