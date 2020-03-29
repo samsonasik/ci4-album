@@ -3,9 +3,6 @@
 use Album\Domain\Album\Album;
 use CodeIgniter\Model;
 
-/**
- * @property string $table
- */
 class AlbumModel extends Model
 {
 	protected $table           = 'album';

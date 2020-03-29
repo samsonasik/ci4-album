@@ -3,9 +3,6 @@
 use Album\Domain\Track\Track;
 use CodeIgniter\Model;
 
-/**
- * @property string $table
- */
 class TrackModel extends Model
 {
 	protected $table           = 'track';

@@ -21,17 +21,19 @@ class SQLAlbumTrackSummaryRepository implements AlbumTrackSummaryRepository
 
 	public function findPaginatedSummaryTotalSongData(): ?array
 	{
-		$albumTable = $this->albumModel->table;
-		$trackTable = $this->trackModel->table;
-
 		$this->albumModel->builder()
 						 ->select([
-							 sprintf('%s.*', $albumTable),
-							 sprintf('COUNT(%s.id) as total_song', $trackTable),
-						 ])
-						->join($trackTable, sprintf('%s.id = %s.album_id', $albumTable, $trackTable), 'LEFT')
-						->groupBy(sprintf('%s.id', $albumTable));
+							 '*',
+							 '(' . $this->trackModel
+								  ->builder()
+								  ->select('count(*)')
+								  ->where('album_id = album.id')
+								  ->getCompiledSelect() .
+							  ') AS total_song',
+						 ]);
 
-		return $this->albumModel->asObject(AlbumTrackSummary::class)->paginate(config('Album')->paginationPerPage);
+		return $this->albumModel
+					->asObject(AlbumTrackSummary::class)
+					->paginate(config('Album')->paginationPerPage);
 	}
 }
