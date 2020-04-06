@@ -43,7 +43,7 @@ class SQLTrackRepository implements TrackRepository
 		$track = $this->model->find($id);
 		if (! $track instanceof Track)
 		{
-			throw new TrackNotFoundException();
+			throw TrackNotFoundException::forAlbumTrackDoesnotExistOfId($id);
 		}
 
 		return $track;
@@ -54,7 +54,7 @@ class SQLTrackRepository implements TrackRepository
 		$delete = $this->model->delete($id);
 		if ($delete->connID->affected_rows === 0)
 		{
-			throw new TrackNotFoundException();
+			throw TrackNotFoundException::forAlbumTrackDoesnotExistOfId($id);
 		}
 
 		return true;

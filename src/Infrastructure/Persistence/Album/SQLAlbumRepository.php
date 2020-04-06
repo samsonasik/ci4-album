@@ -38,7 +38,7 @@ class SQLAlbumRepository implements AlbumRepository
 		$album = $this->model->find($id);
 		if (! $album instanceof Album)
 		{
-			throw new AlbumNotFoundException();
+			throw AlbumNotFoundException::forAlbumDoesnotExistOfId($id);
 		}
 
 		return $album;
@@ -49,7 +49,7 @@ class SQLAlbumRepository implements AlbumRepository
 		$delete = $this->model->delete($id);
 		if ($delete->connID->affected_rows === 0)
 		{
-			throw new AlbumNotFoundException();
+			throw AlbumNotFoundException::forAlbumDoesnotExistOfId($id);
 		}
 
 		return true;

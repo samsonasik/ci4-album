@@ -4,6 +4,11 @@ use Album\Domain\Exception\RecordNotFoundException;
 
 class TrackNotFoundException extends RecordNotFoundException
 {
-	/** @var string */
-	public $message = 'The album track you requested does not exist.';
+	public final static function forAlbumTrackDoesnotExistOfId(int $id) : self
+	{
+		return new self(sprintf(
+			'The album track with track ID %d you requested does not exist.',
+			$id
+		));
+	}
 }
