@@ -52,7 +52,7 @@ class Album extends BaseController
 		}
 		catch (RecordNotFoundException $e)
 		{
-			throw new PageNotFoundException($e->getMessage());
+			throw PageNotFoundException::forPageNotFound($e->getMessage());
 		}
 
 		if ($this->request->getMethod() === 'post')
@@ -79,7 +79,7 @@ class Album extends BaseController
 		}
 		catch (RecordNotFoundException $e)
 		{
-			throw new PageNotFoundException($e->getMessage());
+			throw PageNotFoundException::forPageNotFound($e->getMessage());
 		}
 
 		session()->setFlashdata('status', 'Album has been deleted');

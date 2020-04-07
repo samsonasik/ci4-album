@@ -30,7 +30,7 @@ class Track extends BaseController
 		}
 		catch (RecordNotFoundException $e)
 		{
-			throw new PageNotFoundException($e->getMessage());
+			throw PageNotFoundException::forPageNotFound($e->getMessage());
 		}
 
 		$data['keyword'] = $this->request->getGet('keyword') ?? '';
@@ -49,7 +49,7 @@ class Track extends BaseController
 		}
 		catch (RecordNotFoundException $e)
 		{
-			throw new PageNotFoundException($e->getMessage());
+			throw PageNotFoundException::forPageNotFound($e->getMessage());
 		}
 
 		if ($this->request->getMethod() === 'post')
@@ -80,7 +80,7 @@ class Track extends BaseController
 		}
 		catch (RecordNotFoundException $e)
 		{
-			throw new PageNotFoundException($e->getMessage());
+			throw PageNotFoundException::forPageNotFound($e->getMessage());
 		}
 
 		if ($this->request->getMethod() === 'post')
@@ -112,7 +112,7 @@ class Track extends BaseController
 		}
 		catch (RecordNotFoundException $e)
 		{
-			throw new PageNotFoundException($e->getMessage());
+			throw PageNotFoundException::forPageNotFound($e->getMessage());
 		}
 
 		session()->setFlashdata('status', 'Album track has been deleted');
