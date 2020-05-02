@@ -3,6 +3,9 @@
 use Album\Domain\Album\Album;
 use CodeIgniter\Model;
 
+/**
+ * @property-read \CodeIgniter\Database\MySQLi\Connection $db
+ */
 class AlbumModel extends Model
 {
 	protected $table           = 'album';
