@@ -52,7 +52,7 @@ class SQLTrackRepository implements TrackRepository
 	public function deleteOfId(int $id) : bool
 	{
 		$delete = $this->model->delete($id);
-		if ($delete->connID->affected_rows === 0)
+		if ($this->model->db->affectedRows() === 0)
 		{
 			throw TrackNotFoundException::forAlbumTrackDoesnotExistOfId($id);
 		}
