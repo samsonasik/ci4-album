@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<ruleset name="Laminas Coding Standard">
+<ruleset name="codeigniter 4 Coding Standard">
     <rule ref="./vendor/codeigniter4/codeigniter4-standard/CodeIgniter4/ruleset.xml"/>
 
     <!-- Paths to check -->
