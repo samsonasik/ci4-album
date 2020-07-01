@@ -35,6 +35,12 @@ class SQLAlbumRepository implements AlbumRepository
 
 	public function findAlbumOfId(int $id): Album
 	{
+		static $album;
+		if ($album)
+		{
+			return $album;
+		}
+
 		$album = $this->model->find($id);
 		if (! $album instanceof Album)
 		{

@@ -1,10 +1,8 @@
 <?php namespace Album\Controllers;
 
 use Album\Domain\Album\AlbumRepository;
-use Album\Domain\Exception\RecordNotFoundException;
 use Album\Models\AlbumModel;
 use App\Controllers\BaseController;
-use CodeIgniter\Exceptions\PageNotFoundException;
 use Config\Services;
 
 class Album extends BaseController
@@ -46,15 +44,7 @@ class Album extends BaseController
 
 	public function edit(int $id)
 	{
-		try
-		{
-			$album = $this->repository->findAlbumOfId($id);
-		}
-		catch (RecordNotFoundException $e)
-		{
-			throw PageNotFoundException::forPageNotFound($e->getMessage());
-		}
-
+		$album = $this->repository->findAlbumOfId($id);
 		if ($this->request->getMethod() === 'post')
 		{
 			$data = $this->request->getPost();
@@ -73,14 +63,7 @@ class Album extends BaseController
 
 	public function delete(int $id)
 	{
-		try
-		{
-			$this->repository->deleteOfId($id);
-		}
-		catch (RecordNotFoundException $e)
-		{
-			throw PageNotFoundException::forPageNotFound($e->getMessage());
-		}
+		$this->repository->deleteOfId($id);
 
 		session()->setFlashdata('status', 'Album has been deleted');
 		return redirect()->route('album-index');

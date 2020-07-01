@@ -40,6 +40,12 @@ class SQLTrackRepository implements TrackRepository
 
 	public function findTrackOfId(int $id): Track
 	{
+		static $track;
+		if ($track)
+		{
+			return $track;
+		}
+
 		$track = $this->model->find($id);
 		if (! $track instanceof Track)
 		{

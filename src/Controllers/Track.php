@@ -1,11 +1,9 @@
 <?php namespace Album\Controllers;
 
 use Album\Domain\Album\AlbumRepository;
-use Album\Domain\Exception\RecordNotFoundException;
 use Album\Domain\Track\TrackRepository;
 use Album\Models\TrackModel;
 use App\Controllers\BaseController;
-use CodeIgniter\Exceptions\PageNotFoundException;
 use Config\Services;
 
 class Track extends BaseController
@@ -24,14 +22,7 @@ class Track extends BaseController
 
 	public function index(int $albumId)
 	{
-		try
-		{
-			$album = $this->albumRepository->findAlbumOfId($albumId);
-		}
-		catch (RecordNotFoundException $e)
-		{
-			throw PageNotFoundException::forPageNotFound($e->getMessage());
-		}
+		$album = $this->albumRepository->findAlbumOfId($albumId);
 
 		$data['keyword'] = $this->request->getGet('keyword') ?? '';
 		$data['album']   = $album;
@@ -43,14 +34,7 @@ class Track extends BaseController
 
 	public function add(int $albumId)
 	{
-		try
-		{
-			$album = $this->albumRepository->findAlbumOfId($albumId);
-		}
-		catch (RecordNotFoundException $e)
-		{
-			throw PageNotFoundException::forPageNotFound($e->getMessage());
-		}
+		$album = $this->albumRepository->findAlbumOfId($albumId);
 
 		if ($this->request->getMethod() === 'post')
 		{
@@ -73,15 +57,8 @@ class Track extends BaseController
 
 	public function edit(int $albumId, int $trackId)
 	{
-		try
-		{
-			$album = $this->albumRepository->findAlbumOfId($albumId);
-			$track = $this->trackRepository->findTrackOfId($trackId);
-		}
-		catch (RecordNotFoundException $e)
-		{
-			throw PageNotFoundException::forPageNotFound($e->getMessage());
-		}
+		$album = $this->albumRepository->findAlbumOfId($albumId);
+		$track = $this->trackRepository->findTrackOfId($trackId);
 
 		if ($this->request->getMethod() === 'post')
 		{
@@ -105,15 +82,8 @@ class Track extends BaseController
 
 	public function delete(int $albumId, int $trackId)
 	{
-		try
-		{
-			$this->albumRepository->findAlbumOfId($albumId);
-			$this->trackRepository->deleteOfId($trackId);
-		}
-		catch (RecordNotFoundException $e)
-		{
-			throw PageNotFoundException::forPageNotFound($e->getMessage());
-		}
+		$this->albumRepository->findAlbumOfId($albumId);
+		$this->trackRepository->deleteOfId($trackId);
 
 		session()->setFlashdata('status', 'Album track has been deleted');
 		return redirect()->route('track-index', [$albumId]);
