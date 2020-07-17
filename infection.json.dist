@@ -1,0 +1,24 @@
+{
+    "source": {
+        "directories": [
+            "src"
+        ],
+        "excludes": [
+            "Config",
+            "Database",
+            "Views"
+        ]
+    },
+    "logs": {
+        "text": "infection.log",
+        "badge": {
+            "branch": "master"
+        }
+    },
+    "mutators": {
+        "@default": true,
+        "PublicVisibility": false,
+        "MethodCallRemoval": false
+    },
+    "bootstrap":"./bootstrap.php"
+}

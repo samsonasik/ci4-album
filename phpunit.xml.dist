@@ -20,9 +20,9 @@
 		<whitelist addUncoveredFilesFromWhitelist="true" processUncoveredFilesFromWhitelist="true">
 			<directory suffix=".php">./src</directory>
 			<exclude>
+				<directory suffix=".php">./src/Config</directory>
 				<directory suffix=".php">./src/Database</directory>
 				<directory suffix=".php">./src/Views</directory>
-   				<directory suffix=".php">./src/Config</directory>
  			</exclude>
 		</whitelist>
 	</filter>

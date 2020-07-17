@@ -3,6 +3,7 @@ Example of CodeIgniter 4 Module : Album Module
 
 [![Latest Version](https://img.shields.io/github/release/samsonasik/ci4-album.svg?style=flat-square)](https://github.com/samsonasik/ci4-album/releases)
 ![ci build](https://github.com/samsonasik/ci4-album/workflows/ci%20build/badge.svg)
+[![Mutation testing badge](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Fsamsonasik%2Fci4-album%2Fmaster)](https://dashboard.stryker-mutator.io/reports/github.com/samsonasik/ci4-album/master)
 [![Code Coverage](https://codecov.io/gh/samsonasik/ci4-album/branch/master/graph/badge.svg)](https://codecov.io/gh/samsonasik/ci4-album)
 [![PHPStan](https://img.shields.io/badge/style-level%20max-brightgreen.svg?style=flat-square&label=phpstan)](https://github.com/phpstan/phpstan)
 [![Downloads](https://poser.pugx.org/samsonasik/ci4-album/downloads)](https://packagist.org/packages/samsonasik/ci4-album)
