@@ -5,6 +5,7 @@
         ],
         "excludes": [
             "Config",
+            "Controllers",
             "Database",
             "Views"
         ]
