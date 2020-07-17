@@ -41,7 +41,7 @@ jobs:
       - name: "Code analyze"
         run: "composer analyze"
       - name: "Run test suite"
-        run: "composer test -- -c phpunit.xml.github-actions.dist"
+        run: "mv phpunit.xml.github-actions.dist phpunit.xml.dist && composer test"
       - if: matrix.php-versions == '7.4'
         name: Run mutation test
         env:
