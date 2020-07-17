@@ -9,7 +9,7 @@
     <file>src/Infrastructure</file>
     <file>src/Models</file>
     <file>src/Views</file>
-    <file>phpstan-bootstrap.php</file>
+    <file>bootstrap.php</file>
     <file>test</file>
 
     <rule ref="Squiz.Commenting.ClassComment">
