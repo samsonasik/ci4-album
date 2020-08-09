@@ -141,7 +141,7 @@ and then configure the `phpunit.xml` to ensure it has a match db configuration w
 After it, install the codeigniter and phpunit dependency:
 
 ```bash
-cd /path/to/modules/ci4-album && composer install
+cd /path/to/modules/ci4-album && composer install --prefer-source
 ```
 
 Lastly, run the test:
