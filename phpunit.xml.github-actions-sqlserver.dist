@@ -20,9 +20,9 @@
 		<whitelist addUncoveredFilesFromWhitelist="true" processUncoveredFilesFromWhitelist="true">
 			<directory suffix=".php">./src</directory>
 			<exclude>
-				<directory suffix=".php">./src/Config</directory>
 				<directory suffix=".php">./src/Database</directory>
 				<directory suffix=".php">./src/Views</directory>
+   				<directory suffix=".php">./src/Config</directory>
  			</exclude>
 		</whitelist>
 	</filter>
@@ -40,13 +40,11 @@
 	<php>
 		<server name="app.baseURL" value="http://localhost:8080"/>
 		<const name="HOMEPATH" value="./"/>
-		<const name="CONFIGPATH" value="./vendor/codeigniter4/framework/app/Config/"/>
-		<const name="PUBLICPATH" value="./vendor/codeigniter4/framework/public/"/>
 		<env name="database.tests.hostname" value="localhost"/>
 		<env name="database.tests.database" value="ci4_crud_test"/>
-		<env name="database.tests.username" value="root"/>
-		<env name="database.tests.password" value=""/>
-		<env name="database.tests.DBDriver" value="MySQLi"/>
+		<env name="database.tests.username" value="test"/>
+		<env name="database.tests.password" value="1Secure*Password1"/>
+		<env name="database.tests.DBDriver" value="Sqlsrv"/>
 		<env name="database.tests.DBPrefix" value=""/>
 	</php>
 </phpunit>

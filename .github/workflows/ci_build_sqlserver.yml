@@ -1,0 +1,73 @@
+name: "ci build"
+
+on:
+  pull_request:
+  push:
+    branches:
+      - "master"
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    name: Build SQL Server
+    strategy:
+      fail-fast: false
+      matrix:
+        php-versions: ['7.4']
+    services:
+      mssql:
+        image: microsoft/mssql-server-linux:2017-latest
+        env:
+          SA_PASSWORD: 1Secure*Password1
+          ACCEPT_EULA: Y
+          MSSQL_PID: Developer
+        ports:
+          - 1433:1433
+
+    steps:
+      - name: Create database for MSSQL Server
+        run: sqlcmd -S localhost -U sa -P 1Secure*Password1 -Q "CREATE DATABASE test"
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup PHP, with composer and extensions
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+          tools: composer:v2, pecl
+          extensions: sqlsrv
+          coverage: pcov
+        env:
+          update: true
+
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: "Validate composer.json and composer.lock"
+        run: "composer validate"
+      - name: "Install dependencies"
+        run: "composer install --prefer-source"
+      - name: "CS Check"
+        run: "composer cs-check"
+      - name: "Code analyze"
+        run: "composer analyze"
+      - name: "Run test suite"
+        run: "mv phpunit.xml.github-actions-sqlserver.dist phpunit.xml.dist && composer test"
+      - if: matrix.php-versions == '7.4'
+        name: Run mutation test
+        env:
+          INFECTION_BADGE_API_KEY: ${{ secrets.INFECTION_BADGE_API_KEY }}
+          STRYKER_DASHBOARD_API_KEY: ${{ secrets.INFECTION_BADGE_API_KEY }}
+        run: |
+          composer require --dev infection/infection
+          vendor/bin/infection
+      - if: matrix.php-versions == '7.2'
+        name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: ./build/logs/clover.xml
+          flags: tests
+          name: codecov-umbrella
+          yml: ./codecov.yml
+          fail_ci_if_error: true

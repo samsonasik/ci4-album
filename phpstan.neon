@@ -2,7 +2,7 @@ includes:
         - vendor/phpstan/phpstan/conf/bleedingEdge.neon
 
 parameters:
-    bootstrap: bootstrap.php
+    bootstrap: vendor/codeigniter4/codeigniter4/system/Test/bootstrap.php
     inferPrivatePropertyTypeFromConstructor: true
     checkMissingIterableValueType: false
     excludes_analyse:
