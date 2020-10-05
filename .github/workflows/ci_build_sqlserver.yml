@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php-versions: ['7.2', '7.3', '7.4']
+        php-versions: ['7.2']
     services:
       mssql:
         image: microsoft/mssql-server-linux:2017-latest
