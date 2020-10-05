@@ -26,7 +26,7 @@ jobs:
 
     steps:
       - name: Create database for MSSQL Server
-        run: sqlcmd -S localhost -U sa -P 1Secure*Password1 -Q "CREATE DATABASE test"
+        run: sqlcmd -S localhost -U sa -P 1Secure*Password1 -Q "CREATE DATABASE ci4_crud_test"
 
       - name: Checkout
         uses: actions/checkout@v2

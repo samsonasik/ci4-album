@@ -40,8 +40,6 @@
 	<php>
 		<server name="app.baseURL" value="http://localhost:8080"/>
 		<const name="HOMEPATH" value="./"/>
-		<const name="CONFIGPATH" value="./vendor/codeigniter4/framework/app/Config/"/>
-		<const name="PUBLICPATH" value="./vendor/codeigniter4/framework/public/"/>
 		<env name="database.tests.hostname" value="localhost"/>
 		<env name="database.tests.database" value="ci4_crud_test"/>
 		<env name="database.tests.username" value="root"/>
