@@ -44,7 +44,7 @@
 		<env name="database.tests.database" value="test"/>
 		<env name="database.tests.username" value="postgres"/>
 		<env name="database.tests.password" value="postgres"/>
-		<env name="database.tests.DBDriver" value="Postgres"/>
+		<env name="database.tests.DBDriver" value="Postgre"/>
 		<env name="database.tests.DBPrefix" value=""/>
 	</php>
 </phpunit>
