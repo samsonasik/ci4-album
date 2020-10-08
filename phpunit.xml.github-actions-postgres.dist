@@ -42,9 +42,9 @@
 		<const name="HOMEPATH" value="./"/>
 		<env name="database.tests.hostname" value="localhost"/>
 		<env name="database.tests.database" value="test"/>
-		<env name="database.tests.username" value="sa"/>
-		<env name="database.tests.password" value="1Secure*Password1"/>
-		<env name="database.tests.DBDriver" value="Sqlsrv"/>
+		<env name="database.tests.username" value="postgres"/>
+		<env name="database.tests.password" value="postgres"/>
+		<env name="database.tests.DBDriver" value="Postgres"/>
 		<env name="database.tests.DBPrefix" value=""/>
 	</php>
 </phpunit>
