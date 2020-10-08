@@ -40,7 +40,7 @@
 	<php>
 		<server name="app.baseURL" value="http://localhost:8080"/>
 		<const name="HOMEPATH" value="./"/>
-		<env name="database.tests.hostname" value="localhost"/>
+		<env name="database.tests.hostname" value="127.0.0.1"/>
 		<env name="database.tests.database" value="test"/>
 		<env name="database.tests.username" value="postgres"/>
 		<env name="database.tests.password" value="postgres"/>
