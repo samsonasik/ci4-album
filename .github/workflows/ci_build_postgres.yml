@@ -1,0 +1,63 @@
+name: "ci build pgsql"
+
+on:
+  pull_request:
+  push:
+    branches:
+      - "master"
+
+jobs:
+  build:
+    name: PHP ${{ matrix.php-versions }}
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: test
+        ports:
+          - 5432:5432
+        options: --name=postgres --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 3
+    strategy:
+      fail-fast: false
+      matrix:
+        php-versions: ['7.2']
+    steps:
+      - name: Setup PHP Action
+        uses: shivammathur/setup-php@1.8.2
+        with:
+          extensions: intl
+          php-version: "${{ matrix.php-versions }}"
+          coverage: pcov
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: "Validate composer.json and composer.lock"
+        run: "composer validate"
+      - name: "Install dependencies"
+        run: "composer install --prefer-source"
+      - name: "CS Check"
+        run: "composer cs-check"
+      - name: "Code analyze"
+        run: "composer analyze"
+      - name: "Run test suite"
+        run: "mv phpunit.xml.github-actions-postgres.dist phpunit.xml.dist && composer test"
+      - if: matrix.php-versions == '7.4'
+        name: Run mutation test
+        env:
+          INFECTION_BADGE_API_KEY: ${{ secrets.INFECTION_BADGE_API_KEY }}
+          STRYKER_DASHBOARD_API_KEY: ${{ secrets.INFECTION_BADGE_API_KEY }}
+        run: |
+          composer require --dev infection/infection
+          vendor/bin/infection
+      - if: matrix.php-versions == '7.2'
+        name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: ./build/logs/clover.xml
+          flags: tests
+          name: codecov-umbrella
+          yml: ./codecov.yml
+          fail_ci_if_error: true
