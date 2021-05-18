@@ -2,7 +2,8 @@ includes:
         - vendor/phpstan/phpstan/conf/bleedingEdge.neon
 
 parameters:
-    bootstrap: bootstrap.php
+    bootstrapFiles:
+        - bootstrap.php
     inferPrivatePropertyTypeFromConstructor: true
     checkMissingIterableValueType: false
     excludes_analyse:
@@ -15,4 +16,3 @@ parameters:
         - '#Call to an undefined static method Config\\Services::albumRepository\(\)#'
         - '#Call to an undefined static method Config\\Services::trackRepository\(\)#'
         - '#Call to an undefined static method Config\\Services::albumTrackSummary\(\)#'
-        - '#Call to protected method builder\(\) of class CodeIgniter\\Model.#'

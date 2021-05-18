@@ -9,6 +9,9 @@ use Config\Services;
 
 class Album extends BaseController
 {
+	/** @var \CodeIgniter\HTTP\IncomingRequest */
+	protected $request;
+
 	/** @var AlbumRepository */
 	private $repository;
 

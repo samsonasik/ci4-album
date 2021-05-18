@@ -10,6 +10,9 @@ use Config\Services;
 
 class Track extends BaseController
 {
+	/** @var \CodeIgniter\HTTP\IncomingRequest */
+	protected $request;
+
 	/** @var AlbumRepository */
 	private $albumRepository;
 
