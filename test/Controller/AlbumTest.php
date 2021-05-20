@@ -2,11 +2,11 @@
 
 use Album\Controllers\Album;
 use Album\Database\Seeds\AlbumSeeder;
-use Config\Database;
-use Config\Services;
 use CodeIgniter\Test\CIUnitTestCase;
 use CodeIgniter\Test\ControllerTestTrait;
 use CodeIgniter\Test\DatabaseTestTrait;
+use Config\Database;
+use Config\Services;
 
 /**
  * @runTestsInSeparateProcesses

@@ -3,11 +3,11 @@
 use Album\Controllers\Track;
 use Album\Database\Seeds\AlbumSeeder;
 use Album\Database\Seeds\TrackSeeder;
-use Config\Database;
-use Config\Services;
 use CodeIgniter\Test\CIUnitTestCase;
 use CodeIgniter\Test\ControllerTestTrait;
 use CodeIgniter\Test\DatabaseTestTrait;
+use Config\Database;
+use Config\Services;
 
 /**
  * @runTestsInSeparateProcesses
