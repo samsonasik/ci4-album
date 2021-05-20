@@ -2,8 +2,9 @@
 
 use Album\Controllers\Album;
 use Album\Database\Seeds\AlbumSeeder;
-use CodeIgniter\Test\CIDatabaseTestCase;
-use CodeIgniter\Test\ControllerTester;
+use CodeIgniter\Test\CIUnitTestCase;
+use CodeIgniter\Test\ControllerTestTrait;
+use CodeIgniter\Test\DatabaseTestTrait;
 use Config\Database;
 use Config\Services;
 
@@ -11,9 +12,9 @@ use Config\Services;
  * @runTestsInSeparateProcesses
  * @preserveGlobalState         disabled
  */
-class AlbumTest extends CIDatabaseTestCase
+class AlbumTest extends CIUnitTestCase
 {
-	use ControllerTester;
+	use DatabaseTestTrait, ControllerTestTrait;
 
 	protected $basePath  = __DIR__ . '/../src/Database/';
 	protected $namespace = 'Album';
@@ -44,7 +45,7 @@ class AlbumTest extends CIDatabaseTestCase
 	public function testIndexSearchAlbumFound()
 	{
 		$request = Services::request();
-		$request->setMethod('get');
+		$request = $request->withMethod('get');
 		$request->setGlobal('get', [
 			'keyword' => 'Sheila',
 		]);
@@ -59,7 +60,7 @@ class AlbumTest extends CIDatabaseTestCase
 	public function testIndexSearchAlbumNotFound()
 	{
 		$request = Services::request();
-		$request->setMethod('get');
+		$request = $request->withMethod('get');
 		$request->setGlobal('get', [
 			'keyword' => 'Siti',
 		]);
@@ -82,28 +83,19 @@ class AlbumTest extends CIDatabaseTestCase
 	public function testAddAlbumInvalidData()
 	{
 		$request = Services::request(null, false);
-		$request->setMethod('post');
+		$request = $request->withMethod('post');
 
-		$result = $this->withRequest($request)
-						->controller(Album::class)
-						->execute('add');
-		$this->assertTrue($result->isRedirect());
+		$this->withRequest($request)
+			 ->controller(Album::class)
+			 ->execute('add');
 
-		$request = Services::request(null, false);
-		$request->setMethod('get');
-
-		$result = $this->withRequest($request)
-					   ->controller(Album::class)
-					   ->execute('add');
-		$this->assertTrue($result->isOK());
-		$this->assertTrue($result->see('The artist field is required.'));
-		$this->assertTrue($result->see('The title field is required.'));
+		$this->seeNumRecords(1, 'album', []);
 	}
 
 	public function testAddAlbumValidData()
 	{
 		$request = Services::request();
-		$request->setMethod('post');
+		$request = $request->withMethod('post');
 		$request->setGlobal('post', [
 			'artist' => 'Siti Nurhaliza',
 			'title'  => 'Anugrah Aidilfitri',
@@ -135,28 +127,19 @@ class AlbumTest extends CIDatabaseTestCase
 	public function testEditAlbumInvalidData()
 	{
 		$request = Services::request(null, false);
-		$request->setMethod('post');
+		$request = $request->withMethod('post');
 
 		$result = $this->withRequest($request)
 						->controller(Album::class)
 						->execute('edit', 1);
 		$this->assertTrue($result->isRedirect());
-
-		$request = Services::request(null, false);
-		$request->setMethod('get');
-
-		$result = $this->withRequest($request)
-					   ->controller(Album::class)
-					   ->execute('edit', 1);
-		$this->assertTrue($result->isOK());
-		$this->assertTrue($result->see('The artist field is required.'));
-		$this->assertTrue($result->see('The title field is required.'));
+		$this->assertNotEquals('http://localhost:8080/index.php/album', $result->getRedirectUrl());
 	}
 
 	public function testEditAlbumValidData()
 	{
 		$request = Services::request();
-		$request->setMethod('post');
+		$request = $request->withMethod('post');
 		$request->setGlobal('post', [
 			'id'     => 1,
 			'artist' => 'Siti Nurhaliza',
@@ -168,6 +151,7 @@ class AlbumTest extends CIDatabaseTestCase
 					   ->execute('edit', 1);
 
 		$this->assertTrue($result->isRedirect());
+		$this->assertEquals('http://localhost:8080/index.php/album', $result->getRedirectUrl());
 	}
 
 	public function testDeleteUnexistenceAlbum()

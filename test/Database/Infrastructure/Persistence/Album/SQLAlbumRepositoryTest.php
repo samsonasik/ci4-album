@@ -3,11 +3,14 @@
 use Album\Database\Seeds\AlbumSeeder;
 use Album\Domain\Album\Album;
 use Album\Domain\Album\AlbumNotFoundException;
-use CodeIgniter\Test\CIDatabaseTestCase;
+use CodeIgniter\Test\CIUnitTestCase;
+use CodeIgniter\Test\DatabaseTestTrait;
 use Config\Services;
 
-class SQLAlbumRepositoryTest extends CIDatabaseTestCase
+class SQLAlbumRepositoryTest extends CIUnitTestCase
 {
+	use DatabaseTestTrait;
+
 	protected $basePath  = __DIR__ . '/../src/Database/';
 	protected $namespace = 'Album';
 	protected $seed      = AlbumSeeder::class;

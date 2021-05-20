@@ -3,13 +3,18 @@
 use Album\Controllers\AlbumTrackSummary;
 use Album\Database\Seeds\AlbumSeeder;
 use Album\Database\Seeds\TrackSeeder;
-use CodeIgniter\Test\CIDatabaseTestCase;
-use CodeIgniter\Test\ControllerTester;
+use CodeIgniter\Test\CIUnitTestCase;
+use CodeIgniter\Test\ControllerTestTrait;
+use CodeIgniter\Test\DatabaseTestTrait;
 use Config\Database;
 
-class AlbumTrackSummaryTest extends CIDatabaseTestCase
+/**
+ * @runTestsInSeparateProcesses
+ * @preserveGlobalState         disabled
+ */
+class AlbumTrackSummaryTest extends CIUnitTestCase
 {
-	use ControllerTester;
+	use ControllerTestTrait, DatabaseTestTrait;
 
 	protected $basePath  = __DIR__ . '/../src/Database/';
 	protected $namespace = 'Album';
@@ -37,6 +42,6 @@ class AlbumTrackSummaryTest extends CIDatabaseTestCase
 					   ->execute('totalsong');
 
 		$this->assertTrue($result->isOK());
-		$this->assertRegExp('/Sheila On 7<\/td>\s{0,}\n\s{0,}<td>1<\/td>/', $result->getBody());
+		$this->assertMatchesRegularExpression('/Sheila On 7<\/td>\s{0,}\n\s{0,}<td>1<\/td>/', $result->getBody());
 	}
 }

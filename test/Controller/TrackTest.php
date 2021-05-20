@@ -3,8 +3,9 @@
 use Album\Controllers\Track;
 use Album\Database\Seeds\AlbumSeeder;
 use Album\Database\Seeds\TrackSeeder;
-use CodeIgniter\Test\CIDatabaseTestCase;
-use CodeIgniter\Test\ControllerTester;
+use CodeIgniter\Test\CIUnitTestCase;
+use CodeIgniter\Test\ControllerTestTrait;
+use CodeIgniter\Test\DatabaseTestTrait;
 use Config\Database;
 use Config\Services;
 
@@ -12,9 +13,9 @@ use Config\Services;
  * @runTestsInSeparateProcesses
  * @preserveGlobalState         disabled
  */
-class TrackTest extends CIDatabaseTestCase
+class TrackTest extends CIUnitTestCase
 {
-	use ControllerTester;
+	use DatabaseTestTrait, ControllerTestTrait;
 
 	protected $basePath  = __DIR__ . '/../src/Database/';
 	protected $namespace = 'Album';
@@ -56,7 +57,7 @@ class TrackTest extends CIDatabaseTestCase
 	public function testIndexSearchTrackFound()
 	{
 		$request = Services::request();
-		$request->setMethod('get');
+		$request = $request->withMethod('get');
 		$request->setGlobal('get', [
 			'keyword' => 'kisah',
 		]);
@@ -71,7 +72,7 @@ class TrackTest extends CIDatabaseTestCase
 	public function testIndexSearchTrackNotFound()
 	{
 		$request = Services::request();
-		$request->setMethod('get');
+		$request = $request->withMethod('get');
 		$request->setGlobal('get', [
 			'keyword' => 'Purnama',
 		]);
@@ -102,28 +103,19 @@ class TrackTest extends CIDatabaseTestCase
 	public function testAddTrackInvalidData()
 	{
 		$request = Services::request(null, false);
-		$request->setMethod('post');
+		$request = $request->withMethod('post');
 
 		$result = $this->withRequest($request)
 						->controller(Track::class)
 						->execute('add', 1);
 		$this->assertTrue($result->isRedirect());
-
-		$request = Services::request(null, false);
-		$request->setMethod('get');
-
-		$result = $this->withRequest($request)
-					   ->controller(Track::class)
-					   ->execute('add', 1);
-		$this->assertTrue($result->isOK());
-		$this->assertTrue($result->see('The title field is required.'));
-		$this->assertTrue($result->see('The author field is required.'));
+		$this->seeNumRecords(1, 'track', []);
 	}
 
 	public function testAddTrackValidData()
 	{
 		$request = Services::request();
-		$request->setMethod('post');
+		$request = $request->withMethod('post');
 		$request->setGlobal('post', [
 			'album_id' => 1,
 			'title'    => 'Sahabat Sejati',
@@ -156,28 +148,19 @@ class TrackTest extends CIDatabaseTestCase
 	public function testEditTrackInvalidData()
 	{
 		$request = Services::request(null, false);
-		$request->setMethod('post');
+		$request = $request->withMethod('post');
 
 		$result = $this->withRequest($request)
 						->controller(Track::class)
 						->execute('edit', 1, 1);
 		$this->assertTrue($result->isRedirect());
-
-		$request = Services::request(null, false);
-		$request->setMethod('get');
-
-		$result = $this->withRequest($request)
-					   ->controller(Track::class)
-					   ->execute('edit', 1, 1);
-		$this->assertTrue($result->isOK());
-		$this->assertTrue($result->see('The title field is required.'));
-		$this->assertTrue($result->see('The author field is required.'));
+		$this->assertNotEquals('http://localhost:8080/index.php/album-track/1', $result->getRedirectUrl());
 	}
 
 	public function testEditTrackValidData()
 	{
 		$request = Services::request();
-		$request->setMethod('post');
+		$request = $request->withMethod('post');
 		$request->setGlobal('post', [
 			'id'       => 1,
 			'album_id' => 1,
@@ -190,6 +173,7 @@ class TrackTest extends CIDatabaseTestCase
 					   ->execute('edit', 1, 1);
 
 		$this->assertTrue($result->isRedirect());
+		$this->assertEquals('http://localhost:8080/index.php/album-track/1', $result->getRedirectUrl());
 	}
 
 	public function testDeleteUnexistenceTrack()
