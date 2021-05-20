@@ -1,5 +1,6 @@
 <?php namespace Album\Infrastructure\Persistence;
 
+use CodeIgniter\Database\Exceptions\DataException;
 use CodeIgniter\Model;
 
 /**
@@ -10,6 +11,10 @@ trait DMLPersistence
 {
 	public function save(array $data = null): bool
 	{
-		return $this->model instanceof Model && $this->model->save(new $this->model->returnType($data));
+		try {
+			return $this->model instanceof Model && $this->model->save(new $this->model->returnType($data));
+		} catch (DataException $e) {
+			return false;
+		}
 	}
 }

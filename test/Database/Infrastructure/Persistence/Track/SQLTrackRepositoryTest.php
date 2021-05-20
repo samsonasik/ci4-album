@@ -5,11 +5,14 @@ use Album\Database\Seeds\TrackSeeder;
 use Album\Domain\Album\Album;
 use Album\Domain\Track\Track;
 use Album\Domain\Track\TrackNotFoundException;
-use CodeIgniter\Test\CIDatabaseTestCase;
+use CodeIgniter\Test\CIUnitTestCase;
+use CodeIgniter\Test\DatabaseTestTrait;
 use Config\Services;
 
-class SQLTrackRepositoryTest extends CIDatabaseTestCase
+class SQLTrackRepositoryTest extends CIUnitTestCase
 {
+	use DatabaseTestTrait;
+
 	protected $basePath  = __DIR__ . '/../src/Database/';
 	protected $namespace = 'Album';
 	protected $seed      = [
