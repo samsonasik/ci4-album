@@ -11,9 +11,12 @@ trait DMLPersistence
 {
 	public function save(array $data = null): bool
 	{
-		try {
+		try
+		{
 			return $this->model instanceof Model && $this->model->save(new $this->model->returnType($data));
-		} catch (DataException $e) {
+		}
+		catch (DataException $e)
+		{
 			return false;
 		}
 	}
