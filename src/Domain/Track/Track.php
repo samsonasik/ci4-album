@@ -1,6 +1,6 @@
 <?php namespace Album\Domain\Track;
 
-use CodeIgniter\Entity;
+use CodeIgniter\Entity\Entity;
 
 /**
  * @property int $id
