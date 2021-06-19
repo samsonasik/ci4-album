@@ -18,7 +18,9 @@
     "mutators": {
         "@default": true,
         "PublicVisibility": false,
-        "MethodCallRemoval": false
+        "MethodCallRemoval": false,
+        "ArrayItem": false,
+        "ArrayItemRemoval": false
     },
     "bootstrap":"./bootstrap.php"
 }

@@ -13,7 +13,7 @@ trait DMLPersistence
 	{
 		try
 		{
-			return $this->model instanceof Model && $this->model->save(new $this->model->returnType($data));
+			return $this->model->save(new $this->model->returnType($data));
 		}
 		catch (DataException $e)
 		{
