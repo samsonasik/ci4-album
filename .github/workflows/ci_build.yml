@@ -50,7 +50,7 @@ jobs:
         run: |
           composer require --dev infection/infection
           vendor/bin/infection
-      - if: matrix.php-versions == '7.3'
+      - if: matrix.php-versions == '7.4'
         name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
         with:
