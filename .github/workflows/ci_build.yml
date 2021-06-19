@@ -42,7 +42,7 @@ jobs:
         run: "composer analyze"
       - name: "Run test suite"
         run: "mv phpunit.xml.github-actions.dist phpunit.xml.dist && composer test"
-      - if: matrix.php-versions == '7.4'
+      - if: matrix.php-versions == '8.0'
         name: Run mutation test
         env:
           INFECTION_BADGE_API_KEY: ${{ secrets.INFECTION_BADGE_API_KEY }}
@@ -50,7 +50,7 @@ jobs:
         run: |
           composer require --dev infection/infection
           vendor/bin/infection
-      - if: matrix.php-versions == '7.4'
+      - if: matrix.php-versions == '8.0'
         name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
         with:
