@@ -1,10 +1,11 @@
 <?php namespace Album\Models;
 
+use CodeIgniter\Database\MySQLi\Connection;
 use Album\Domain\Track\Track;
 use CodeIgniter\Model;
 
 /**
- * @property-read \CodeIgniter\Database\MySQLi\Connection $db
+ * @property-read Connection $db
  */
 class TrackModel extends Model
 {

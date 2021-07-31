@@ -1,5 +1,6 @@
 <?php namespace Album\Controllers;
 
+use CodeIgniter\HTTP\IncomingRequest;
 use Album\Domain\Album\AlbumRepository;
 use Album\Domain\Exception\RecordNotFoundException;
 use Album\Models\AlbumModel;
@@ -9,7 +10,7 @@ use Config\Services;
 
 class Album extends BaseController
 {
-	/** @var \CodeIgniter\HTTP\IncomingRequest */
+	/** @var IncomingRequest */
 	protected $request;
 
 	/** @var AlbumRepository */

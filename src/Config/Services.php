@@ -1,5 +1,7 @@
 <?php namespace Album\Config;
 
+use Album\Models\AlbumModel;
+use Album\Models\TrackModel;
 use Album\Infrastructure\Persistence\Album\SQLAlbumRepository;
 use Album\Infrastructure\Persistence\AlbumTrackSummary\SQLAlbumTrackSummaryRepository;
 use Album\Infrastructure\Persistence\Track\SQLTrackRepository;
@@ -15,7 +17,7 @@ class Services extends BaseService
 			return static::getSharedInstance('albumRepository');
 		}
 
-		return new SQLAlbumRepository(model(Models\AlbumModel::class));
+		return new SQLAlbumRepository(model(AlbumModel::class));
 	}
 
 	public static function trackRepository($getShared = true)
@@ -25,7 +27,7 @@ class Services extends BaseService
 			return static::getSharedInstance('trackRepository');
 		}
 
-		return new SQLTrackRepository(model(Models\TrackModel::class));
+		return new SQLTrackRepository(model(TrackModel::class));
 	}
 
 	public static function albumTrackSummary($getShared = true)
@@ -36,8 +38,8 @@ class Services extends BaseService
 		}
 
 		return new SQLAlbumTrackSummaryRepository(
-			model(Models\AlbumModel::class),
-			model(Models\TrackModel::class)
+			model(AlbumModel::class),
+			model(TrackModel::class)
 		);
 	}
 }

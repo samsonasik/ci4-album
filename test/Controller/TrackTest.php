@@ -132,7 +132,7 @@ class TrackTest extends CIUnitTestCase
 	public function testEditUnexistenceTrack()
 	{
 		$result = $this->controller(Track::class)
-						->execute('edit', rand(1000, 2000), rand(1000, 2000));
+						->execute('edit', random_int(1000, 2000), random_int(1000, 2000));
 
 		$this->assertEquals(404, $result->response()->getStatusCode());
 	}
@@ -179,7 +179,7 @@ class TrackTest extends CIUnitTestCase
 	public function testDeleteUnexistenceTrack()
 	{
 		$result = $this->controller(Track::class)
-						->execute('delete', rand(1000, 2000), rand(1000, 2000));
+						->execute('delete', random_int(1000, 2000), random_int(1000, 2000));
 
 		$this->assertEquals(404, $result->response()->getStatusCode());
 	}

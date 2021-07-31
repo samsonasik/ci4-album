@@ -38,7 +38,7 @@ class SQLAlbumRepositoryTest extends CIUnitTestCase
 	public function testFindAlbumOfIdWithNotFoundIdInDB()
 	{
 		$this->expectException(AlbumNotFoundException::class);
-		$this->repository->findAlbumOfId(rand(1000, 2000));
+		$this->repository->findAlbumOfId(random_int(1000, 2000));
 	}
 
 	public function testFindAlbumOfIdWithFoundIdInDatabase()
@@ -98,7 +98,7 @@ class SQLAlbumRepositoryTest extends CIUnitTestCase
 	public function testDeleteAlbumOfIdWithNotFoundIdInDatabase()
 	{
 		$this->expectException(AlbumNotFoundException::class);
-		$this->repository->deleteOfId(rand(1000, 2000));
+		$this->repository->deleteOfId(random_int(1000, 2000));
 	}
 
 	public function testDeleteAlbumOfIdWithFoundIdInDatabase()

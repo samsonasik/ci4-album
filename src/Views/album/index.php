@@ -1,19 +1,24 @@
 <?php
+
 // set title
 $title = 'Albums';
 $this->setVar('title', $title);
-
 // extends layout
 echo $this->extend('Album\Views\layout');
-
 // begin section content
 echo $this->section('content');
 ?>
-<h1> <?php echo esc($title); ?></h1>
+<h1> <?php
+echo esc($title);
+?></h1>
 <p>
-	<?php echo anchor('album/add', 'Add new album'); ?>
+	<?php
+	echo anchor('album/add', 'Add new album');
+	?>
 	&nbsp;|&nbsp;
-	<?php echo anchor('album-track-summary/totalsong', 'Summary album track with Total Song'); ?>
+	<?php
+	echo anchor('album-track-summary/totalsong', 'Summary album track with Total Song');
+	?>
 </p>
 
 <?php
@@ -24,7 +29,9 @@ echo form_close();
 ?>
 
 <div style="background-color: green;">
-	<?php echo session()->getFlashdata('status'); ?>
+	<?php
+	echo session()->getFlashdata('status');
+	?>
 </div>
 
 <table class="table">
@@ -33,32 +40,36 @@ echo form_close();
 		<th>Artist</th>
 		<th>Options</th>
 	</tr>
-	<?php if (! $albums) : ?>
+	<?php
+	if (! $albums) : ?>
 		<tr>
 			<td colspan="3" align="center">No album found.</td>
 		</tr>
-	<?php else:
-		foreach ($albums as $album) : ?>
+		<?php else:
+			foreach ($albums as $album) : ?>
 		<tr>
 			<td><?php echo esc($album->title) ?></td>
 			<td><?php echo esc($album->artist) ?></td>
 			<td>
-				<?php echo anchor(sprintf('album-track/%d', $album->id), 'Album Tracks Details'); ?> &nbsp;|&nbsp;
-				<?php echo anchor(sprintf('album/edit/%d', $album->id), 'Edit'); ?> &nbsp;|&nbsp;
-				<?php echo anchor(
+					<?php echo anchor(sprintf('album-track/%d', $album->id), 'Album Tracks Details'); ?> &nbsp;|&nbsp;
+					<?php echo anchor(sprintf('album/edit/%d', $album->id), 'Edit'); ?> &nbsp;|&nbsp;
+					<?php echo anchor(
 						  sprintf('album/delete/%d', $album->id),
 						  'Delete',
 						  ['onclick' => 'return confirm(\'Track records will also deleted, are you sure?\')']
 					  );
-				?>
+					?>
 			</td>
 		</tr>
-	<?php endforeach;
-	endif; ?>
+		<?php endforeach;
+	endif;
+		?>
 </table>
-<?php echo $pager->links() ?>
+<?php
+echo $pager->links() ?>
+
+?>
 
 <?php
 // end section content
 echo $this->endSection();
-?>

@@ -49,7 +49,7 @@ class SQLTrackRepositoryTest extends CIUnitTestCase
 	public function testFindTrackOfIdWithNotFoundIdInDatabase()
 	{
 		$this->expectException(TrackNotFoundException::class);
-		$this->repository->findTrackOfId(rand(1000, 2000));
+		$this->repository->findTrackOfId(random_int(1000, 2000));
 	}
 
 	public function testFindTrackOfIdWithFoundIdInDatabase()
@@ -111,7 +111,7 @@ class SQLTrackRepositoryTest extends CIUnitTestCase
 	public function testDeleteTrackOfIdWithNotFoundIdInDatabase()
 	{
 		$this->expectException(TrackNotFoundException::class);
-		$this->repository->deleteOfId(rand(1000, 2000));
+		$this->repository->deleteOfId(random_int(1000, 2000));
 	}
 
 	public function testDeleteTrackOfIdWithFoundIdInDatabase()

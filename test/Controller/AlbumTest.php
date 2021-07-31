@@ -111,7 +111,7 @@ class AlbumTest extends CIUnitTestCase
 	public function testEditUnexistenceAlbum()
 	{
 		$result = $this->controller(Album::class)
-						->execute('edit', rand(1000, 2000));
+						->execute('edit', random_int(1000, 2000));
 
 		$this->assertEquals(404, $result->response()->getStatusCode());
 	}
@@ -157,7 +157,7 @@ class AlbumTest extends CIUnitTestCase
 	public function testDeleteUnexistenceAlbum()
 	{
 		$result = $this->controller(Album::class)
-						->execute('delete', rand(1000, 2000));
+						->execute('delete', random_int(1000, 2000));
 
 		$this->assertEquals(404, $result->response()->getStatusCode());
 	}
