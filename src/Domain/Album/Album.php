@@ -15,15 +15,13 @@ class Album extends Entity
 		'title'  => null,
 	];
 
-	public function setArtist(string $artist): self
+	public function setArtist(string $artist): void
 	{
 		$this->attributes['artist'] = ucwords($artist);
-		return $this;
 	}
 
-	public function setTitle(string $title): self
+	public function setTitle(string $title): void
 	{
 		$this->attributes['title'] = ucwords($title);
-		return $this;
 	}
 }

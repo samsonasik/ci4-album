@@ -25,7 +25,7 @@ class SQLTrackRepository implements TrackRepository
 			 ->builder()
 			 ->where('album_id', $album->id);
 
-		if ($keyword)
+		if ($keyword !== '')
 		{
 			$this->model
 				 ->builder()
@@ -51,7 +51,7 @@ class SQLTrackRepository implements TrackRepository
 
 	public function deleteOfId(int $id) : bool
 	{
-		$delete = $this->model->delete($id);
+		$this->model->delete($id);
 		if ($this->model->db->affectedRows() === 0)
 		{
 			throw TrackNotFoundException::forAlbumTrackDoesnotExistOfId($id);

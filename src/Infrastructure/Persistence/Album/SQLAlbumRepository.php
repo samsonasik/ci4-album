@@ -20,7 +20,7 @@ class SQLAlbumRepository implements AlbumRepository
 
 	public function findPaginatedData(string $keyword = ''): ?array
 	{
-		if ($keyword)
+		if ($keyword !== '')
 		{
 			$this->model
 				 ->builder()
@@ -46,7 +46,7 @@ class SQLAlbumRepository implements AlbumRepository
 
 	public function deleteOfId(int $id) : bool
 	{
-		$delete = $this->model->delete($id);
+		$this->model->delete($id);
 		if ($this->model->db->affectedRows() === 0)
 		{
 			throw AlbumNotFoundException::forAlbumDoesnotExistOfId($id);

@@ -17,15 +17,13 @@ class Track extends Entity
 		'author'   => null,
 	];
 
-	public function setTitle(string $title): self
+	public function setTitle(string $title): void
 	{
 		$this->attributes['title'] = ucwords($title);
-		return $this;
 	}
 
-	public function setAuthor(string $author): self
+	public function setAuthor(string $author): void
 	{
 		$this->attributes['author'] = ucwords($author);
-		return $this;
 	}
 }

@@ -31,9 +31,8 @@ class SQLAlbumTrackSummaryRepository implements AlbumTrackSummaryRepository
 								  ->getCompiledSelect() .
 							  ') AS total_song',
 						 ]);
-
+		$this->albumModel->asObject(AlbumTrackSummary::class);
 		return $this->albumModel
-					->asObject(AlbumTrackSummary::class)
 					->paginate(config('Album')->paginationPerPage);
 	}
 }
