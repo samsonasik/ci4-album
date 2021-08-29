@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * This file is part of samsonasik/ci4-album.
+ *
+ * (c) Abdul Malik Ikhsan
+ *
+ * For the full copyright and license information, please view
+ * the LICENSE file that was distributed with this source code.
+ */
+
 use Rector\Core\Configuration\Option;
 use Rector\Core\ValueObject\PhpVersion;
 use Rector\DeadCode\Rector\ClassMethod\RemoveUnusedPromotedPropertyRector;

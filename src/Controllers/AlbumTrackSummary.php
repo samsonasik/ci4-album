@@ -1,4 +1,15 @@
-<?php namespace Album\Controllers;
+<?php
+
+/**
+ * This file is part of samsonasik/ci4-album.
+ *
+ * (c) 2020 Abdul Malik Ikhsan <samsonasik@gmail.com>
+ *
+ * For the full copyright and license information, please view
+ * the LICENSE file that was distributed with this source code.
+ */
+
+namespace Album\Controllers;
 
 use Album\Domain\AlbumTrackSummary\AlbumTrackSummaryRepository;
 use Album\Models\AlbumModel;
@@ -7,19 +18,21 @@ use Config\Services;
 
 class AlbumTrackSummary extends BaseController
 {
-	/** @var AlbumTrackSummaryRepository */
-	private $repository;
+    /**
+     * @var AlbumTrackSummaryRepository
+     */
+    private $repository;
 
-	public function __construct()
-	{
-		$this->repository = Services::albumTrackSummary();
-	}
+    public function __construct()
+    {
+        $this->repository = Services::albumTrackSummary();
+    }
 
-	public function totalsong()
-	{
-		$data['summary'] = $this->repository->findPaginatedSummaryTotalSongData();
-		$data['pager']   = model(AlbumModel::class)->pager;
+    public function totalsong()
+    {
+        $data['summary'] = $this->repository->findPaginatedSummaryTotalSongData();
+        $data['pager']   = model(AlbumModel::class)->pager;
 
-		return view('Album\Views\album-track-summary\totalsong', $data);
-	}
+        return view('Album\Views\album-track-summary\totalsong', $data);
+    }
 }
