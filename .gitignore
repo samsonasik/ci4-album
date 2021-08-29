@@ -5,3 +5,4 @@ build/logs
 phpunit.xml
 .php_cs_cache
 infection.log
+.php-cs-fixer.cache
