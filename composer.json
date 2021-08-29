@@ -48,7 +48,7 @@
     "prefer-stable": true,
     "scripts": {
         "analyze": "phpstan analyze src --level=max",
-        "cs-check": "php-cs-fixer fix --dry-run",
+        "cs-check": "php-cs-fixer fix --dry-run --diff",
         "cs-fix": "php-cs-fixer fix",
         "test": "phpunit --colors=always -vvv"
     }
