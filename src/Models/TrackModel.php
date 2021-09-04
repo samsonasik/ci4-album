@@ -24,10 +24,12 @@ class TrackModel extends Model
      * @var string
      */
     protected $table = 'track';
+
     /**
      * @var string
      */
     protected $returnType = Track::class;
+
     /**
      * @var string[]
      */
@@ -36,6 +38,7 @@ class TrackModel extends Model
         'title',
         'author',
     ];
+
     /**
      * @var array<string, string>
      */

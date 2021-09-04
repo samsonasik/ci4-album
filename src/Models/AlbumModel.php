@@ -24,10 +24,12 @@ class AlbumModel extends Model
      * @var string
      */
     protected $table = 'album';
+
     /**
      * @var string
      */
     protected $returnType = Album::class;
+
     /**
      * @var string[]
      */
@@ -35,6 +37,7 @@ class AlbumModel extends Model
         'artist',
         'title',
     ];
+
     /**
      * @var array<string, string>
      */
