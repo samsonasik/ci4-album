@@ -15,5 +15,8 @@ use CodeIgniter\Config\BaseConfig;
 
 class Album extends BaseConfig
 {
+    /**
+     * @var int
+     */
     public $paginationPerPage = 10;
 }

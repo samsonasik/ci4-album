@@ -31,14 +31,23 @@ final class TrackTest extends CIUnitTestCase
     use DatabaseTestTrait;
     use ControllerTestTrait;
 
-    protected $basePath  = __DIR__ . '/../src/Database/';
+    /**
+     * @var string
+     */
+    protected $basePath = __DIR__ . '/../src/Database/';
+    /**
+     * @var string
+     */
     protected $namespace = 'Album';
-    protected $seed      = [
+    /**
+     * @var class-string[]
+     */
+    protected $seed = [
         AlbumSeeder::class,
         TrackSeeder::class,
     ];
 
-    public function testIndexTrackByNotFoundAlbum()
+    public function testIndexTrackByNotFoundAlbum(): void
     {
         $result = $this->controller(Track::class)
             ->execute('index', 2);
@@ -46,7 +55,7 @@ final class TrackTest extends CIUnitTestCase
         $this->assertSame(404, $result->response()->getStatusCode());
     }
 
-    public function testIndexTrackHasNoData()
+    public function testIndexTrackHasNoData(): void
     {
         Database::connect()->disableForeignKeyChecks();
         Database::connect()->table('track')->truncate();
@@ -59,7 +68,7 @@ final class TrackTest extends CIUnitTestCase
         $this->assertTrue($result->see('No album track found.'));
     }
 
-    public function testIndexTrackHasData()
+    public function testIndexTrackHasData(): void
     {
         $result = $this->controller(Track::class)
             ->execute('index', 1);
@@ -68,7 +77,7 @@ final class TrackTest extends CIUnitTestCase
         $this->assertTrue($result->see('Eross'));
     }
 
-    public function testIndexSearchTrackFound()
+    public function testIndexSearchTrackFound(): void
     {
         $request = Services::request();
         $request = $request->withMethod('get');
@@ -83,7 +92,7 @@ final class TrackTest extends CIUnitTestCase
         $this->assertTrue($result->see('Sebuah Kisah Klasik'));
     }
 
-    public function testIndexSearchTrackNotFound()
+    public function testIndexSearchTrackNotFound(): void
     {
         $request = Services::request();
         $request = $request->withMethod('get');
@@ -98,7 +107,7 @@ final class TrackTest extends CIUnitTestCase
         $this->assertTrue($result->see('No album track found.'));
     }
 
-    public function testAddTrackByNotFoundAlbum()
+    public function testAddTrackByNotFoundAlbum(): void
     {
         $result = $this->controller(Track::class)
             ->execute('add', 2);
@@ -106,7 +115,7 @@ final class TrackTest extends CIUnitTestCase
         $this->assertSame(404, $result->response()->getStatusCode());
     }
 
-    public function testAddTrack()
+    public function testAddTrack(): void
     {
         $result = $this->controller(Track::class)
             ->execute('add', 1);
@@ -114,7 +123,7 @@ final class TrackTest extends CIUnitTestCase
         $this->assertTrue($result->isOK());
     }
 
-    public function testAddTrackInvalidData()
+    public function testAddTrackInvalidData(): void
     {
         $request = Services::request(null, false);
         $request = $request->withMethod('post');
@@ -126,7 +135,7 @@ final class TrackTest extends CIUnitTestCase
         $this->seeNumRecords(1, 'track', []);
     }
 
-    public function testAddTrackValidData()
+    public function testAddTrackValidData(): void
     {
         $request = Services::request();
         $request = $request->withMethod('post');
@@ -143,7 +152,7 @@ final class TrackTest extends CIUnitTestCase
         $this->assertTrue($result->isRedirect());
     }
 
-    public function testEditUnexistenceTrack()
+    public function testEditUnexistenceTrack(): void
     {
         $result = $this->controller(Track::class)
             ->execute('edit', random_int(1000, 2000), random_int(1000, 2000));
@@ -151,7 +160,7 @@ final class TrackTest extends CIUnitTestCase
         $this->assertSame(404, $result->response()->getStatusCode());
     }
 
-    public function testEditExistenceTrack()
+    public function testEditExistenceTrack(): void
     {
         $result = $this->controller(Track::class)
             ->execute('edit', 1, 1);
@@ -159,7 +168,7 @@ final class TrackTest extends CIUnitTestCase
         $this->assertTrue($result->isOK());
     }
 
-    public function testEditTrackInvalidData()
+    public function testEditTrackInvalidData(): void
     {
         $request = Services::request(null, false);
         $request = $request->withMethod('post');
@@ -171,7 +180,7 @@ final class TrackTest extends CIUnitTestCase
         $this->assertNotSame('http://localhost:8080/index.php/album-track/1', $result->getRedirectUrl());
     }
 
-    public function testEditTrackValidData()
+    public function testEditTrackValidData(): void
     {
         $request = Services::request();
         $request = $request->withMethod('post');
@@ -190,7 +199,7 @@ final class TrackTest extends CIUnitTestCase
         $this->assertSame('http://localhost:8080/index.php/album-track/1', $result->getRedirectUrl());
     }
 
-    public function testDeleteUnexistenceTrack()
+    public function testDeleteUnexistenceTrack(): void
     {
         $result = $this->controller(Track::class)
             ->execute('delete', random_int(1000, 2000), random_int(1000, 2000));
@@ -198,7 +207,7 @@ final class TrackTest extends CIUnitTestCase
         $this->assertSame(404, $result->response()->getStatusCode());
     }
 
-    public function testDeleteExistenceTrack()
+    public function testDeleteExistenceTrack(): void
     {
         $result = $this->controller(Track::class)
             ->execute('delete', 1, 1);

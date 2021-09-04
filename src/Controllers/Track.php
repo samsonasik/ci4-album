@@ -18,6 +18,7 @@ use Album\Models\TrackModel;
 use App\Controllers\BaseController;
 use CodeIgniter\Exceptions\PageNotFoundException;
 use CodeIgniter\HTTP\IncomingRequest;
+use CodeIgniter\HTTP\RedirectResponse;
 use Config\Services;
 
 class Track extends BaseController
@@ -43,7 +44,7 @@ class Track extends BaseController
         $this->trackRepository = Services::trackRepository();
     }
 
-    public function index(int $albumId)
+    public function index(int $albumId): string
     {
         try {
             $album = $this->albumRepository->findAlbumOfId($albumId);
@@ -59,6 +60,9 @@ class Track extends BaseController
         return view('Album\Views\track\index', $data);
     }
 
+    /**
+     * @return RedirectResponse|string
+     */
     public function add(int $albumId)
     {
         try {
@@ -86,6 +90,9 @@ class Track extends BaseController
         ]);
     }
 
+    /**
+     * @return RedirectResponse|string
+     */
     public function edit(int $albumId, int $trackId)
     {
         try {
@@ -115,7 +122,7 @@ class Track extends BaseController
         ]);
     }
 
-    public function delete(int $albumId, int $trackId)
+    public function delete(int $albumId, int $trackId): RedirectResponse
     {
         try {
             $this->albumRepository->findAlbumOfId($albumId);

@@ -15,7 +15,7 @@ use CodeIgniter\Database\Migration;
 
 class Album extends Migration
 {
-    public function up()
+    public function up(): void
     {
         $this->forge->addField([
             'id' => [
@@ -36,7 +36,7 @@ class Album extends Migration
         $this->forge->createTable('album');
     }
 
-    public function down()
+    public function down(): void
     {
         $this->forge->dropTable('album');
     }

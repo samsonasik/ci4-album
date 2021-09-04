@@ -20,13 +20,13 @@ use PHPUnit\Framework\TestCase;
  */
 final class TrackNotFoundExceptionTest extends TestCase
 {
-    public function testCannotInstantiateDirectly()
+    public function testCannotInstantiateDirectly(): void
     {
         $this->expectException(Error::class);
         new TrackNotFoundException('message');
     }
 
-    public function testInstantiateforAlbumTrackDoesnotExistOfId()
+    public function testInstantiateforAlbumTrackDoesnotExistOfId(): void
     {
         $this->assertInstanceOf(
             TrackNotFoundException::class,

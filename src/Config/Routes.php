@@ -11,7 +11,7 @@
 
 namespace Album\Config;
 
-$routes->group('album', ['namespace' => 'Album\Controllers'], static function ($routes) {
+$routes->group('album', ['namespace' => 'Album\Controllers'], static function ($routes): void {
     // URI: /album
     $routes->get('', 'Album::index', ['as' => 'album-index']);
 
@@ -25,7 +25,7 @@ $routes->group('album', ['namespace' => 'Album\Controllers'], static function ($
     $routes->match(['get', 'post'], 'edit/(:num)', 'Album::edit/$1', ['as' => 'album-edit']);
 });
 
-$routes->group('album-track', ['namespace' => 'Album\Controllers'], static function ($routes) {
+$routes->group('album-track', ['namespace' => 'Album\Controllers'], static function ($routes): void {
     // URI: /track/1
     $routes->get('(:num)', 'Track::index/$1', ['as' => 'track-index']);
 
@@ -39,7 +39,7 @@ $routes->group('album-track', ['namespace' => 'Album\Controllers'], static funct
     $routes->match(['get', 'post'], 'edit/(:num)/(:num)', 'Track::edit/$1/$2', ['as' => 'track-edit']);
 });
 
-$routes->group('album-track-summary', ['namespace' => 'Album\Controllers'], static function ($routes) {
+$routes->group('album-track-summary', ['namespace' => 'Album\Controllers'], static function ($routes): void {
     // URI: /album-track-summary/totalsong
     $routes->get('totalsong', 'AlbumTrackSummary::totalsong', ['as' => 'album-track-summary-totalsong']);
 });

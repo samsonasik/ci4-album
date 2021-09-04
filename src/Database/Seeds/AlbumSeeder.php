@@ -15,7 +15,7 @@ use CodeIgniter\Database\Seeder;
 
 class AlbumSeeder extends Seeder
 {
-    public function run()
+    public function run(): void
     {
         $row = [
             'artist' => 'Sheila On 7',

@@ -19,7 +19,7 @@ use PHPUnit\Framework\TestCase;
  */
 final class AlbumTest extends TestCase
 {
-    public function testFillGetAttributes()
+    public function testFillGetAttributes(): void
     {
         $entity = new Album([
             'id'     => 1,

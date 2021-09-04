@@ -19,7 +19,7 @@ use PHPUnit\Framework\TestCase;
  */
 final class AlbumTrackSummaryTest extends TestCase
 {
-    public function testFillGetAttributes()
+    public function testFillGetAttributes(): void
     {
         $entity = new AlbumTrackSummary([
             'id'         => 1,

@@ -17,6 +17,7 @@ use Album\Models\AlbumModel;
 use App\Controllers\BaseController;
 use CodeIgniter\Exceptions\PageNotFoundException;
 use CodeIgniter\HTTP\IncomingRequest;
+use CodeIgniter\HTTP\RedirectResponse;
 use Config\Services;
 
 class Album extends BaseController
@@ -36,7 +37,7 @@ class Album extends BaseController
         $this->repository = Services::albumRepository();
     }
 
-    public function index()
+    public function index(): string
     {
         $data['keyword'] = $this->request->getGet('keyword') ?? '';
         $data['albums']  = $this->repository->findPaginatedData($data['keyword']);
@@ -45,6 +46,9 @@ class Album extends BaseController
         return view('Album\Views\album\index', $data);
     }
 
+    /**
+     * @return RedirectResponse|string
+     */
     public function add()
     {
         if ($this->request->getMethod() === 'post') {
@@ -63,6 +67,9 @@ class Album extends BaseController
         return view('Album\Views\album\add', ['errors' => session()->getFlashData('errors')]);
     }
 
+    /**
+     * @return RedirectResponse|string
+     */
     public function edit(int $id)
     {
         try {
@@ -87,7 +94,7 @@ class Album extends BaseController
         return view('Album\Views\album\edit', ['album' => $album, 'errors' => session()->getFlashData('errors')]);
     }
 
-    public function delete(int $id)
+    public function delete(int $id): RedirectResponse
     {
         try {
             $this->repository->deleteOfId($id);

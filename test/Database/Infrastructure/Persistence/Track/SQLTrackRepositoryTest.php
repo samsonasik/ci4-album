@@ -27,9 +27,18 @@ final class SQLTrackRepositoryTest extends CIUnitTestCase
 {
     use DatabaseTestTrait;
 
-    protected $basePath  = __DIR__ . '/../src/Database/';
+    /**
+     * @var string
+     */
+    protected $basePath = __DIR__ . '/../src/Database/';
+    /**
+     * @var string
+     */
     protected $namespace = 'Album';
-    protected $seed      = [
+    /**
+     * @var class-string[]
+     */
+    protected $seed = [
         AlbumSeeder::class,
         TrackSeeder::class,
     ];
@@ -42,7 +51,7 @@ final class SQLTrackRepositoryTest extends CIUnitTestCase
         $this->repository = Services::trackRepository();
     }
 
-    public function testfindPaginatedDataWithKeywordNotFoundInDB()
+    public function testfindPaginatedDataWithKeywordNotFoundInDB(): void
     {
         $album     = new Album();
         $album->id = 1;
@@ -51,7 +60,7 @@ final class SQLTrackRepositoryTest extends CIUnitTestCase
         $this->assertEmpty($tracks);
     }
 
-    public function testfindPaginatedDataWithKeywordFoundInDB()
+    public function testfindPaginatedDataWithKeywordFoundInDB(): void
     {
         $album     = new Album();
         $album->id = 1;
@@ -60,18 +69,21 @@ final class SQLTrackRepositoryTest extends CIUnitTestCase
         $this->assertNotEmpty($tracks);
     }
 
-    public function testFindTrackOfIdWithNotFoundIdInDatabase()
+    public function testFindTrackOfIdWithNotFoundIdInDatabase(): void
     {
         $this->expectException(TrackNotFoundException::class);
         $this->repository->findTrackOfId(random_int(1000, 2000));
     }
 
-    public function testFindTrackOfIdWithFoundIdInDatabase()
+    public function testFindTrackOfIdWithFoundIdInDatabase(): void
     {
         $this->assertInstanceOf(Track::class, $this->repository->findTrackOfId(1));
     }
 
-    public function invalidData()
+    /**
+     * @return array<string, mixed[]>
+     */
+    public function invalidData(): array
     {
         return [
             'empty array' => [
@@ -85,15 +97,16 @@ final class SQLTrackRepositoryTest extends CIUnitTestCase
 
     /**
      * @dataProvider invalidData
-     *
-     * @param mixed $data
      */
-    public function testSaveInvalidData($data)
+    public function testSaveInvalidData(?array $data): void
     {
         $this->assertFalse($this->repository->save($data));
     }
 
-    public function validData()
+    /**
+     * @return array<string, array<int, array<string, int|string>>>
+     */
+    public function validData(): array
     {
         return [
             'insert' => [
@@ -118,19 +131,21 @@ final class SQLTrackRepositoryTest extends CIUnitTestCase
      * @dataProvider validData
      * @runInSeparateProcess
      * @preserveGlobalState         disabled
+     *
+     * @param array<string, int>|array<string, string> $data
      */
-    public function testSaveValidData(array $data)
+    public function testSaveValidData(array $data): void
     {
         $this->assertTrue($this->repository->save($data));
     }
 
-    public function testDeleteTrackOfIdWithNotFoundIdInDatabase()
+    public function testDeleteTrackOfIdWithNotFoundIdInDatabase(): void
     {
         $this->expectException(TrackNotFoundException::class);
         $this->repository->deleteOfId(random_int(1000, 2000));
     }
 
-    public function testDeleteTrackOfIdWithFoundIdInDatabase()
+    public function testDeleteTrackOfIdWithFoundIdInDatabase(): void
     {
         $this->assertTrue($this->repository->deleteOfId(1));
     }

@@ -30,14 +30,23 @@ final class AlbumTrackSummaryTest extends CIUnitTestCase
     use ControllerTestTrait;
     use DatabaseTestTrait;
 
-    protected $basePath  = __DIR__ . '/../src/Database/';
+    /**
+     * @var string
+     */
+    protected $basePath = __DIR__ . '/../src/Database/';
+    /**
+     * @var string
+     */
     protected $namespace = 'Album';
-    protected $seed      = [
+    /**
+     * @var class-string[]
+     */
+    protected $seed = [
         AlbumSeeder::class,
         TrackSeeder::class,
     ];
 
-    public function testTotalSongSummaryHasNoData()
+    public function testTotalSongSummaryHasNoData(): void
     {
         Database::connect()->disableForeignKeyChecks();
         Database::connect()->table('album')->truncate();
@@ -50,7 +59,7 @@ final class AlbumTrackSummaryTest extends CIUnitTestCase
         $this->assertTrue($result->see('No album track summary found.'));
     }
 
-    public function testTotalSongSummaryHasData()
+    public function testTotalSongSummaryHasData(): void
     {
         $result = $this->controller(AlbumTrackSummary::class)
             ->execute('totalsong');

@@ -20,12 +20,24 @@ use CodeIgniter\Model;
  */
 class AlbumModel extends Model
 {
-    protected $table         = 'album';
-    protected $returnType    = Album::class;
+    /**
+     * @var string
+     */
+    protected $table = 'album';
+    /**
+     * @var string
+     */
+    protected $returnType = Album::class;
+    /**
+     * @var string[]
+     */
     protected $allowedFields = [
         'artist',
         'title',
     ];
+    /**
+     * @var array<string, string>
+     */
     protected $validationRules = [
         'artist' => 'required|alpha_numeric_space|min_length[3]|max_length[255]',
         'title'  => 'required|alpha_numeric_space|min_length[3]|max_length[255]|is_unique[album.title,id,{id}]',

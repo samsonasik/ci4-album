@@ -20,6 +20,9 @@ use CodeIgniter\Entity\Entity;
  */
 class Album extends Entity
 {
+    /**
+     * @var array<string, null>|string[]
+     */
     protected $attributes = [
         'id'     => null,
         'artist' => null,

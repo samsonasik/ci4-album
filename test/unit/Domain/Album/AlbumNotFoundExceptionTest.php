@@ -20,13 +20,13 @@ use PHPUnit\Framework\TestCase;
  */
 final class AlbumNotFoundExceptionTest extends TestCase
 {
-    public function testCannotInstantiateDirectly()
+    public function testCannotInstantiateDirectly(): void
     {
         $this->expectException(Error::class);
         new AlbumNotFoundException('message');
     }
 
-    public function testInstantiateforAlbumDoesnotExistOfId()
+    public function testInstantiateforAlbumDoesnotExistOfId(): void
     {
         $this->assertInstanceOf(
             AlbumNotFoundException::class,

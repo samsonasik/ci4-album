@@ -20,6 +20,11 @@ use CodeIgniter\Config\BaseService;
 
 class Services extends BaseService
 {
+    /**
+     * @param mixed $getShared
+     *
+     * @return mixed|SQLAlbumRepository
+     */
     public static function albumRepository($getShared = true)
     {
         if ($getShared) {
@@ -29,6 +34,11 @@ class Services extends BaseService
         return new SQLAlbumRepository(model(AlbumModel::class));
     }
 
+    /**
+     * @param mixed $getShared
+     *
+     * @return mixed|SQLTrackRepository
+     */
     public static function trackRepository($getShared = true)
     {
         if ($getShared) {
@@ -38,6 +48,11 @@ class Services extends BaseService
         return new SQLTrackRepository(model(TrackModel::class));
     }
 
+    /**
+     * @param mixed $getShared
+     *
+     * @return mixed|SQLAlbumTrackSummaryRepository
+     */
     public static function albumTrackSummary($getShared = true)
     {
         if ($getShared) {

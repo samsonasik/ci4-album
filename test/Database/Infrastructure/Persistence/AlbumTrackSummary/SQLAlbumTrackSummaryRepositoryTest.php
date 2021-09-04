@@ -24,9 +24,18 @@ final class SQLAlbumTrackSummaryRepositoryTest extends CIUnitTestCase
 {
     use DatabaseTestTrait;
 
-    protected $basePath  = __DIR__ . '/../src/Database/';
+    /**
+     * @var string
+     */
+    protected $basePath = __DIR__ . '/../src/Database/';
+    /**
+     * @var string
+     */
     protected $namespace = 'Album';
-    protected $seed      = [
+    /**
+     * @var class-string[]
+     */
+    protected $seed = [
         AlbumSeeder::class,
         TrackSeeder::class,
     ];
@@ -39,7 +48,7 @@ final class SQLAlbumTrackSummaryRepositoryTest extends CIUnitTestCase
         $this->repository = Services::albumTrackSummary();
     }
 
-    public function testFindPaginatedSummaryTotalSongDataFoundInDB()
+    public function testFindPaginatedSummaryTotalSongDataFoundInDB(): void
     {
         $albumtracksummary = $this->repository->findPaginatedSummaryTotalSongData();
         $this->assertNotEmpty($albumtracksummary);

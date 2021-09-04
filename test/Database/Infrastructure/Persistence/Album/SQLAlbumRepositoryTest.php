@@ -25,9 +25,18 @@ final class SQLAlbumRepositoryTest extends CIUnitTestCase
 {
     use DatabaseTestTrait;
 
-    protected $basePath  = __DIR__ . '/../src/Database/';
+    /**
+     * @var string
+     */
+    protected $basePath = __DIR__ . '/../src/Database/';
+    /**
+     * @var string
+     */
     protected $namespace = 'Album';
-    protected $seed      = AlbumSeeder::class;
+    /**
+     * @var string
+     */
+    protected $seed = AlbumSeeder::class;
     private $repository;
 
     protected function setUp(): void
@@ -37,30 +46,33 @@ final class SQLAlbumRepositoryTest extends CIUnitTestCase
         $this->repository = Services::albumRepository();
     }
 
-    public function testfindPaginatedDataWithKeywordNotFoundInDB()
+    public function testfindPaginatedDataWithKeywordNotFoundInDB(): void
     {
         $albums = $this->repository->findPaginatedData('Siti');
         $this->assertEmpty($albums);
     }
 
-    public function testfindPaginatedDataWithKeywordFoundInDB()
+    public function testfindPaginatedDataWithKeywordFoundInDB(): void
     {
         $albums = $this->repository->findPaginatedData('Sheila');
         $this->assertNotEmpty($albums);
     }
 
-    public function testFindAlbumOfIdWithNotFoundIdInDB()
+    public function testFindAlbumOfIdWithNotFoundIdInDB(): void
     {
         $this->expectException(AlbumNotFoundException::class);
         $this->repository->findAlbumOfId(random_int(1000, 2000));
     }
 
-    public function testFindAlbumOfIdWithFoundIdInDatabase()
+    public function testFindAlbumOfIdWithFoundIdInDatabase(): void
     {
         $this->assertInstanceOf(Album::class, $this->repository->findAlbumOfId(1));
     }
 
-    public function invalidData()
+    /**
+     * @return array<string, mixed[]>
+     */
+    public function invalidData(): array
     {
         return [
             'empty array' => [
@@ -74,15 +86,16 @@ final class SQLAlbumRepositoryTest extends CIUnitTestCase
 
     /**
      * @dataProvider invalidData
-     *
-     * @param mixed $data
      */
-    public function testSaveInvalidData($data)
+    public function testSaveInvalidData(?array $data): void
     {
         $this->assertFalse($this->repository->save($data));
     }
 
-    public function validData()
+    /**
+     * @return array<string, array<int, array<string, int|string>>>
+     */
+    public function validData(): array
     {
         return [
             'insert' => [
@@ -105,19 +118,21 @@ final class SQLAlbumRepositoryTest extends CIUnitTestCase
      * @dataProvider validData
      * @runInSeparateProcess
      * @preserveGlobalState         disabled
+     *
+     * @param array<string, int>|array<string, string> $data
      */
-    public function testSaveValidData(array $data)
+    public function testSaveValidData(array $data): void
     {
         $this->assertTrue($this->repository->save($data));
     }
 
-    public function testDeleteAlbumOfIdWithNotFoundIdInDatabase()
+    public function testDeleteAlbumOfIdWithNotFoundIdInDatabase(): void
     {
         $this->expectException(AlbumNotFoundException::class);
         $this->repository->deleteOfId(random_int(1000, 2000));
     }
 
-    public function testDeleteAlbumOfIdWithFoundIdInDatabase()
+    public function testDeleteAlbumOfIdWithFoundIdInDatabase(): void
     {
         $this->assertTrue($this->repository->deleteOfId(1));
     }

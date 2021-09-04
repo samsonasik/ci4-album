@@ -21,6 +21,9 @@ use CodeIgniter\Entity\Entity;
  */
 class AlbumTrackSummary extends Entity
 {
+    /**
+     * @var array<string, null>
+     */
     protected $attributes = [
         'id'         => null,
         'artist'     => null,

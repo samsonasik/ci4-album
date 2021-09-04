@@ -30,11 +30,20 @@ final class AlbumTest extends CIUnitTestCase
     use DatabaseTestTrait;
     use ControllerTestTrait;
 
-    protected $basePath  = __DIR__ . '/../src/Database/';
+    /**
+     * @var string
+     */
+    protected $basePath = __DIR__ . '/../src/Database/';
+    /**
+     * @var string
+     */
     protected $namespace = 'Album';
-    protected $seed      = AlbumSeeder::class;
+    /**
+     * @var string
+     */
+    protected $seed = AlbumSeeder::class;
 
-    public function testIndexAlbumHasNoData()
+    public function testIndexAlbumHasNoData(): void
     {
         Database::connect()->disableForeignKeyChecks();
         Database::connect()->table('album')->truncate();
@@ -47,7 +56,7 @@ final class AlbumTest extends CIUnitTestCase
         $this->assertTrue($result->see('No album found.'));
     }
 
-    public function testIndexAlbumHasData()
+    public function testIndexAlbumHasData(): void
     {
         $result = $this->controller(Album::class)
             ->execute('index');
@@ -56,7 +65,7 @@ final class AlbumTest extends CIUnitTestCase
         $this->assertTrue($result->see('Sheila On 7'));
     }
 
-    public function testIndexSearchAlbumFound()
+    public function testIndexSearchAlbumFound(): void
     {
         $request = Services::request();
         $request = $request->withMethod('get');
@@ -71,7 +80,7 @@ final class AlbumTest extends CIUnitTestCase
         $this->assertTrue($result->see('Sheila On 7'));
     }
 
-    public function testIndexSearchAlbumNotFound()
+    public function testIndexSearchAlbumNotFound(): void
     {
         $request = Services::request();
         $request = $request->withMethod('get');
@@ -86,7 +95,7 @@ final class AlbumTest extends CIUnitTestCase
         $this->assertTrue($result->see('No album found.'));
     }
 
-    public function testAddAlbum()
+    public function testAddAlbum(): void
     {
         $result = $this->controller(Album::class)
             ->execute('add');
@@ -94,7 +103,7 @@ final class AlbumTest extends CIUnitTestCase
         $this->assertTrue($result->isOK());
     }
 
-    public function testAddAlbumInvalidData()
+    public function testAddAlbumInvalidData(): void
     {
         $request = Services::request(null, false);
         $request = $request->withMethod('post');
@@ -106,7 +115,7 @@ final class AlbumTest extends CIUnitTestCase
         $this->seeNumRecords(1, 'album', []);
     }
 
-    public function testAddAlbumValidData()
+    public function testAddAlbumValidData(): void
     {
         $request = Services::request();
         $request = $request->withMethod('post');
@@ -122,7 +131,7 @@ final class AlbumTest extends CIUnitTestCase
         $this->assertTrue($result->isRedirect());
     }
 
-    public function testEditUnexistenceAlbum()
+    public function testEditUnexistenceAlbum(): void
     {
         $result = $this->controller(Album::class)
             ->execute('edit', random_int(1000, 2000));
@@ -130,7 +139,7 @@ final class AlbumTest extends CIUnitTestCase
         $this->assertSame(404, $result->response()->getStatusCode());
     }
 
-    public function testEditExistenceAlbum()
+    public function testEditExistenceAlbum(): void
     {
         $result = $this->controller(Album::class)
             ->execute('edit', 1);
@@ -138,7 +147,7 @@ final class AlbumTest extends CIUnitTestCase
         $this->assertTrue($result->isOK());
     }
 
-    public function testEditAlbumInvalidData()
+    public function testEditAlbumInvalidData(): void
     {
         $request = Services::request(null, false);
         $request = $request->withMethod('post');
@@ -150,7 +159,7 @@ final class AlbumTest extends CIUnitTestCase
         $this->assertNotSame('http://localhost:8080/index.php/album', $result->getRedirectUrl());
     }
 
-    public function testEditAlbumValidData()
+    public function testEditAlbumValidData(): void
     {
         $request = Services::request();
         $request = $request->withMethod('post');
@@ -168,7 +177,7 @@ final class AlbumTest extends CIUnitTestCase
         $this->assertSame('http://localhost:8080/index.php/album', $result->getRedirectUrl());
     }
 
-    public function testDeleteUnexistenceAlbum()
+    public function testDeleteUnexistenceAlbum(): void
     {
         $result = $this->controller(Album::class)
             ->execute('delete', random_int(1000, 2000));
@@ -176,7 +185,7 @@ final class AlbumTest extends CIUnitTestCase
         $this->assertSame(404, $result->response()->getStatusCode());
     }
 
-    public function testDeleteExistenceAlbum()
+    public function testDeleteExistenceAlbum(): void
     {
         $result = $this->controller(Album::class)
             ->execute('delete', 1);

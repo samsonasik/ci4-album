@@ -15,7 +15,7 @@ use CodeIgniter\Database\Seeder;
 
 class TrackSeeder extends Seeder
 {
-    public function run()
+    public function run(): void
     {
         $row = [
             'album_id' => 1,

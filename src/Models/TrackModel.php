@@ -20,13 +20,25 @@ use CodeIgniter\Model;
  */
 class TrackModel extends Model
 {
-    protected $table         = 'track';
-    protected $returnType    = Track::class;
+    /**
+     * @var string
+     */
+    protected $table = 'track';
+    /**
+     * @var string
+     */
+    protected $returnType = Track::class;
+    /**
+     * @var string[]
+     */
     protected $allowedFields = [
         'album_id',
         'title',
         'author',
     ];
+    /**
+     * @var array<string, string>
+     */
     protected $validationRules = [
         'album_id' => 'required|numeric',
         'title'    => 'required|alpha_numeric_space|min_length[3]|max_length[255]|is_unique[track.title,id,{id}]',

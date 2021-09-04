@@ -15,7 +15,7 @@ use CodeIgniter\Database\Migration;
 
 class Track extends Migration
 {
-    public function up()
+    public function up(): void
     {
         $this->forge->addField([
             'id' => [
@@ -41,7 +41,7 @@ class Track extends Migration
         $this->forge->createTable('track');
     }
 
-    public function down()
+    public function down(): void
     {
         $this->forge->dropTable('track');
     }

@@ -19,7 +19,7 @@ use PHPUnit\Framework\TestCase;
  */
 final class TrackTest extends TestCase
 {
-    public function testFillGetAttributes()
+    public function testFillGetAttributes(): void
     {
         $entity = new Track([
             'id'       => 1,

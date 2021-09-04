@@ -13,6 +13,9 @@ use Rector\Core\Configuration\Option;
 use Rector\Core\ValueObject\PhpVersion;
 use Rector\DeadCode\Rector\ClassMethod\RemoveUnusedPromotedPropertyRector;
 use Rector\Set\ValueObject\SetList;
+use Rector\TypeDeclaration\Rector\ClassMethod\ReturnTypeFromStrictTypedPropertyRector;
+use Rector\TypeDeclaration\Rector\Param\ParamTypeFromStrictTypedPropertyRector;
+use Rector\TypeDeclaration\Rector\Property\TypedPropertyFromStrictConstructorRector;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
@@ -23,6 +26,8 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $containerConfigurator->import(SetList::PHP_73);
     $containerConfigurator->import(SetList::DEAD_CODE);
     $containerConfigurator->import(SetList::DEFLUENT);
+    $containerConfigurator->import(SetList::TYPE_DECLARATION);
+    $containerConfigurator->import(SetList::TYPE_DECLARATION_STRICT);
 
     $parameters = $containerConfigurator->parameters();
     $parameters->set(Option::PATHS, [__DIR__ . '/src', __DIR__ . '/test']);
@@ -35,6 +40,12 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $parameters->set(Option::PHP_VERSION_FEATURES, PhpVersion::PHP_73);
 
     $parameters->set(Option::SKIP, [
+        // requires php 8.0
         RemoveUnusedPromotedPropertyRector::class,
+
+        // requires php 7.4
+        ReturnTypeFromStrictTypedPropertyRector::class,
+        TypedPropertyFromStrictConstructorRector::class,
+        ParamTypeFromStrictTypedPropertyRector::class,
     ]);
 };
