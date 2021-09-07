@@ -23,7 +23,7 @@ final class Services extends BaseService
     public static function albumRepository(bool $getShared = true): SQLAlbumRepository
     {
         if ($getShared) {
-            return self::getSharedInstance('albumRepository');
+            return static::getSharedInstance('albumRepository');
         }
 
         return new SQLAlbumRepository(model(AlbumModel::class));
@@ -32,7 +32,7 @@ final class Services extends BaseService
     public static function trackRepository(bool $getShared = true): SQLTrackRepository
     {
         if ($getShared) {
-            return self::getSharedInstance('trackRepository');
+            return static::getSharedInstance('trackRepository');
         }
 
         return new SQLTrackRepository(model(TrackModel::class));
@@ -41,7 +41,7 @@ final class Services extends BaseService
     public static function albumTrackSummary(bool $getShared = true): SQLAlbumTrackSummaryRepository
     {
         if ($getShared) {
-            return self::getSharedInstance('albumTrackSummary');
+            return static::getSharedInstance('albumTrackSummary');
         }
 
         return new SQLAlbumTrackSummaryRepository(
