@@ -19,7 +19,7 @@ use CodeIgniter\Entity\Entity;
  * @property string $title
  * @property string $total_song
  */
-class AlbumTrackSummary extends Entity
+final class AlbumTrackSummary extends Entity
 {
     /**
      * @var array<string, null>

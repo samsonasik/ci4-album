@@ -13,31 +13,41 @@ namespace Album\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class Track extends Migration
+final class Track extends Migration
 {
+    /**
+     * @var string
+     */
+    private const ID = 'id';
+
+    /**
+     * @var string
+     */
+    private const TYPE = 'type';
+
     public function up(): void
     {
         $this->forge->addField([
-            'id' => [
-                'type'           => 'BIGINT',
+            self::ID => [
+                self::TYPE       => 'BIGINT',
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
             'album_id' => [
-                'type'     => 'BIGINT',
+                self::TYPE => 'BIGINT',
                 'unsigned' => true,
             ],
             'title' => [
-                'type'       => 'VARCHAR',
+                self::TYPE   => 'VARCHAR',
                 'constraint' => '255',
             ],
             'author' => [
-                'type'       => 'VARCHAR',
+                self::TYPE   => 'VARCHAR',
                 'constraint' => '255',
             ],
         ]);
-        $this->forge->addKey('id', true);
-        $this->forge->addForeignKey('album_id', 'album', 'id', 'CASCADE', 'CASCADE');
+        $this->forge->addKey(self::ID, true);
+        $this->forge->addForeignKey('album_id', 'album', self::ID, 'CASCADE', 'CASCADE');
         $this->forge->createTable('track');
     }
 

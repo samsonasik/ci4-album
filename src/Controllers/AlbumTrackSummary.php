@@ -16,7 +16,7 @@ use Album\Models\AlbumModel;
 use App\Controllers\BaseController;
 use Config\Services;
 
-class AlbumTrackSummary extends BaseController
+final class AlbumTrackSummary extends BaseController
 {
     /**
      * @var AlbumTrackSummaryRepository

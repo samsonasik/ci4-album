@@ -13,7 +13,7 @@ namespace Album\Config;
 
 use CodeIgniter\Config\BaseConfig;
 
-class Album extends BaseConfig
+final class Album extends BaseConfig
 {
     /**
      * @var int

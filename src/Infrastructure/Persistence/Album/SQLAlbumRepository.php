@@ -17,14 +17,14 @@ use Album\Domain\Album\AlbumRepository;
 use Album\Infrastructure\Persistence\DMLPersistence;
 use Album\Models\AlbumModel;
 
-class SQLAlbumRepository implements AlbumRepository
+final class SQLAlbumRepository implements AlbumRepository
 {
     use DMLPersistence;
 
     /**
      * @var AlbumModel
      */
-    protected $model;
+    private $model;
 
     public function __construct(AlbumModel $model)
     {

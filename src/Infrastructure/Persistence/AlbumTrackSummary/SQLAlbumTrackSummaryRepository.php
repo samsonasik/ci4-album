@@ -16,7 +16,7 @@ use Album\Domain\AlbumTrackSummary\AlbumTrackSummaryRepository;
 use Album\Models\AlbumModel;
 use Album\Models\TrackModel;
 
-class SQLAlbumTrackSummaryRepository implements AlbumTrackSummaryRepository
+final class SQLAlbumTrackSummaryRepository implements AlbumTrackSummaryRepository
 {
     /**
      * @var AlbumModel

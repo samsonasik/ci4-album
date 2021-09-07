@@ -18,12 +18,12 @@ use Album\Models\AlbumModel;
 use Album\Models\TrackModel;
 use CodeIgniter\Config\BaseService;
 
-class Services extends BaseService
+final class Services extends BaseService
 {
     public static function albumRepository(bool $getShared = true): SQLAlbumRepository
     {
         if ($getShared) {
-            return static::getSharedInstance('albumRepository');
+            return self::getSharedInstance('albumRepository');
         }
 
         return new SQLAlbumRepository(model(AlbumModel::class));
@@ -32,7 +32,7 @@ class Services extends BaseService
     public static function trackRepository(bool $getShared = true): SQLTrackRepository
     {
         if ($getShared) {
-            return static::getSharedInstance('trackRepository');
+            return self::getSharedInstance('trackRepository');
         }
 
         return new SQLTrackRepository(model(TrackModel::class));
@@ -41,7 +41,7 @@ class Services extends BaseService
     public static function albumTrackSummary(bool $getShared = true): SQLAlbumTrackSummaryRepository
     {
         if ($getShared) {
-            return static::getSharedInstance('albumTrackSummary');
+            return self::getSharedInstance('albumTrackSummary');
         }
 
         return new SQLAlbumTrackSummaryRepository(

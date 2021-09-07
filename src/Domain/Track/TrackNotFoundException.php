@@ -13,9 +13,9 @@ namespace Album\Domain\Track;
 
 use Album\Domain\Exception\RecordNotFoundException;
 
-class TrackNotFoundException extends RecordNotFoundException
+final class TrackNotFoundException extends RecordNotFoundException
 {
-    final public static function forAlbumTrackDoesnotExistOfId(int $id): self
+    public static function forAlbumTrackDoesnotExistOfId(int $id): self
     {
         return new self(sprintf(
             'The album track with track ID %d you requested does not exist.',

@@ -20,7 +20,7 @@ use CodeIgniter\HTTP\IncomingRequest;
 use CodeIgniter\HTTP\RedirectResponse;
 use Config\Services;
 
-class Album extends BaseController
+final class Album extends BaseController
 {
     /**
      * @var IncomingRequest
@@ -32,6 +32,26 @@ class Album extends BaseController
      */
     private $repository;
 
+    /**
+     * @var string
+     */
+    private const KEYWORD = 'keyword';
+
+    /**
+     * @var string
+     */
+    private const STATUS = 'status';
+
+    /**
+     * @var string
+     */
+    private const ALBUM_INDEX = 'album-index';
+
+    /**
+     * @var string
+     */
+    private const ERRORS = 'errors';
+
     public function __construct()
     {
         $this->repository = Services::albumRepository();
@@ -39,9 +59,9 @@ class Album extends BaseController
 
     public function index(): string
     {
-        $data['keyword'] = $this->request->getGet('keyword') ?? '';
-        $data['albums']  = $this->repository->findPaginatedData($data['keyword']);
-        $data['pager']   = model(AlbumModel::class)->pager;
+        $data[self::KEYWORD] = $this->request->getGet(self::KEYWORD) ?? '';
+        $data['albums']      = $this->repository->findPaginatedData($data[self::KEYWORD]);
+        $data['pager']       = model(AlbumModel::class)->pager;
 
         return view('Album\Views\album\index', $data);
     }
@@ -54,17 +74,17 @@ class Album extends BaseController
         if ($this->request->getMethod() === 'post') {
             $data = $this->request->getPost();
             if ($this->repository->save($data)) {
-                session()->setFlashdata('status', 'New album has been added');
+                session()->setFlashdata(self::STATUS, 'New album has been added');
 
-                return redirect()->route('album-index');
+                return redirect()->route(self::ALBUM_INDEX);
             }
 
-            session()->setFlashdata('errors', model(AlbumModel::class)->errors());
+            session()->setFlashdata(self::ERRORS, model(AlbumModel::class)->errors());
 
             return redirect()->withInput()->back();
         }
 
-        return view('Album\Views\album\add', ['errors' => session()->getFlashData('errors')]);
+        return view('Album\Views\album\add', [self::ERRORS => session()->getFlashData(self::ERRORS)]);
     }
 
     /**
@@ -81,17 +101,17 @@ class Album extends BaseController
         if ($this->request->getMethod() === 'post') {
             $data = $this->request->getPost();
             if ($this->repository->save($data)) {
-                session()->setFlashdata('status', 'Album has been updated');
+                session()->setFlashdata(self::STATUS, 'Album has been updated');
 
-                return redirect()->route('album-index');
+                return redirect()->route(self::ALBUM_INDEX);
             }
 
-            session()->setFlashdata('errors', model(AlbumModel::class)->errors());
+            session()->setFlashdata(self::ERRORS, model(AlbumModel::class)->errors());
 
             return redirect()->withInput()->back();
         }
 
-        return view('Album\Views\album\edit', ['album' => $album, 'errors' => session()->getFlashData('errors')]);
+        return view('Album\Views\album\edit', ['album' => $album, self::ERRORS => session()->getFlashData(self::ERRORS)]);
     }
 
     public function delete(int $id): RedirectResponse
@@ -102,8 +122,8 @@ class Album extends BaseController
             throw PageNotFoundException::forPageNotFound($e->getMessage());
         }
 
-        session()->setFlashdata('status', 'Album has been deleted');
+        session()->setFlashdata(self::STATUS, 'Album has been deleted');
 
-        return redirect()->route('album-index');
+        return redirect()->route(self::ALBUM_INDEX);
     }
 }

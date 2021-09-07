@@ -34,10 +34,12 @@ final class AlbumTest extends CIUnitTestCase
      * @var string
      */
     protected $basePath = __DIR__ . '/../src/Database/';
+
     /**
      * @var string
      */
     protected $namespace = 'Album';
+
     /**
      * @var string
      */

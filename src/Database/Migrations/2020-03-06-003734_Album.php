@@ -13,22 +13,27 @@ namespace Album\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class Album extends Migration
+final class Album extends Migration
 {
+    /**
+     * @var string
+     */
+    private const TYPE = 'type';
+
     public function up(): void
     {
         $this->forge->addField([
             'id' => [
-                'type'           => 'BIGINT',
+                self::TYPE       => 'BIGINT',
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
             'artist' => [
-                'type'       => 'VARCHAR',
+                self::TYPE   => 'VARCHAR',
                 'constraint' => '255',
             ],
             'title' => [
-                'type'       => 'VARCHAR',
+                self::TYPE   => 'VARCHAR',
                 'constraint' => '255',
             ],
         ]);

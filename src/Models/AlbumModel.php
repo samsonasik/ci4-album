@@ -18,7 +18,7 @@ use CodeIgniter\Model;
 /**
  * @property Connection $db
  */
-class AlbumModel extends Model
+final class AlbumModel extends Model
 {
     /**
      * @var string

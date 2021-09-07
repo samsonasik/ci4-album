@@ -18,7 +18,7 @@ use CodeIgniter\Entity\Entity;
  * @property int    $id
  * @property string $title
  */
-class Album extends Entity
+final class Album extends Entity
 {
     /**
      * @var array<string, null>|string[]

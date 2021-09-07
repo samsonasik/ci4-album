@@ -13,15 +13,18 @@ namespace Album\Database\Seeds;
 
 use CodeIgniter\Database\Seeder;
 
-class AlbumSeeder extends Seeder
+final class AlbumSeeder extends Seeder
 {
+    /**
+     * @var array<string, string>
+     */
+    private const ROW = [
+        'artist' => 'Sheila On 7',
+        'title'  => 'Kisah Klasik Untuk Masa Depan',
+    ];
+
     public function run(): void
     {
-        $row = [
-            'artist' => 'Sheila On 7',
-            'title'  => 'Kisah Klasik Untuk Masa Depan',
-        ];
-
-        $this->db->table('album')->insert($row);
+        $this->db->table('album')->insert(self::ROW);
     }
 }

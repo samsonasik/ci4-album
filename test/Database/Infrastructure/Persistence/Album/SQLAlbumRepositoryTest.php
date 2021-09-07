@@ -29,14 +29,17 @@ final class SQLAlbumRepositoryTest extends CIUnitTestCase
      * @var string
      */
     protected $basePath = __DIR__ . '/../src/Database/';
+
     /**
      * @var string
      */
     protected $namespace = 'Album';
+
     /**
      * @var string
      */
     protected $seed = AlbumSeeder::class;
+
     private $repository;
 
     protected function setUp(): void

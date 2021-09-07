@@ -19,7 +19,7 @@ use CodeIgniter\Entity\Entity;
  * @property int    $id
  * @property string $title
  */
-class Track extends Entity
+final class Track extends Entity
 {
     /**
      * @var array<string, null>|string[]

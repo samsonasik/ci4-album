@@ -13,9 +13,9 @@ namespace Album\Domain\Album;
 
 use Album\Domain\Exception\RecordNotFoundException;
 
-class AlbumNotFoundException extends RecordNotFoundException
+final class AlbumNotFoundException extends RecordNotFoundException
 {
-    final public static function forAlbumDoesnotExistOfId(int $id): self
+    public static function forAlbumDoesnotExistOfId(int $id): self
     {
         return new self(sprintf(
             'The album with album ID %d you requested does not exist.',

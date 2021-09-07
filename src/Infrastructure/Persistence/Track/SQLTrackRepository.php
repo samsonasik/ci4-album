@@ -18,14 +18,14 @@ use Album\Domain\Track\TrackRepository;
 use Album\Infrastructure\Persistence\DMLPersistence;
 use Album\Models\TrackModel;
 
-class SQLTrackRepository implements TrackRepository
+final class SQLTrackRepository implements TrackRepository
 {
     use DMLPersistence;
 
     /**
      * @var TrackModel
      */
-    protected $model;
+    private $model;
 
     public function __construct(TrackModel $model)
     {

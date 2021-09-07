@@ -28,10 +28,12 @@ final class SQLAlbumTrackSummaryRepositoryTest extends CIUnitTestCase
      * @var string
      */
     protected $basePath = __DIR__ . '/../src/Database/';
+
     /**
      * @var string
      */
     protected $namespace = 'Album';
+
     /**
      * @var class-string[]
      */
@@ -39,6 +41,7 @@ final class SQLAlbumTrackSummaryRepositoryTest extends CIUnitTestCase
         AlbumSeeder::class,
         TrackSeeder::class,
     ];
+
     private $repository;
 
     protected function setUp(): void

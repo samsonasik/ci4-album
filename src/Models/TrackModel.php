@@ -18,7 +18,7 @@ use CodeIgniter\Model;
 /**
  * @property Connection $db
  */
-class TrackModel extends Model
+final class TrackModel extends Model
 {
     /**
      * @var string

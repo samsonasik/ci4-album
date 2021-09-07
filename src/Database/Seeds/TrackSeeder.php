@@ -13,16 +13,19 @@ namespace Album\Database\Seeds;
 
 use CodeIgniter\Database\Seeder;
 
-class TrackSeeder extends Seeder
+final class TrackSeeder extends Seeder
 {
+    /**
+     * @var array<string, int|string>
+     */
+    private const ROW = [
+        'album_id' => 1,
+        'title'    => 'Sebuah Kisah Klasik',
+        'author'   => 'Eross Chandra',
+    ];
+
     public function run(): void
     {
-        $row = [
-            'album_id' => 1,
-            'title'    => 'Sebuah Kisah Klasik',
-            'author'   => 'Eross Chandra',
-        ];
-
-        $this->db->table('track')->insert($row);
+        $this->db->table('track')->insert(self::ROW);
     }
 }
