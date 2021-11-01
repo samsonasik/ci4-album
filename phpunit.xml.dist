@@ -1,52 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap="vendor/codeigniter4/framework/system/Test/bootstrap.php"
-		backupGlobals="false"
-		colors="true"
-		convertErrorsToExceptions="true"
-		convertNoticesToExceptions="true"
-		convertWarningsToExceptions="true"
-		stopOnError="false"
-		stopOnFailure="false"
-		stopOnIncomplete="false"
-		stopOnSkipped="false"
-		testdox="true">
-	<testsuites>
-		<testsuite name="album">
-			<directory>./test</directory>
-		</testsuite>
-	</testsuites>
-
-	<filter>
-		<whitelist addUncoveredFilesFromWhitelist="true" processUncoveredFilesFromWhitelist="true">
-			<directory suffix=".php">./src</directory>
-			<exclude>
-				<directory suffix=".php">./src/Config</directory>
-				<directory suffix=".php">./src/Database</directory>
-				<directory suffix=".php">./src/Views</directory>
- 			</exclude>
-		</whitelist>
-	</filter>
-
-	<logging>
-		<log type="coverage-html" target="build/logs/html"/>
-		<log type="coverage-clover" target="build/logs/clover.xml"/>
-		<log type="coverage-php" target="build/logs/coverage.serialized"/>
-		<log type="coverage-text" target="php://stdout" showUncoveredFiles="false"/>
-		<log type="testdox-html" target="build/logs/testdox.html"/>
-		<log type="testdox-text" target="build/logs/testdox.txt"/>
-		<log type="junit" target="build/logs/logfile.xml"/>
-	</logging>
-
-	<php>
-		<server name="app.baseURL" value="http://localhost:8080"/>
-		<const name="HOMEPATH" value="./"/>
-		<const name="CONFIGPATH" value="./vendor/codeigniter4/framework/app/Config/"/>
-		<const name="PUBLICPATH" value="./vendor/codeigniter4/framework/public/"/>
-		<env name="database.tests.hostname" value="localhost"/>
-		<env name="database.tests.database" value="ci4_crud_test"/>
-		<env name="database.tests.username" value="root"/>
-		<env name="database.tests.password" value=""/>
-		<env name="database.tests.DBDriver" value="MySQLi"/>
-		<env name="database.tests.DBPrefix" value=""/>
-	</php>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bootstrap="vendor/codeigniter4/framework/system/Test/bootstrap.php" backupGlobals="false" colors="true" convertErrorsToExceptions="true" convertNoticesToExceptions="true" convertWarningsToExceptions="true" stopOnError="false" stopOnFailure="false" stopOnIncomplete="false" stopOnSkipped="false" testdox="true" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
+  <coverage includeUncoveredFiles="true" processUncoveredFiles="true">
+    <include>
+      <directory suffix=".php">./src</directory>
+    </include>
+    <exclude>
+      <directory suffix=".php">./src/Config</directory>
+      <directory suffix=".php">./src/Database</directory>
+      <directory suffix=".php">./src/Views</directory>
+    </exclude>
+    <report>
+      <clover outputFile="build/logs/clover.xml"/>
+      <html outputDirectory="build/logs/html"/>
+      <php outputFile="build/logs/coverage.serialized"/>
+      <text outputFile="php://stdout" showUncoveredFiles="false"/>
+    </report>
+  </coverage>
+  <testsuites>
+    <testsuite name="album">
+      <directory>./test</directory>
+    </testsuite>
+  </testsuites>
+  <logging>
+    <testdoxHtml outputFile="build/logs/testdox.html"/>
+    <testdoxText outputFile="build/logs/testdox.txt"/>
+    <junit outputFile="build/logs/logfile.xml"/>
+  </logging>
+  <php>
+    <server name="app.baseURL" value="http://localhost:8080"/>
+    <const name="HOMEPATH" value="./"/>
+    <const name="CONFIGPATH" value="./vendor/codeigniter4/framework/app/Config/"/>
+    <const name="PUBLICPATH" value="./vendor/codeigniter4/framework/public/"/>
+    <env name="database.tests.hostname" value="localhost"/>
+    <env name="database.tests.database" value="ci4_crud_test"/>
+    <env name="database.tests.username" value="root"/>
+    <env name="database.tests.password" value=""/>
+    <env name="database.tests.DBDriver" value="MySQLi"/>
+    <env name="database.tests.DBPrefix" value=""/>
+  </php>
 </phpunit>
