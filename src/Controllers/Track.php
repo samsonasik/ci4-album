@@ -71,6 +71,7 @@ final class Track extends BaseController
 
     public function index(int $albumId): string
     {
+        $data = [];
         try {
             $album = $this->albumRepository->findAlbumOfId($albumId);
         } catch (RecordNotFoundException $e) {

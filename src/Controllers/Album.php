@@ -59,6 +59,7 @@ final class Album extends BaseController
 
     public function index(): string
     {
+        $data = [];
         $data[self::KEYWORD] = $this->request->getGet(self::KEYWORD) ?? '';
         $data['albums']      = $this->repository->findPaginatedData($data[self::KEYWORD]);
         $data['pager']       = model(AlbumModel::class)->pager;

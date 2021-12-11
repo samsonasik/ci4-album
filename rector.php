@@ -12,6 +12,8 @@
 use Rector\Core\Configuration\Option;
 use Rector\Core\ValueObject\PhpVersion;
 use Rector\DeadCode\Rector\ClassMethod\RemoveUnusedPromotedPropertyRector;
+use Rector\Php55\Rector\String_\StringClassNameToClassConstantRector;
+use Rector\Set\ValueObject\LevelSetList;
 use Rector\Set\ValueObject\SetList;
 use Rector\TypeDeclaration\Rector\ClassMethod\ReturnTypeFromStrictTypedPropertyRector;
 use Rector\TypeDeclaration\Rector\Param\ParamTypeFromStrictTypedPropertyRector;
@@ -20,10 +22,7 @@ use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigura
 
 return static function (ContainerConfigurator $containerConfigurator): void {
     $containerConfigurator->import(SetList::CODE_QUALITY);
-    $containerConfigurator->import(SetList::PHP_70);
-    $containerConfigurator->import(SetList::PHP_71);
-    $containerConfigurator->import(SetList::PHP_72);
-    $containerConfigurator->import(SetList::PHP_73);
+    $containerConfigurator->import(LevelSetList::UP_TO_PHP_73);
     $containerConfigurator->import(SetList::DEAD_CODE);
     $containerConfigurator->import(SetList::TYPE_DECLARATION);
     $containerConfigurator->import(SetList::TYPE_DECLARATION_STRICT);
@@ -37,7 +36,6 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     ]);
 
     $parameters->set(Option::AUTO_IMPORT_NAMES, true);
-    $parameters->set(Option::PHP_VERSION_FEATURES, PhpVersion::PHP_73);
 
     $parameters->set(Option::SKIP, [
         // requires php 8.0
@@ -47,5 +45,8 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ReturnTypeFromStrictTypedPropertyRector::class,
         TypedPropertyFromStrictConstructorRector::class,
         ParamTypeFromStrictTypedPropertyRector::class,
+
+        // make error on controller load view
+        StringClassNameToClassConstantRector::class,
     ]);
 };
