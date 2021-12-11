@@ -30,7 +30,7 @@ final class AlbumTrackSummary extends BaseController
 
     public function totalsong(): string
     {
-        $data = [];
+        $data            = [];
         $data['summary'] = $this->repository->findPaginatedSummaryTotalSongData();
         $data['pager']   = model(AlbumModel::class)->pager;
 
