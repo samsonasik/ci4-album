@@ -18,7 +18,7 @@
         }
     ],
     "require": {
-        "php": "^7.3 || ^8.0"
+        "php": "^7.3 || ~8.0.0 || ~8.1.0"
     },
     "conflict": {
         "codeigniter4/framework": "<4.1.3"
