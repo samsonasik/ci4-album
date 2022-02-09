@@ -24,21 +24,6 @@ use Config\Services;
 final class Track extends BaseController
 {
     /**
-     * @var IncomingRequest
-     */
-    protected $request;
-
-    /**
-     * @var AlbumRepository
-     */
-    private $albumRepository;
-
-    /**
-     * @var TrackRepository
-     */
-    private $trackRepository;
-
-    /**
      * @var string
      */
     private const KEYWORD = 'keyword';
@@ -62,6 +47,21 @@ final class Track extends BaseController
      * @var string
      */
     private const ERRORS = 'errors';
+
+    /**
+     * @var IncomingRequest
+     */
+    protected $request;
+
+    /**
+     * @var AlbumRepository
+     */
+    private $albumRepository;
+
+    /**
+     * @var TrackRepository
+     */
+    private $trackRepository;
 
     public function __construct()
     {

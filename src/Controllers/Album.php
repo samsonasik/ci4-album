@@ -23,16 +23,6 @@ use Config\Services;
 final class Album extends BaseController
 {
     /**
-     * @var IncomingRequest
-     */
-    protected $request;
-
-    /**
-     * @var AlbumRepository
-     */
-    private $repository;
-
-    /**
      * @var string
      */
     private const KEYWORD = 'keyword';
@@ -51,6 +41,16 @@ final class Album extends BaseController
      * @var string
      */
     private const ERRORS = 'errors';
+
+    /**
+     * @var IncomingRequest
+     */
+    protected $request;
+
+    /**
+     * @var AlbumRepository
+     */
+    private $repository;
 
     public function __construct()
     {
