@@ -23,10 +23,6 @@ trait DMLPersistence
 {
     public function save(?array $data = null): bool
     {
-        try {
-            return $this->model->save(new $this->model->returnType($data));
-        } catch (DataException $e) {
-            return false;
-        }
+        return $this->model->save(new $this->model->returnType($data));
     }
 }
