@@ -11,7 +11,6 @@
 
 namespace Album\Infrastructure\Persistence;
 
-use CodeIgniter\Database\Exceptions\DataException;
 use CodeIgniter\Model;
 
 /**
