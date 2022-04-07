@@ -96,7 +96,7 @@ final class SQLAlbumRepositoryTest extends CIUnitTestCase
     }
 
     /**
-     * @return array<string, array<int, array<string, int|string>>>
+     * @return array{insert: array<int, array{artist: string, title: string}>, update: array<int, array{id: int, artist: string, title: string}>}
      */
     public function validData(): array
     {

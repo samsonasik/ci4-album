@@ -107,7 +107,7 @@ final class SQLTrackRepositoryTest extends CIUnitTestCase
     }
 
     /**
-     * @return array<string, array<int, array<string, int|string>>>
+     * @return array{insert: array<int, array{album_id: int, title: string, author: string}>, update: array<int, array{id: int, album_id: int, title: string, author: string}>}
      */
     public function validData(): array
     {
