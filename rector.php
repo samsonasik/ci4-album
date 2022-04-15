@@ -11,7 +11,6 @@
 
 use Rector\Config\RectorConfig;
 use Rector\Core\Configuration\Option;
-use Rector\Naming\Rector\Class_\RenamePropertyToMatchTypeRector;
 use Rector\Php55\Rector\String_\StringClassNameToClassConstantRector;
 use Rector\Set\ValueObject\LevelSetList;
 use Rector\Set\ValueObject\SetList;
@@ -32,9 +31,6 @@ return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->skip([
         // make error on controller load view
         StringClassNameToClassConstantRector::class,
-        RenamePropertyToMatchTypeRector::class => [
-            __DIR__ . '/src/Infrastructure',
-        ],
     ]);
 
     $parameters = $rectorConfig->parameters();
