@@ -21,16 +21,16 @@ final class TrackTest extends TestCase
 {
     public function testFillGetAttributes(): void
     {
-        $entity = new Track([
+        $track = new Track([
             'id'       => 1,
             'album_id' => 1,
             'title'    => 'sebuah kisah klasik',
             'author'   => 'eross chandra',
         ]);
 
-        $this->assertSame(1, $entity->id);
-        $this->assertSame(1, $entity->album_id);
-        $this->assertSame('Sebuah Kisah Klasik', $entity->title);
-        $this->assertSame('Eross Chandra', $entity->author);
+        $this->assertSame(1, $track->id);
+        $this->assertSame(1, $track->album_id);
+        $this->assertSame('Sebuah Kisah Klasik', $track->title);
+        $this->assertSame('Eross Chandra', $track->author);
     }
 }

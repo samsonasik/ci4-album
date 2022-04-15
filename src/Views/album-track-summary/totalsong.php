@@ -25,12 +25,12 @@ echo esc($title);
 			<td colspan="4" align="center">No album track summary found.</td>
 		</tr>
 		<?php else:
-			foreach ($summary as $result) : ?>
+			foreach ($summary as $singleSummary) : ?>
 		<tr>
-			<td><?php echo esc($result->id) ?></td>
-			<td><?php echo esc($result->title) ?></td>
-			<td><?php echo esc($result->artist) ?></td>
-			<td><?php echo esc($result->total_song) ?></td>
+			<td><?php echo esc($singleSummary->id) ?></td>
+			<td><?php echo esc($singleSummary->title) ?></td>
+			<td><?php echo esc($singleSummary->artist) ?></td>
+			<td><?php echo esc($singleSummary->total_song) ?></td>
 		</tr>
 		<?php endforeach;
 	endif;

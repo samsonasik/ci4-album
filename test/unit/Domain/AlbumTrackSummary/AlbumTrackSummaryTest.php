@@ -21,16 +21,16 @@ final class AlbumTrackSummaryTest extends TestCase
 {
     public function testFillGetAttributes(): void
     {
-        $entity = new AlbumTrackSummary([
+        $albumTrackSummary = new AlbumTrackSummary([
             'id'         => 1,
             'artist'     => 'Sheila On 7',
             'title'      => 'Kisah Klasik Untuk Masa Depan',
             'total_song' => 1,
         ]);
 
-        $this->assertSame(1, $entity->id);
-        $this->assertSame('Sheila On 7', $entity->artist);
-        $this->assertSame('Kisah Klasik Untuk Masa Depan', $entity->title);
-        $this->assertSame(1, $entity->total_song);
+        $this->assertSame(1, $albumTrackSummary->id);
+        $this->assertSame('Sheila On 7', $albumTrackSummary->artist);
+        $this->assertSame('Kisah Klasik Untuk Masa Depan', $albumTrackSummary->title);
+        $this->assertSame(1, $albumTrackSummary->total_song);
     }
 }

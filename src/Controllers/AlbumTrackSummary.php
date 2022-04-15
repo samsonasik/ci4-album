@@ -21,17 +21,17 @@ final class AlbumTrackSummary extends BaseController
     /**
      * @var AlbumTrackSummaryRepository
      */
-    private $repository;
+    private $albumTrackSummaryRepository;
 
     public function __construct()
     {
-        $this->repository = Services::albumTrackSummary();
+        $this->albumTrackSummaryRepository = Services::albumTrackSummary();
     }
 
     public function totalsong(): string
     {
         $data            = [];
-        $data['summary'] = $this->repository->findPaginatedSummaryTotalSongData();
+        $data['summary'] = $this->albumTrackSummaryRepository->findPaginatedSummaryTotalSongData();
         $data['pager']   = model(AlbumModel::class)->pager;
 
         return view('Album\Views\album-track-summary\totalsong', $data);

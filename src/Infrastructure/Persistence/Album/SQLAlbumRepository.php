@@ -26,9 +26,9 @@ final class SQLAlbumRepository implements AlbumRepository
      */
     private $model;
 
-    public function __construct(AlbumModel $model)
+    public function __construct(AlbumModel $albumModel)
     {
-        $this->model = $model;
+        $this->model = $albumModel;
     }
 
     public function findPaginatedData(string $keyword = ''): ?array

@@ -50,18 +50,18 @@ final class Album extends BaseController
     /**
      * @var AlbumRepository
      */
-    private $repository;
+    private $albumRepository;
 
     public function __construct()
     {
-        $this->repository = Services::albumRepository();
+        $this->albumRepository = Services::albumRepository();
     }
 
     public function index(): string
     {
         $data                = [];
         $data[self::KEYWORD] = $this->request->getGet(self::KEYWORD) ?? '';
-        $data['albums']      = $this->repository->findPaginatedData($data[self::KEYWORD]);
+        $data['albums']      = $this->albumRepository->findPaginatedData($data[self::KEYWORD]);
         $data['pager']       = model(AlbumModel::class)->pager;
 
         return view('Album\Views\album\index', $data);
@@ -74,7 +74,7 @@ final class Album extends BaseController
     {
         if ($this->request->getMethod() === 'post') {
             $data = $this->request->getPost();
-            if ($this->repository->save($data)) {
+            if ($this->albumRepository->save($data)) {
                 session()->setFlashdata(self::STATUS, 'New album has been added');
 
                 return redirect()->route(self::ALBUM_INDEX);
@@ -94,14 +94,14 @@ final class Album extends BaseController
     public function edit(int $id)
     {
         try {
-            $album = $this->repository->findAlbumOfId($id);
+            $album = $this->albumRepository->findAlbumOfId($id);
         } catch (RecordNotFoundException $e) {
             throw PageNotFoundException::forPageNotFound($e->getMessage());
         }
 
         if ($this->request->getMethod() === 'post') {
             $data = $this->request->getPost();
-            if ($this->repository->save($data)) {
+            if ($this->albumRepository->save($data)) {
                 session()->setFlashdata(self::STATUS, 'Album has been updated');
 
                 return redirect()->route(self::ALBUM_INDEX);
@@ -118,7 +118,7 @@ final class Album extends BaseController
     public function delete(int $id): RedirectResponse
     {
         try {
-            $this->repository->deleteOfId($id);
+            $this->albumRepository->deleteOfId($id);
         } catch (RecordNotFoundException $e) {
             throw PageNotFoundException::forPageNotFound($e->getMessage());
         }

@@ -21,14 +21,14 @@ final class AlbumTest extends TestCase
 {
     public function testFillGetAttributes(): void
     {
-        $entity = new Album([
+        $album = new Album([
             'id'     => 1,
             'artist' => 'sheila on 7',
             'title'  => 'kisah klasik untuk masa depan',
         ]);
 
-        $this->assertSame(1, $entity->id);
-        $this->assertSame('Sheila On 7', $entity->artist);
-        $this->assertSame('Kisah Klasik Untuk Masa Depan', $entity->title);
+        $this->assertSame(1, $album->id);
+        $this->assertSame('Sheila On 7', $album->artist);
+        $this->assertSame('Kisah Klasik Untuk Masa Depan', $album->title);
     }
 }

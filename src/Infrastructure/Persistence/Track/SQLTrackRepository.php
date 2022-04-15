@@ -27,9 +27,9 @@ final class SQLTrackRepository implements TrackRepository
      */
     private $model;
 
-    public function __construct(TrackModel $model)
+    public function __construct(TrackModel $trackModel)
     {
-        $this->model = $model;
+        $this->model = $trackModel;
     }
 
     public function findPaginatedData(Album $album, string $keyword = ''): ?array

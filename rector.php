@@ -3,50 +3,42 @@
 /**
  * This file is part of samsonasik/ci4-album.
  *
- * (c) Abdul Malik Ikhsan
+ * (c) 2020 Abdul Malik Ikhsan <samsonasik@gmail.com>
  *
  * For the full copyright and license information, please view
  * the LICENSE file that was distributed with this source code.
  */
 
+use Rector\Config\RectorConfig;
 use Rector\Core\Configuration\Option;
-use Rector\Core\ValueObject\PhpVersion;
-use Rector\DeadCode\Rector\ClassMethod\RemoveUnusedPromotedPropertyRector;
+use Rector\Naming\Rector\Class_\RenamePropertyToMatchTypeRector;
 use Rector\Php55\Rector\String_\StringClassNameToClassConstantRector;
 use Rector\Set\ValueObject\LevelSetList;
 use Rector\Set\ValueObject\SetList;
-use Rector\TypeDeclaration\Rector\ClassMethod\ReturnTypeFromStrictTypedPropertyRector;
-use Rector\TypeDeclaration\Rector\Param\ParamTypeFromStrictTypedPropertyRector;
-use Rector\TypeDeclaration\Rector\Property\TypedPropertyFromStrictConstructorRector;
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
-return static function (ContainerConfigurator $containerConfigurator): void {
-    $containerConfigurator->import(SetList::CODE_QUALITY);
-    $containerConfigurator->import(LevelSetList::UP_TO_PHP_73);
-    $containerConfigurator->import(SetList::DEAD_CODE);
-    $containerConfigurator->import(SetList::TYPE_DECLARATION);
-    $containerConfigurator->import(SetList::TYPE_DECLARATION_STRICT);
-    $containerConfigurator->import(SetList::PRIVATIZATION);
-
-    $parameters = $containerConfigurator->parameters();
-    $parameters->set(Option::PATHS, [__DIR__ . '/src', __DIR__ . '/test']);
-
-    $parameters->set(Option::BOOTSTRAP_FILES, [
-        __DIR__ . '/bootstrap.php',
+return static function (RectorConfig $rectorConfig): void {
+    $rectorConfig->sets([
+        SetList::CODE_QUALITY,
+        LevelSetList::UP_TO_PHP_73,
+        SetList::DEAD_CODE,
+        SetList::TYPE_DECLARATION,
+        SetList::TYPE_DECLARATION_STRICT,
+        SetList::PRIVATIZATION,
+        SetList::NAMING,
     ]);
 
-    $parameters->set(Option::AUTO_IMPORT_NAMES, true);
-
-    $parameters->set(Option::SKIP, [
-        // requires php 8.0
-        RemoveUnusedPromotedPropertyRector::class,
-
-        // requires php 7.4
-        ReturnTypeFromStrictTypedPropertyRector::class,
-        TypedPropertyFromStrictConstructorRector::class,
-        ParamTypeFromStrictTypedPropertyRector::class,
-
+    $rectorConfig->paths([__DIR__ . '/src', __DIR__ . '/test', __DIR__ . '/rector.php']);
+    $rectorConfig->importNames();
+    $rectorConfig->skip([
         // make error on controller load view
         StringClassNameToClassConstantRector::class,
+        RenamePropertyToMatchTypeRector::class => [
+            __DIR__ . '/src/Infrastructure',
+        ],
+    ]);
+
+    $parameters = $rectorConfig->parameters();
+    $parameters->set(Option::BOOTSTRAP_FILES, [
+        __DIR__ . '/bootstrap.php',
     ]);
 };
