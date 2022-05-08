@@ -11,6 +11,7 @@
 
 namespace Album\Infrastructure\Persistence\AlbumTrackSummary;
 
+use Album\Config\Album;
 use Album\Domain\AlbumTrackSummary\AlbumTrackSummary;
 use Album\Domain\AlbumTrackSummary\AlbumTrackSummaryRepository;
 use Album\Models\AlbumModel;
@@ -48,7 +49,10 @@ final class SQLAlbumTrackSummaryRepository implements AlbumTrackSummaryRepositor
             ]);
         $this->albumModel->asObject(AlbumTrackSummary::class);
 
+        /** @var Album $album */
+        $album = config('Album');
+
         return $this->albumModel
-            ->paginate(config('Album')->paginationPerPage);
+            ->paginate($album->paginationPerPage);
     }
 }

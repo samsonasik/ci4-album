@@ -79,9 +79,11 @@ final class Track extends BaseController
             throw PageNotFoundException::forPageNotFound($e->getMessage());
         }
 
-        $data[self::KEYWORD] = $this->request->getGet(self::KEYWORD) ?? '';
+        /** @var string $keyword */
+        $keyword             = $this->request->getGet(self::KEYWORD) ?? '';
+        $data[self::KEYWORD] = $keyword;
         $data[self::ALBUM]   = $album;
-        $data['tracks']      = $this->trackRepository->findPaginatedData($album, $data[self::KEYWORD]);
+        $data['tracks']      = $this->trackRepository->findPaginatedData($album, $keyword);
         $data['pager']       = model(TrackModel::class)->pager;
 
         return view('Album\Views\track\index', $data);
@@ -99,6 +101,7 @@ final class Track extends BaseController
         }
 
         if ($this->request->getMethod() === 'post') {
+            /** @var array $data */
             $data = $this->request->getPost();
             if ($this->trackRepository->save($data)) {
                 session()->setFlashdata(self::STATUS, 'New album track has been added');
@@ -130,6 +133,7 @@ final class Track extends BaseController
         }
 
         if ($this->request->getMethod() === 'post') {
+            /** @var array $data */
             $data = $this->request->getPost();
             if ($this->trackRepository->save($data)) {
                 session()->setFlashdata(self::STATUS, 'Album track has been updated');

@@ -1,6 +1,3 @@
-includes:
-        - vendor/phpstan/phpstan/conf/bleedingEdge.neon
-
 parameters:
     bootstrapFiles:
         - bootstrap.php
@@ -15,3 +12,5 @@ parameters:
         - '#Call to an undefined static method Config\\Services::albumRepository\(\)#'
         - '#Call to an undefined static method Config\\Services::trackRepository\(\)#'
         - '#Call to an undefined static method Config\\Services::albumTrackSummary\(\)#'
+        - '#Cannot call method setFlashdata\(\) on mixed#'
+        - '#Cannot call method getFlashData\(\) on mixed#'

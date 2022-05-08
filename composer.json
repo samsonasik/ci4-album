@@ -26,7 +26,7 @@
     "require-dev": {
         "codeigniter/coding-standard": "^1.0",
         "codeigniter4/framework": "^4.1.8",
-        "phpstan/phpstan": "^1.1",
+        "phpstan/phpstan": "^1.6",
         "phpunit/phpunit": "^9",
         "rector/rector": "dev-main"
     },
@@ -51,7 +51,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {
-        "analyze": "phpstan analyze src --level=8",
+        "analyze": "phpstan analyze src --level=max",
         "cs-check": "php-cs-fixer fix --dry-run --diff",
         "cs-fix": "php-cs-fixer fix",
         "test": "phpunit --colors=always -vvv"

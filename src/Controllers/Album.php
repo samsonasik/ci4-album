@@ -59,9 +59,11 @@ final class Album extends BaseController
 
     public function index(): string
     {
-        $data                = [];
-        $data[self::KEYWORD] = $this->request->getGet(self::KEYWORD) ?? '';
-        $data['albums']      = $this->albumRepository->findPaginatedData($data[self::KEYWORD]);
+        $data = [];
+        /** @var string $keyword */
+        $keyword             = $this->request->getGet(self::KEYWORD) ?? '';
+        $data[self::KEYWORD] = $keyword;
+        $data['albums']      = $this->albumRepository->findPaginatedData($keyword);
         $data['pager']       = model(AlbumModel::class)->pager;
 
         return view('Album\Views\album\index', $data);
@@ -73,6 +75,7 @@ final class Album extends BaseController
     public function add()
     {
         if ($this->request->getMethod() === 'post') {
+            /** @var array $data */
             $data = $this->request->getPost();
             if ($this->albumRepository->save($data)) {
                 session()->setFlashdata(self::STATUS, 'New album has been added');
@@ -100,6 +103,7 @@ final class Album extends BaseController
         }
 
         if ($this->request->getMethod() === 'post') {
+            /** @var array $data */
             $data = $this->request->getPost();
             if ($this->albumRepository->save($data)) {
                 session()->setFlashdata(self::STATUS, 'Album has been updated');

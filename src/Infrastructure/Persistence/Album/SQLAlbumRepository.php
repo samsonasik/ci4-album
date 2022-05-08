@@ -11,6 +11,7 @@
 
 namespace Album\Infrastructure\Persistence\Album;
 
+use Album\Config\Album as ConfigAlbum;
 use Album\Domain\Album\Album;
 use Album\Domain\Album\AlbumNotFoundException;
 use Album\Domain\Album\AlbumRepository;
@@ -42,7 +43,10 @@ final class SQLAlbumRepository implements AlbumRepository
                 ->groupEnd();
         }
 
-        return $this->model->paginate(config('Album')->paginationPerPage);
+        /** @var ConfigAlbum $album */
+        $album = config('Album');
+
+        return $this->model->paginate($album->paginationPerPage);
     }
 
     public function findAlbumOfId(int $id): Album

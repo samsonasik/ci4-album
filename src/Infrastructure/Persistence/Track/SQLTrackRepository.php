@@ -11,6 +11,7 @@
 
 namespace Album\Infrastructure\Persistence\Track;
 
+use Album\Config\Album as ConfigAlbum;
 use Album\Domain\Album\Album;
 use Album\Domain\Track\Track;
 use Album\Domain\Track\TrackNotFoundException;
@@ -47,7 +48,10 @@ final class SQLTrackRepository implements TrackRepository
                 ->groupEnd();
         }
 
-        return $this->model->paginate(config('Album')->paginationPerPage);
+        /** @var ConfigAlbum $album */
+        $album = config('Album');
+
+        return $this->model->paginate($album->paginationPerPage);
     }
 
     public function findTrackOfId(int $id): Track
