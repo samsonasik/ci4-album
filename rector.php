@@ -37,4 +37,5 @@ return static function (RectorConfig $rectorConfig): void {
     $parameters->set(Option::BOOTSTRAP_FILES, [
         __DIR__ . '/bootstrap.php',
     ]);
+    $rectorConfig->parallel();
 };
