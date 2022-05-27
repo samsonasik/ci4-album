@@ -39,7 +39,9 @@ jobs:
       - name: "CS Check"
         run: "composer cs-check"
       - name: "Code analyze"
-        run: "composer analyze"
+        run: |
+          composer analyze
+          composer rectify
       - name: "Run test suite"
         run: "mv phpunit.xml.github-actions.dist phpunit.xml.dist && composer test"
       - if: matrix.php-versions == '8.0'

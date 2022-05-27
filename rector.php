@@ -10,7 +10,6 @@
  */
 
 use Rector\Config\RectorConfig;
-use Rector\Core\Configuration\Option;
 use Rector\Php55\Rector\String_\StringClassNameToClassConstantRector;
 use Rector\Set\ValueObject\LevelSetList;
 use Rector\Set\ValueObject\SetList;
@@ -33,8 +32,7 @@ return static function (RectorConfig $rectorConfig): void {
         StringClassNameToClassConstantRector::class,
     ]);
 
-    $parameters = $rectorConfig->parameters();
-    $parameters->set(Option::BOOTSTRAP_FILES, [
+    $rectorConfig->bootstrapFiles([
         __DIR__ . '/bootstrap.php',
     ]);
     $rectorConfig->parallel();
