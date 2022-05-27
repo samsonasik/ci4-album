@@ -12,4 +12,6 @@
 require 'vendor/codeigniter4/framework/app/Config/Paths.php';
 $paths = new Config\Paths();
 require_once __DIR__ . '/vendor/codeigniter4/framework/system/bootstrap.php';
-require_once __DIR__ . '/vendor/codeigniter4/framework/app/Controllers/BaseController.php';
+
+// with this check, the class is loaded
+var_dump(class_exists(\App\Controllers\BaseController::class));
