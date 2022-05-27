@@ -27,13 +27,13 @@ return static function (RectorConfig $rectorConfig): void {
 
     $rectorConfig->paths([__DIR__ . '/src', __DIR__ . '/test', __DIR__ . '/rector.php']);
 
-    $rectorConfig->phpstanConfig(__DIR__ . '/phpstan.neon');
-
     $rectorConfig->importNames();
     $rectorConfig->skip([
         // make error on controller load view
         StringClassNameToClassConstantRector::class,
     ]);
+
+    $rectorConfig->bootstrapFiles([__DIR__ . '/bootstrap.php']);
 
     $rectorConfig->phpstanConfig(__DIR__ . '/phpstan.neon');
     $rectorConfig->parallel();
