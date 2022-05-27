@@ -3,12 +3,18 @@
 /**
  * This file is part of samsonasik/ci4-album.
  *
- * (c) Abdul Malik Ikhsan
+ * (c) 2020 Abdul Malik Ikhsan <samsonasik@gmail.com>
  *
  * For the full copyright and license information, please view
  * the LICENSE file that was distributed with this source code.
  */
 
-require 'vendor/codeigniter4/framework/app/Config/Paths.php';
-$paths = new Config\Paths();
-require_once 'vendor/codeigniter4/framework/system/bootstrap.php';
+use App\Controllers\BaseController;
+use Config\Paths;
+
+require __DIR__ . '/vendor/codeigniter4/framework/app/Config/Paths.php';
+$paths = new Paths();
+require_once __DIR__ . '/vendor/codeigniter4/framework/system/bootstrap.php';
+
+// with this check, the class is loaded
+class_exists(BaseController::class);

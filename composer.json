@@ -26,9 +26,9 @@
     "require-dev": {
         "codeigniter/coding-standard": "^1.0",
         "codeigniter4/framework": "^4.1.8",
-        "phpstan/phpstan": "^1.6",
+        "phpstan/phpstan": "^1.7.2",
         "phpunit/phpunit": "^9",
-        "rector/rector": "0.13"
+        "rector/rector": "dev-main"
     },
     "config": {
         "sort-packages": true,
@@ -46,10 +46,7 @@
         "psr-4": {
             "AlbumTest\\": "test/",
             "CodeIgniter4\\": "vendor/codeigniter4/codeigniter4-standard/CodeIgniter4/"
-        },
-        "classmap": [
-            "vendor/codeigniter4/framework/app/Controllers/BaseController.php"
-        ]
+        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
