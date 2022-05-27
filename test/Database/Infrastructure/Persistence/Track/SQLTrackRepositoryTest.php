@@ -100,6 +100,7 @@ final class SQLTrackRepositoryTest extends CIUnitTestCase
 
     /**
      * @dataProvider invalidData
+     * @param mixed[]|null $data
      */
     public function testSaveInvalidData(?array $data): void
     {
