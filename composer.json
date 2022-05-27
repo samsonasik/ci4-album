@@ -28,7 +28,7 @@
         "codeigniter4/framework": "^4.1.8",
         "phpstan/phpstan": "^1.6",
         "phpunit/phpunit": "^9",
-        "rector/rector": "dev-main"
+        "rector/rector": "0.13"
     },
     "config": {
         "sort-packages": true,
