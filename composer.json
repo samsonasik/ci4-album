@@ -46,7 +46,10 @@
         "psr-4": {
             "AlbumTest\\": "test/",
             "CodeIgniter4\\": "vendor/codeigniter4/codeigniter4-standard/CodeIgniter4/"
-        }
+        },
+        "classmap": [
+            "vendor/codeigniter4/framework/app/Controllers/BaseController.php"
+        ]
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
