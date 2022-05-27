@@ -32,6 +32,8 @@ return static function (RectorConfig $rectorConfig): void {
         StringClassNameToClassConstantRector::class,
     ]);
 
-    $rectorConfig->phpstanConfig(__DIR__ . '/phpstan.neon');
+    $rectorConfig->bootstrapFiles([
+        __DIR__ . '/bootstrap.php',
+    ]);
     $rectorConfig->parallel();
 };
