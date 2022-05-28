@@ -98,8 +98,8 @@ final class Album extends BaseController
     {
         try {
             $album = $this->albumRepository->findAlbumOfId($id);
-        } catch (RecordNotFoundException $e) {
-            throw PageNotFoundException::forPageNotFound($e->getMessage());
+        } catch (RecordNotFoundException $recordNotFoundException) {
+            throw PageNotFoundException::forPageNotFound($recordNotFoundException->getMessage());
         }
 
         if ($this->request->getMethod() === 'post') {
@@ -123,8 +123,8 @@ final class Album extends BaseController
     {
         try {
             $this->albumRepository->deleteOfId($id);
-        } catch (RecordNotFoundException $e) {
-            throw PageNotFoundException::forPageNotFound($e->getMessage());
+        } catch (RecordNotFoundException $recordNotFoundException) {
+            throw PageNotFoundException::forPageNotFound($recordNotFoundException->getMessage());
         }
 
         session()->setFlashdata(self::STATUS, 'Album has been deleted');

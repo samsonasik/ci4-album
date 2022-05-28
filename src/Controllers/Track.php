@@ -75,8 +75,8 @@ final class Track extends BaseController
 
         try {
             $album = $this->albumRepository->findAlbumOfId($albumId);
-        } catch (RecordNotFoundException $e) {
-            throw PageNotFoundException::forPageNotFound($e->getMessage());
+        } catch (RecordNotFoundException $recordNotFoundException) {
+            throw PageNotFoundException::forPageNotFound($recordNotFoundException->getMessage());
         }
 
         /** @var string $keyword */
@@ -96,8 +96,8 @@ final class Track extends BaseController
     {
         try {
             $album = $this->albumRepository->findAlbumOfId($albumId);
-        } catch (RecordNotFoundException $e) {
-            throw PageNotFoundException::forPageNotFound($e->getMessage());
+        } catch (RecordNotFoundException $recordNotFoundException) {
+            throw PageNotFoundException::forPageNotFound($recordNotFoundException->getMessage());
         }
 
         if ($this->request->getMethod() === 'post') {
@@ -128,8 +128,8 @@ final class Track extends BaseController
         try {
             $album = $this->albumRepository->findAlbumOfId($albumId);
             $track = $this->trackRepository->findTrackOfId($trackId);
-        } catch (RecordNotFoundException $e) {
-            throw PageNotFoundException::forPageNotFound($e->getMessage());
+        } catch (RecordNotFoundException $recordNotFoundException) {
+            throw PageNotFoundException::forPageNotFound($recordNotFoundException->getMessage());
         }
 
         if ($this->request->getMethod() === 'post') {
@@ -158,8 +158,8 @@ final class Track extends BaseController
         try {
             $this->albumRepository->findAlbumOfId($albumId);
             $this->trackRepository->deleteOfId($trackId);
-        } catch (RecordNotFoundException $e) {
-            throw PageNotFoundException::forPageNotFound($e->getMessage());
+        } catch (RecordNotFoundException $recordNotFoundException) {
+            throw PageNotFoundException::forPageNotFound($recordNotFoundException->getMessage());
         }
 
         session()->setFlashdata(self::STATUS, 'Album track has been deleted');

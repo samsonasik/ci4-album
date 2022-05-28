@@ -23,6 +23,7 @@ return static function (RectorConfig $rectorConfig): void {
         SetList::TYPE_DECLARATION_STRICT,
         SetList::PRIVATIZATION,
         SetList::NAMING,
+        SetList::CODING_STYLE,
     ]);
 
     $rectorConfig->paths([__DIR__ . '/src', __DIR__ . '/test', __DIR__ . '/rector.php', __DIR__ . '/bootstrap.php']);

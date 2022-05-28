@@ -56,7 +56,7 @@ echo form_close();
 					<?php echo anchor(
 						  sprintf('album/delete/%d', $album->id),
 						  'Delete',
-						  ['onclick' => 'return confirm(\'Track records will also deleted, are you sure?\')']
+						  ['onclick' => "return confirm('Track records will also deleted, are you sure?')"]
 					  );
 					?>
 			</td>
