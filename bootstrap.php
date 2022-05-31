@@ -12,9 +12,9 @@
 use App\Controllers\BaseController;
 use Config\Paths;
 
-require __DIR__ . '/vendor/codeigniter4/framework/app/Config/Paths.php';
+require __DIR__ . '/vendor/codeigniter4/codeigniter4/app/Config/Paths.php';
 $paths = new Paths();
-require_once __DIR__ . '/vendor/codeigniter4/framework/system/bootstrap.php';
+require __DIR__ . '/vendor/codeigniter4/codeigniter4/system/bootstrap.php';
 
 // with this check, the class is loaded
 class_exists(BaseController::class);

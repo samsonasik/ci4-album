@@ -18,24 +18,20 @@
         }
     ],
     "require": {
-        "php": "^7.3 || ~8.0.0 || ~8.1.0"
+        "php": "^7.4 || ~8.0.0 || ~8.1.0"
     },
     "conflict": {
-        "codeigniter4/framework": "<4.1.3"
+        "codeigniter4/framework": "<4.1.9"
     },
     "require-dev": {
         "codeigniter/coding-standard": "^1.0",
-        "codeigniter4/framework": "^4.1.8",
+        "codeigniter4/codeigniter4": "dev-develop",
         "phpstan/phpstan": "^1.7.2",
         "phpunit/phpunit": "^9",
         "rector/rector": "dev-main"
     },
     "config": {
-        "sort-packages": true,
-        "preferred-install": {
-            "codeigniter4/framework": "source",
-            "*": "dist"
-        }
+        "sort-packages": true
     },
     "autoload": {
         "psr-4": {
@@ -56,5 +52,12 @@
         "cs-check": "php-cs-fixer fix --dry-run --diff",
         "cs-fix": "php-cs-fixer fix",
         "test": "phpunit --colors=always -vvv"
-    }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/codeigniter4/codeigniter4",
+            "no-api": true
+        }
+    ]
 }
