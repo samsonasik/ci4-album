@@ -47,10 +47,7 @@ final class Album extends BaseController
      */
     protected $request;
 
-    /**
-     * @var AlbumRepository
-     */
-    private $albumRepository;
+    private AlbumRepository $albumRepository;
 
     public function __construct()
     {

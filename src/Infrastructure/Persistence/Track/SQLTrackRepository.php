@@ -23,10 +23,7 @@ final class SQLTrackRepository implements TrackRepository
 {
     use DMLPersistence;
 
-    /**
-     * @var TrackModel
-     */
-    private $model;
+    private TrackModel $model;
 
     public function __construct(TrackModel $trackModel)
     {

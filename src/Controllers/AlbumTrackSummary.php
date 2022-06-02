@@ -18,10 +18,7 @@ use Config\Services;
 
 final class AlbumTrackSummary extends BaseController
 {
-    /**
-     * @var AlbumTrackSummaryRepository
-     */
-    private $albumTrackSummaryRepository;
+    private AlbumTrackSummaryRepository $albumTrackSummaryRepository;
 
     public function __construct()
     {

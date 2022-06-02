@@ -19,15 +19,8 @@ use Album\Models\TrackModel;
 
 final class SQLAlbumTrackSummaryRepository implements AlbumTrackSummaryRepository
 {
-    /**
-     * @var AlbumModel
-     */
-    private $albumModel;
-
-    /**
-     * @var TrackModel
-     */
-    private $trackModel;
+    private AlbumModel $albumModel;
+    private TrackModel $trackModel;
 
     public function __construct(AlbumModel $albumModel, TrackModel $trackModel)
     {

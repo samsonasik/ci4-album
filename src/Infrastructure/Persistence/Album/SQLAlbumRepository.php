@@ -22,10 +22,7 @@ final class SQLAlbumRepository implements AlbumRepository
 {
     use DMLPersistence;
 
-    /**
-     * @var AlbumModel
-     */
-    private $model;
+    private AlbumModel $model;
 
     public function __construct(AlbumModel $albumModel)
     {

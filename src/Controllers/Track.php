@@ -53,15 +53,8 @@ final class Track extends BaseController
      */
     protected $request;
 
-    /**
-     * @var AlbumRepository
-     */
-    private $albumRepository;
-
-    /**
-     * @var TrackRepository
-     */
-    private $trackRepository;
+    private AlbumRepository $albumRepository;
+    private TrackRepository $trackRepository;
 
     public function __construct()
     {
