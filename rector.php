@@ -9,6 +9,7 @@
  * the LICENSE file that was distributed with this source code.
  */
 
+use Rector\CodingStyle\Rector\Stmt\NewlineAfterStatementRector;
 use Rector\Config\RectorConfig;
 use Rector\Php55\Rector\String_\StringClassNameToClassConstantRector;
 use Rector\Set\ValueObject\LevelSetList;
@@ -32,6 +33,8 @@ return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->skip([
         // make error on controller load view
         StringClassNameToClassConstantRector::class,
+        // conflict with cs fix
+        NewlineAfterStatementRector::class,
     ]);
 
     $rectorConfig->bootstrapFiles([__DIR__ . '/bootstrap.php']);
