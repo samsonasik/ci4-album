@@ -31,7 +31,10 @@
         "rector/rector": "^0.13.3"
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "infection/extension-installer": true
+        }
     },
     "autoload": {
         "psr-4": {
