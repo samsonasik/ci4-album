@@ -22,6 +22,7 @@ use Config\Services;
 
 /**
  * @runTestsInSeparateProcesses
+ *
  * @preserveGlobalState         disabled
  *
  * @internal

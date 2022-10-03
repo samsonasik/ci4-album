@@ -21,6 +21,7 @@ use Config\Database;
 
 /**
  * @runTestsInSeparateProcesses
+ *
  * @preserveGlobalState         disabled
  *
  * @internal

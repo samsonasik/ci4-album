@@ -121,7 +121,9 @@ final class SQLAlbumRepositoryTest extends CIUnitTestCase
 
     /**
      * @dataProvider validData
+     *
      * @runInSeparateProcess
+     *
      * @preserveGlobalState         disabled
      *
      * @param array<string, int>|array<string, string> $data
