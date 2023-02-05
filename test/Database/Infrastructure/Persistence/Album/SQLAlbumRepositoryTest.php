@@ -11,15 +11,15 @@
 
 namespace AlbumTest\Database\Infrastructure\Persistence\Album;
 
-use PHPUnit\Framework\Attributes\DataProvider;
-use PHPUnit\Framework\Attributes\PreserveGlobalState;
-use PHPUnit\Framework\Attributes\RunInSeparateProcess;
 use Album\Database\Seeds\AlbumSeeder;
 use Album\Domain\Album\Album;
 use Album\Domain\Album\AlbumNotFoundException;
 use CodeIgniter\Test\CIUnitTestCase;
 use CodeIgniter\Test\DatabaseTestTrait;
 use Config\Services;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\PreserveGlobalState;
+use PHPUnit\Framework\Attributes\RunInSeparateProcess;
 
 /**
  * @internal
@@ -122,8 +122,6 @@ final class SQLAlbumRepositoryTest extends CIUnitTestCase
     }
 
     /**
-     *
-     *
      * @param array<string, int>|array<string, string> $data
      */
     #[DataProvider('validData')]

@@ -11,9 +11,6 @@
 
 namespace AlbumTest\Database\Infrastructure\Persistence\Album;
 
-use PHPUnit\Framework\Attributes\DataProvider;
-use PHPUnit\Framework\Attributes\PreserveGlobalState;
-use PHPUnit\Framework\Attributes\RunInSeparateProcess;
 use Album\Database\Seeds\AlbumSeeder;
 use Album\Database\Seeds\TrackSeeder;
 use Album\Domain\Album\Album;
@@ -22,6 +19,9 @@ use Album\Domain\Track\TrackNotFoundException;
 use CodeIgniter\Test\CIUnitTestCase;
 use CodeIgniter\Test\DatabaseTestTrait;
 use Config\Services;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\PreserveGlobalState;
+use PHPUnit\Framework\Attributes\RunInSeparateProcess;
 
 /**
  * @internal
@@ -135,8 +135,6 @@ final class SQLTrackRepositoryTest extends CIUnitTestCase
     }
 
     /**
-     *
-     *
      * @param array<string, int>|array<string, string> $data
      */
     #[DataProvider('validData')]

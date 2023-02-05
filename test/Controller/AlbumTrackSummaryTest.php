@@ -11,8 +11,6 @@
 
 namespace AlbumTest\Controller;
 
-use PHPUnit\Framework\Attributes\PreserveGlobalState;
-use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 use Album\Controllers\AlbumTrackSummary;
 use Album\Database\Seeds\AlbumSeeder;
 use Album\Database\Seeds\TrackSeeder;
@@ -20,14 +18,17 @@ use CodeIgniter\Test\CIUnitTestCase;
 use CodeIgniter\Test\ControllerTestTrait;
 use CodeIgniter\Test\DatabaseTestTrait;
 use Config\Database;
+use PHPUnit\Framework\Attributes\PreserveGlobalState;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 
 /**
- *
- *
  * @internal
  */
 #[PreserveGlobalState(false)]
 #[RunTestsInSeparateProcesses]
+/**
+ * @internal
+ */
 final class AlbumTrackSummaryTest extends CIUnitTestCase
 {
     use ControllerTestTrait;

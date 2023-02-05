@@ -11,9 +11,6 @@
 
 namespace AlbumTest\Controller;
 
-use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
-use PHPUnit\Framework\Attributes\PreserveGlobalState;
-use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 use Album\Controllers\Album;
 use Album\Database\Seeds\AlbumSeeder;
 use CodeIgniter\Test\CIUnitTestCase;
@@ -21,14 +18,18 @@ use CodeIgniter\Test\ControllerTestTrait;
 use CodeIgniter\Test\DatabaseTestTrait;
 use Config\Database;
 use Config\Services;
+use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
+use PHPUnit\Framework\Attributes\PreserveGlobalState;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 
 /**
- *
- *
  * @internal
  */
 #[PreserveGlobalState(false)]
 #[RunTestsInSeparateProcesses]
+/**
+ * @internal
+ */
 final class AlbumTest extends CIUnitTestCase
 {
     use DatabaseTestTrait;
