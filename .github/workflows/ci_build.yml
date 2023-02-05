@@ -21,15 +21,11 @@ jobs:
           extensions: intl
           php-version: "${{ matrix.php-versions }}"
           coverage: xdebug
-      - name: Shutdown Ubuntu MySQL (SUDO)
-        run: sudo service mysql stop
       - name: Setup MySQL
-        uses: samin/mysql-action@v1.3
+        uses: shogo82148/actions-setup-mysql@v1
         with:
-          mysql version: 5.7
-          mysql password: test
-          mysql user: test
-          mysql database: ci4_crud_test
+          mysql-version: '8.0'
+      - run: mysql -uroot -h127.0.0.1 -e 'SELECT version()'
       - name: Checkout
         uses: actions/checkout@v2
       - name: "Validate composer.json and composer.lock"
