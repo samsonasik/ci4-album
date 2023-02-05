@@ -35,7 +35,7 @@ jobs:
       - name: "Install dependencies"
         run: "composer install"
       - name: "CS Check"
-        run: "composer cs-check"
+        run: "export PHP_CS_FIXER_IGNORE_ENV=true && composer cs-check"
       - name: "Code analyze"
         run: |
           composer analyze
