@@ -22,11 +22,11 @@ use Config\Services;
 use PHPUnit\Framework\Attributes\PreserveGlobalState;
 use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 
+#[PreserveGlobalState(false)]
+#[RunTestsInSeparateProcesses]
 /**
  * @internal
  */
-#[PreserveGlobalState(false)]
-#[RunTestsInSeparateProcesses]
 final class TrackTest extends CIUnitTestCase
 {
     use DatabaseTestTrait;
