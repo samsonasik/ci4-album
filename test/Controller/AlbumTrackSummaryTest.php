@@ -11,6 +11,8 @@
 
 namespace AlbumTest\Controller;
 
+use PHPUnit\Framework\Attributes\PreserveGlobalState;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 use Album\Controllers\AlbumTrackSummary;
 use Album\Database\Seeds\AlbumSeeder;
 use Album\Database\Seeds\TrackSeeder;
@@ -20,12 +22,12 @@ use CodeIgniter\Test\DatabaseTestTrait;
 use Config\Database;
 
 /**
- * @runTestsInSeparateProcesses
  *
- * @preserveGlobalState         disabled
  *
  * @internal
  */
+#[PreserveGlobalState(false)]
+#[RunTestsInSeparateProcesses]
 final class AlbumTrackSummaryTest extends CIUnitTestCase
 {
     use ControllerTestTrait;
@@ -55,19 +57,19 @@ final class AlbumTrackSummaryTest extends CIUnitTestCase
         Database::connect()->table('album')->truncate();
         Database::connect()->enableForeignKeyChecks();
 
-        $result = $this->controller(AlbumTrackSummary::class)
+        $testResponse = $this->controller(AlbumTrackSummary::class)
             ->execute('totalsong');
 
-        $this->assertTrue($result->isOK());
-        $this->assertTrue($result->see('No album track summary found.'));
+        $this->assertTrue($testResponse->isOK());
+        $this->assertTrue($testResponse->see('No album track summary found.'));
     }
 
     public function testTotalSongSummaryHasData(): void
     {
-        $result = $this->controller(AlbumTrackSummary::class)
+        $testResponse = $this->controller(AlbumTrackSummary::class)
             ->execute('totalsong');
 
-        $this->assertTrue($result->isOK());
-        $this->assertMatchesRegularExpression('/Sheila On 7<\/td>\s{0,}\n\s{0,}<td>1<\/td>/', $result->getBody());
+        $this->assertTrue($testResponse->isOK());
+        $this->assertMatchesRegularExpression('/Sheila On 7<\/td>\s{0,}\n\s{0,}<td>1<\/td>/', $testResponse->getBody());
     }
 }

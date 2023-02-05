@@ -15,6 +15,7 @@ use Rector\Config\RectorConfig;
 use Rector\Php55\Rector\String_\StringClassNameToClassConstantRector;
 use Rector\Set\ValueObject\LevelSetList;
 use Rector\Set\ValueObject\SetList;
+use Rector\PHPUnit\Set\PHPUnitLevelSetList;
 
 return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->sets([
@@ -24,7 +25,7 @@ return static function (RectorConfig $rectorConfig): void {
         SetList::TYPE_DECLARATION,
         SetList::PRIVATIZATION,
         SetList::NAMING,
-        SetList::CODING_STYLE,
+        SetList::CODING_STYLE
     ]);
 
     $rectorConfig->paths([__DIR__ . '/src', __DIR__ . '/test', __DIR__ . '/rector.php', __DIR__ . '/bootstrap.php']);

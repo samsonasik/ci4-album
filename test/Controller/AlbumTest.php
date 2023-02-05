@@ -11,6 +11,9 @@
 
 namespace AlbumTest\Controller;
 
+use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
+use PHPUnit\Framework\Attributes\PreserveGlobalState;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 use Album\Controllers\Album;
 use Album\Database\Seeds\AlbumSeeder;
 use CodeIgniter\Test\CIUnitTestCase;
@@ -20,12 +23,12 @@ use Config\Database;
 use Config\Services;
 
 /**
- * @runTestsInSeparateProcesses
  *
- * @preserveGlobalState         disabled
  *
  * @internal
  */
+#[PreserveGlobalState(false)]
+#[RunTestsInSeparateProcesses]
 final class AlbumTest extends CIUnitTestCase
 {
     use DatabaseTestTrait;
@@ -52,20 +55,20 @@ final class AlbumTest extends CIUnitTestCase
         Database::connect()->table('album')->truncate();
         Database::connect()->enableForeignKeyChecks();
 
-        $result = $this->controller(Album::class)
+        $testResponse = $this->controller(Album::class)
             ->execute('index');
 
-        $this->assertTrue($result->isOK());
-        $this->assertTrue($result->see('No album found.'));
+        $this->assertTrue($testResponse->isOK());
+        $this->assertTrue($testResponse->see('No album found.'));
     }
 
     public function testIndexAlbumHasData(): void
     {
-        $result = $this->controller(Album::class)
+        $testResponse = $this->controller(Album::class)
             ->execute('index');
 
-        $this->assertTrue($result->isOK());
-        $this->assertTrue($result->see('Sheila On 7'));
+        $this->assertTrue($testResponse->isOK());
+        $this->assertTrue($testResponse->see('Sheila On 7'));
     }
 
     public function testIndexSearchAlbumFound(): void
@@ -76,11 +79,11 @@ final class AlbumTest extends CIUnitTestCase
             'keyword' => 'Sheila',
         ]);
 
-        $result = $this->withRequest($request)
+        $testResponse = $this->withRequest($request)
             ->controller(Album::class)
             ->execute('index');
 
-        $this->assertTrue($result->see('Sheila On 7'));
+        $this->assertTrue($testResponse->see('Sheila On 7'));
     }
 
     public function testIndexSearchAlbumNotFound(): void
@@ -91,21 +94,22 @@ final class AlbumTest extends CIUnitTestCase
             'keyword' => 'Siti',
         ]);
 
-        $result = $this->withRequest($request)
+        $testResponse = $this->withRequest($request)
             ->controller(Album::class)
             ->execute('index');
 
-        $this->assertTrue($result->see('No album found.'));
+        $this->assertTrue($testResponse->see('No album found.'));
     }
 
     public function testAddAlbum(): void
     {
-        $result = $this->controller(Album::class)
+        $testResponse = $this->controller(Album::class)
             ->execute('add');
 
-        $this->assertTrue($result->isOK());
+        $this->assertTrue($testResponse->isOK());
     }
 
+    #[DoesNotPerformAssertions]
     public function testAddAlbumInvalidData(): void
     {
         $request = Services::request(null, false);
@@ -127,27 +131,27 @@ final class AlbumTest extends CIUnitTestCase
             'title'  => 'Anugrah Aidilfitri',
         ]);
 
-        $result = $this->withRequest($request)
+        $testResponse = $this->withRequest($request)
             ->controller(Album::class)
             ->execute('add');
 
-        $this->assertTrue($result->isRedirect());
+        $this->assertTrue($testResponse->isRedirect());
     }
 
     public function testEditUnexistenceAlbum(): void
     {
-        $result = $this->controller(Album::class)
+        $testResponse = $this->controller(Album::class)
             ->execute('edit', random_int(1000, 2000));
 
-        $this->assertSame(404, $result->response()->getStatusCode());
+        $this->assertSame(404, $testResponse->response()->getStatusCode());
     }
 
     public function testEditExistenceAlbum(): void
     {
-        $result = $this->controller(Album::class)
+        $testResponse = $this->controller(Album::class)
             ->execute('edit', 1);
 
-        $this->assertTrue($result->isOK());
+        $this->assertTrue($testResponse->isOK());
     }
 
     public function testEditAlbumInvalidData(): void
@@ -155,11 +159,11 @@ final class AlbumTest extends CIUnitTestCase
         $request = Services::request(null, false);
         $request = $request->withMethod('post');
 
-        $result = $this->withRequest($request)
+        $testResponse = $this->withRequest($request)
             ->controller(Album::class)
             ->execute('edit', 1);
-        $this->assertTrue($result->isRedirect());
-        $this->assertNotSame('http://localhost:8080/index.php/album', $result->getRedirectUrl());
+        $this->assertTrue($testResponse->isRedirect());
+        $this->assertNotSame('http://localhost:8080/index.php/album', $testResponse->getRedirectUrl());
     }
 
     public function testEditAlbumValidData(): void
@@ -172,27 +176,27 @@ final class AlbumTest extends CIUnitTestCase
             'title'  => 'Anugrah Aidilfitri',
         ]);
 
-        $result = $this->withRequest($request)
+        $testResponse = $this->withRequest($request)
             ->controller(Album::class)
             ->execute('edit', 1);
 
-        $this->assertTrue($result->isRedirect());
-        $this->assertSame('http://localhost:8080/index.php/album', $result->getRedirectUrl());
+        $this->assertTrue($testResponse->isRedirect());
+        $this->assertSame('http://localhost:8080/index.php/album', $testResponse->getRedirectUrl());
     }
 
     public function testDeleteUnexistenceAlbum(): void
     {
-        $result = $this->controller(Album::class)
+        $testResponse = $this->controller(Album::class)
             ->execute('delete', random_int(1000, 2000));
 
-        $this->assertSame(404, $result->response()->getStatusCode());
+        $this->assertSame(404, $testResponse->response()->getStatusCode());
     }
 
     public function testDeleteExistenceAlbum(): void
     {
-        $result = $this->controller(Album::class)
+        $testResponse = $this->controller(Album::class)
             ->execute('delete', 1);
 
-        $this->assertTrue($result->isRedirect());
+        $this->assertTrue($testResponse->isRedirect());
     }
 }

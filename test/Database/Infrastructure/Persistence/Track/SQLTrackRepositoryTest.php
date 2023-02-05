@@ -11,6 +11,9 @@
 
 namespace AlbumTest\Database\Infrastructure\Persistence\Album;
 
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\PreserveGlobalState;
+use PHPUnit\Framework\Attributes\RunInSeparateProcess;
 use Album\Database\Seeds\AlbumSeeder;
 use Album\Database\Seeds\TrackSeeder;
 use Album\Domain\Album\Album;
@@ -86,7 +89,7 @@ final class SQLTrackRepositoryTest extends CIUnitTestCase
     /**
      * @return array<string, mixed[]>
      */
-    public function invalidData(): array
+    public static function invalidData(): array
     {
         return [
             'empty array' => [
@@ -99,10 +102,9 @@ final class SQLTrackRepositoryTest extends CIUnitTestCase
     }
 
     /**
-     * @dataProvider invalidData
-     *
      * @param mixed[]|null $data
      */
+    #[DataProvider('invalidData')]
     public function testSaveInvalidData(?array $data): void
     {
         $this->assertFalse($this->repository->save($data));
@@ -111,7 +113,7 @@ final class SQLTrackRepositoryTest extends CIUnitTestCase
     /**
      * @return array{insert: array<int, array{album_id: int, title: string, author: string}>, update: array<int, array{id: int, album_id: int, title: string, author: string}>}
      */
-    public function validData(): array
+    public static function validData(): array
     {
         return [
             'insert' => [
@@ -133,13 +135,13 @@ final class SQLTrackRepositoryTest extends CIUnitTestCase
     }
 
     /**
-     * @dataProvider validData
      *
-     * @runInSeparateProcess
-     * @preserveGlobalState         disabled
      *
      * @param array<string, int>|array<string, string> $data
      */
+    #[DataProvider('validData')]
+    #[PreserveGlobalState(false)]
+    #[RunInSeparateProcess]
     public function testSaveValidData(array $data): void
     {
         $this->assertTrue($this->repository->save($data));
