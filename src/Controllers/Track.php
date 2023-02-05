@@ -53,8 +53,8 @@ final class Track extends BaseController
      */
     protected $request;
 
-    private AlbumRepository $albumRepository;
-    private TrackRepository $trackRepository;
+    private readonly AlbumRepository $albumRepository;
+    private readonly TrackRepository $trackRepository;
 
     public function __construct()
     {
@@ -82,10 +82,7 @@ final class Track extends BaseController
         return view('Album\Views\track\index', $data);
     }
 
-    /**
-     * @return RedirectResponse|string
-     */
-    public function add(int $albumId)
+    public function add(int $albumId): RedirectResponse|string
     {
         try {
             $album = $this->albumRepository->findAlbumOfId($albumId);
@@ -113,10 +110,7 @@ final class Track extends BaseController
         ]);
     }
 
-    /**
-     * @return RedirectResponse|string
-     */
-    public function edit(int $albumId, int $trackId)
+    public function edit(int $albumId, int $trackId): RedirectResponse|string
     {
         try {
             $album = $this->albumRepository->findAlbumOfId($albumId);

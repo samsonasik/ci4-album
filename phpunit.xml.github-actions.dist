@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bootstrap="vendor/codeigniter4/framework/system/Test/bootstrap.php" backupGlobals="false" colors="true" convertErrorsToExceptions="true" convertNoticesToExceptions="true" convertWarningsToExceptions="true" stopOnError="false" stopOnFailure="false" stopOnIncomplete="false" stopOnSkipped="false" testdox="true" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
-  <coverage includeUncoveredFiles="true" processUncoveredFiles="true">
+<?xml version="1.0"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.0/phpunit.xsd" bootstrap="vendor/codeigniter4/framework/system/Test/bootstrap.php" colors="true" executionOrder="defects" cacheDirectory=".phpunit.cache">
+  <coverage includeUncoveredFiles="true">
     <include>
       <directory suffix=".php">./src</directory>
     </include>
@@ -33,8 +33,8 @@
     <const name="PUBLICPATH" value="./vendor/codeigniter4/framework/public/"/>
     <env name="database.tests.hostname" value="127.0.0.1"/>
     <env name="database.tests.database" value="ci4_crud_test"/>
-    <env name="database.tests.username" value="test"/>
-    <env name="database.tests.password" value="test"/>
+    <env name="database.tests.username" value="root"/>
+    <env name="database.tests.password" value=""/>
     <env name="database.tests.DBDriver" value="MySQLi"/>
     <env name="database.tests.DBPrefix" value=""/>
   </php>

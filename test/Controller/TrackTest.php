@@ -19,12 +19,12 @@ use CodeIgniter\Test\ControllerTestTrait;
 use CodeIgniter\Test\DatabaseTestTrait;
 use Config\Database;
 use Config\Services;
+use PHPUnit\Framework\Attributes\PreserveGlobalState;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 
+#[PreserveGlobalState(false)]
+#[RunTestsInSeparateProcesses]
 /**
- * @runTestsInSeparateProcesses
- *
- * @preserveGlobalState         disabled
- *
  * @internal
  */
 final class TrackTest extends CIUnitTestCase
@@ -52,10 +52,10 @@ final class TrackTest extends CIUnitTestCase
 
     public function testIndexTrackByNotFoundAlbum(): void
     {
-        $result = $this->controller(Track::class)
+        $testResponse = $this->controller(Track::class)
             ->execute('index', 2);
 
-        $this->assertSame(404, $result->response()->getStatusCode());
+        $this->assertSame(404, $testResponse->response()->getStatusCode());
     }
 
     public function testIndexTrackHasNoData(): void
@@ -64,20 +64,20 @@ final class TrackTest extends CIUnitTestCase
         Database::connect()->table('track')->truncate();
         Database::connect()->enableForeignKeyChecks();
 
-        $result = $this->controller(Track::class)
+        $testResponse = $this->controller(Track::class)
             ->execute('index', 1);
 
-        $this->assertTrue($result->isOK());
-        $this->assertTrue($result->see('No album track found.'));
+        $this->assertTrue($testResponse->isOK());
+        $this->assertTrue($testResponse->see('No album track found.'));
     }
 
     public function testIndexTrackHasData(): void
     {
-        $result = $this->controller(Track::class)
+        $testResponse = $this->controller(Track::class)
             ->execute('index', 1);
 
-        $this->assertTrue($result->isOK());
-        $this->assertTrue($result->see('Eross'));
+        $this->assertTrue($testResponse->isOK());
+        $this->assertTrue($testResponse->see('Eross'));
     }
 
     public function testIndexSearchTrackFound(): void
@@ -88,11 +88,11 @@ final class TrackTest extends CIUnitTestCase
             'keyword' => 'kisah',
         ]);
 
-        $result = $this->withRequest($request)
+        $testResponse = $this->withRequest($request)
             ->controller(Track::class)
             ->execute('index', 1);
 
-        $this->assertTrue($result->see('Sebuah Kisah Klasik'));
+        $this->assertTrue($testResponse->see('Sebuah Kisah Klasik'));
     }
 
     public function testIndexSearchTrackNotFound(): void
@@ -103,27 +103,27 @@ final class TrackTest extends CIUnitTestCase
             'keyword' => 'Purnama',
         ]);
 
-        $result = $this->withRequest($request)
+        $testResponse = $this->withRequest($request)
             ->controller(Track::class)
             ->execute('index', 1);
 
-        $this->assertTrue($result->see('No album track found.'));
+        $this->assertTrue($testResponse->see('No album track found.'));
     }
 
     public function testAddTrackByNotFoundAlbum(): void
     {
-        $result = $this->controller(Track::class)
+        $testResponse = $this->controller(Track::class)
             ->execute('add', 2);
 
-        $this->assertSame(404, $result->response()->getStatusCode());
+        $this->assertSame(404, $testResponse->response()->getStatusCode());
     }
 
     public function testAddTrack(): void
     {
-        $result = $this->controller(Track::class)
+        $testResponse = $this->controller(Track::class)
             ->execute('add', 1);
 
-        $this->assertTrue($result->isOK());
+        $this->assertTrue($testResponse->isOK());
     }
 
     public function testAddTrackInvalidData(): void
@@ -131,10 +131,10 @@ final class TrackTest extends CIUnitTestCase
         $request = Services::request(null, false);
         $request = $request->withMethod('post');
 
-        $result = $this->withRequest($request)
+        $testResponse = $this->withRequest($request)
             ->controller(Track::class)
             ->execute('add', 1);
-        $this->assertTrue($result->isRedirect());
+        $this->assertTrue($testResponse->isRedirect());
         $this->seeNumRecords(1, 'track', []);
     }
 
@@ -148,27 +148,27 @@ final class TrackTest extends CIUnitTestCase
             'author'   => 'Erros Chandra',
         ]);
 
-        $result = $this->withRequest($request)
+        $testResponse = $this->withRequest($request)
             ->controller(Track::class)
             ->execute('add', 1);
 
-        $this->assertTrue($result->isRedirect());
+        $this->assertTrue($testResponse->isRedirect());
     }
 
     public function testEditUnexistenceTrack(): void
     {
-        $result = $this->controller(Track::class)
+        $testResponse = $this->controller(Track::class)
             ->execute('edit', random_int(1000, 2000), random_int(1000, 2000));
 
-        $this->assertSame(404, $result->response()->getStatusCode());
+        $this->assertSame(404, $testResponse->response()->getStatusCode());
     }
 
     public function testEditExistenceTrack(): void
     {
-        $result = $this->controller(Track::class)
+        $testResponse = $this->controller(Track::class)
             ->execute('edit', 1, 1);
 
-        $this->assertTrue($result->isOK());
+        $this->assertTrue($testResponse->isOK());
     }
 
     public function testEditTrackInvalidData(): void
@@ -176,11 +176,11 @@ final class TrackTest extends CIUnitTestCase
         $request = Services::request(null, false);
         $request = $request->withMethod('post');
 
-        $result = $this->withRequest($request)
+        $testResponse = $this->withRequest($request)
             ->controller(Track::class)
             ->execute('edit', 1, 1);
-        $this->assertTrue($result->isRedirect());
-        $this->assertNotSame('http://localhost:8080/index.php/album-track/1', $result->getRedirectUrl());
+        $this->assertTrue($testResponse->isRedirect());
+        $this->assertNotSame('http://localhost:8080/index.php/album-track/1', $testResponse->getRedirectUrl());
     }
 
     public function testEditTrackValidData(): void
@@ -194,27 +194,27 @@ final class TrackTest extends CIUnitTestCase
             'author'   => 'Erros Chandra',
         ]);
 
-        $result = $this->withRequest($request)
+        $testResponse = $this->withRequest($request)
             ->controller(Track::class)
             ->execute('edit', 1, 1);
 
-        $this->assertTrue($result->isRedirect());
-        $this->assertSame('http://localhost:8080/index.php/album-track/1', $result->getRedirectUrl());
+        $this->assertTrue($testResponse->isRedirect());
+        $this->assertSame('http://localhost:8080/index.php/album-track/1', $testResponse->getRedirectUrl());
     }
 
     public function testDeleteUnexistenceTrack(): void
     {
-        $result = $this->controller(Track::class)
+        $testResponse = $this->controller(Track::class)
             ->execute('delete', random_int(1000, 2000), random_int(1000, 2000));
 
-        $this->assertSame(404, $result->response()->getStatusCode());
+        $this->assertSame(404, $testResponse->response()->getStatusCode());
     }
 
     public function testDeleteExistenceTrack(): void
     {
-        $result = $this->controller(Track::class)
+        $testResponse = $this->controller(Track::class)
             ->execute('delete', 1, 1);
 
-        $this->assertTrue($result->isRedirect());
+        $this->assertTrue($testResponse->isRedirect());
     }
 }
