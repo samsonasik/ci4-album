@@ -19,13 +19,8 @@ use Album\Models\TrackModel;
 
 final class SQLAlbumTrackSummaryRepository implements AlbumTrackSummaryRepository
 {
-    private AlbumModel $albumModel;
-    private TrackModel $trackModel;
-
-    public function __construct(AlbumModel $albumModel, TrackModel $trackModel)
+    public function __construct(private AlbumModel $albumModel, private TrackModel $trackModel)
     {
-        $this->albumModel = $albumModel;
-        $this->trackModel = $trackModel;
     }
 
     public function findPaginatedSummaryTotalSongData(): ?array

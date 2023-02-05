@@ -66,10 +66,7 @@ final class Album extends BaseController
         return view('Album\Views\album\index', $data);
     }
 
-    /**
-     * @return RedirectResponse|string
-     */
-    public function add()
+    public function add(): RedirectResponse|string
     {
         if ($this->request->getMethod() === 'post') {
             /** @var array $data */
@@ -88,10 +85,7 @@ final class Album extends BaseController
         return view('Album\Views\album\add', [self::ERRORS => session()->getFlashData(self::ERRORS)]);
     }
 
-    /**
-     * @return RedirectResponse|string
-     */
-    public function edit(int $id)
+    public function edit(int $id): RedirectResponse|string
     {
         try {
             $album = $this->albumRepository->findAlbumOfId($id);
