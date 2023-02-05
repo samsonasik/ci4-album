@@ -27,9 +27,6 @@ use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
  */
 #[PreserveGlobalState(false)]
 #[RunTestsInSeparateProcesses]
-/**
- * @internal
- */
 final class AlbumTest extends CIUnitTestCase
 {
     use DatabaseTestTrait;

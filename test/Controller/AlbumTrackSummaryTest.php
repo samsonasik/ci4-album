@@ -26,9 +26,6 @@ use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
  */
 #[PreserveGlobalState(false)]
 #[RunTestsInSeparateProcesses]
-/**
- * @internal
- */
 final class AlbumTrackSummaryTest extends CIUnitTestCase
 {
     use ControllerTestTrait;
