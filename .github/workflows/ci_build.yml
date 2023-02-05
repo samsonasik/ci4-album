@@ -28,6 +28,8 @@ jobs:
       - run: mysql -uroot -h127.0.0.1 -e 'SELECT version()'
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Create DB
+        run: "mysql -u root -h 127.0.0.1 -e 'create database ci4_crud_test'"
       - name: "Validate composer.json and composer.lock"
         run: "composer validate"
       - name: "Install dependencies"
