@@ -107,7 +107,6 @@ final class AlbumTest extends CIUnitTestCase
         $this->assertTrue($testResponse->isOK());
     }
 
-    #[DoesNotPerformAssertions]
     public function testAddAlbumInvalidData(): void
     {
         $request = Services::request(null, false);
