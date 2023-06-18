@@ -67,8 +67,6 @@ echo form_close();
 <?php
 echo $pager->links() ?>
 
-?>
-
 <?php
 // end section content
 echo $this->endSection();

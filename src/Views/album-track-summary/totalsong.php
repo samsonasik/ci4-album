@@ -40,8 +40,6 @@ echo esc($title);
 <?php
 echo $pager->links() ?>
 
-?>
-
 <br /> <br />
 <?php
 echo anchor('album', 'Back to Album Index');
