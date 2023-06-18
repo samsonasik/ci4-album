@@ -43,6 +43,6 @@ final class AlbumModel extends Model
      */
     protected $validationRules = [
         'artist' => 'required|alpha_numeric_space|min_length[3]|max_length[255]',
-        'title'  => 'required|alpha_numeric_space|min_length[3]|max_length[255]|is_unique[album.title]',
+        'title'  => 'required|alpha_numeric_space|min_length[3]|max_length[255]',
     ];
 }

@@ -155,23 +155,4 @@ final class SQLTrackRepositoryTest extends CIUnitTestCase
     {
         $this->assertTrue($this->repository->deleteOfId(1));
     }
-
-    public function testSaveDuplicatedData(): void
-    {
-        $data = [
-            'album_id' => 1,
-            'title'    => 'Sahabat Sejati',
-            'author'   => 'Erros Chandra',
-        ];
-
-        $this->assertTrue($this->repository->save($data));
-
-        $data = [
-            'album_id' => 1,
-            'title'    => 'Sahabat Sejati',
-            'author'   => 'Erros Chandra',
-        ];
-
-        $this->assertFalse($this->repository->save($data));
-    }
 }
