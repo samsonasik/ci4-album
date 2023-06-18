@@ -9,7 +9,7 @@ echo $this->extend('Album\Views\layout');
 echo $this->section('content');
 ?>
 <h1> <?php
-echo esc($title);
+echo esc($title); ?>
 </h1>
 <p>
 	<?php
@@ -64,6 +64,7 @@ echo form_close();
 	endif;
 		?>
 </table>
+
 <?php
 echo $pager->links() ?>
 
