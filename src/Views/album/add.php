@@ -35,7 +35,7 @@ echo form_open('album/add');
 	?>
 	<span class="error text-danger"><?php
 	echo $errors['artist'] ?? '' ?>
-?></span>
+</span>
 </div>
 
 <div class="form-group">
