@@ -11,7 +11,7 @@ echo $this->section('content');
 
 <h1><?php
 echo esc($title) ?>
-?></h1>
+</h1>
 
 <?php
 helper('form');
@@ -25,7 +25,7 @@ echo form_open('album/add');
 	?>
 	<span class="error text-danger"><?php
 	echo $errors['title'] ?? '' ?>
-?></span>
+</span>
 </div>
 
 <div class="form-group">

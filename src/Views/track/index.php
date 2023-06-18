@@ -10,7 +10,7 @@ echo $this->section('content');
 ?>
 <h1> <?php
 echo esc($title);
-?></h1>
+</h1>
 <p>
 	<?php
 	echo anchor('album', 'Back to Album lists');

@@ -11,7 +11,7 @@ echo $this->section('content');
 
 <h1><?php
 echo esc($title) ?>
-?></h1>
+</h1>
 
 <?php
 helper('form');
@@ -26,7 +26,7 @@ echo form_hidden('album_id', set_value('album_id', $album->id));
 	?>
 	<span class="error text-danger"><?php
 	echo $errors['title'] ?? '' ?>
-?></span>
+</span>
 </div>
 
 <div class="form-group">
@@ -36,7 +36,7 @@ echo form_hidden('album_id', set_value('album_id', $album->id));
 	?>
 	<span class="error text-danger"><?php
 	echo $errors['author'] ?? '' ?>
-?></span>
+</span>
 </div>
 
 <div class="form-group">
