@@ -44,7 +44,7 @@ final class TrackModel extends Model
      */
     protected $validationRules = [
         'album_id' => 'required|numeric',
-        'title'    => 'required|alpha_numeric_space|min_length[3]|max_length[255]|is_unique[track.title,id,{id}]',
+        'title'    => 'required|alpha_numeric_space|min_length[3]|max_length[255]|is_unique[track.title]',
         'author'   => 'required|alpha_numeric_space|min_length[3]|max_length[255]',
     ];
 }

@@ -69,9 +69,9 @@ final class Album extends BaseController
     public function add(): RedirectResponse|string
     {
         if ($this->request->getMethod() === 'post') {
-            /** @var array $data */
-            $data = $this->request->getPost();
-            if ($this->albumRepository->save($data)) {
+            /** @var array $post */
+            $post = $this->request->getPost();
+            if ($this->albumRepository->save($post)) {
                 session()->setFlashdata(self::STATUS, 'New album has been added');
 
                 return redirect()->route(self::ALBUM_INDEX);
@@ -94,9 +94,9 @@ final class Album extends BaseController
         }
 
         if ($this->request->getMethod() === 'post') {
-            /** @var array $data */
-            $data = $this->request->getPost();
-            if ($this->albumRepository->save($data)) {
+            /** @var array $post */
+            $post = $this->request->getPost();
+            if ($this->albumRepository->save($post)) {
                 session()->setFlashdata(self::STATUS, 'Album has been updated');
 
                 return redirect()->route(self::ALBUM_INDEX);

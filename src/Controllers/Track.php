@@ -91,9 +91,9 @@ final class Track extends BaseController
         }
 
         if ($this->request->getMethod() === 'post') {
-            /** @var array $data */
-            $data = $this->request->getPost();
-            if ($this->trackRepository->save($data)) {
+            /** @var array $post */
+            $post = $this->request->getPost();
+            if ($this->trackRepository->save($post)) {
                 session()->setFlashdata(self::STATUS, 'New album track has been added');
 
                 return redirect()->route(self::TRACK_INDEX, [$albumId]);
@@ -120,9 +120,9 @@ final class Track extends BaseController
         }
 
         if ($this->request->getMethod() === 'post') {
-            /** @var array $data */
-            $data = $this->request->getPost();
-            if ($this->trackRepository->save($data)) {
+            /** @var array $post */
+            $post = $this->request->getPost();
+            if ($this->trackRepository->save($post)) {
                 session()->setFlashdata(self::STATUS, 'Album track has been updated');
 
                 return redirect()->route(self::TRACK_INDEX, [$albumId]);

@@ -21,11 +21,11 @@
         "php": "~8.1.0 || ~8.2.0"
     },
     "conflict": {
-        "codeigniter4/framework": "<4.2.0"
+        "codeigniter4/framework": "<4.3.6"
     },
     "require-dev": {
         "codeigniter/coding-standard": "^1.0",
-        "codeigniter4/framework": "^4.2",
+        "codeigniter4/framework": "^4.3.6",
         "phpstan/phpstan": "^1.7.2",
         "phpunit/phpunit": "^10.0 ",
         "rector/rector": "dev-main"
