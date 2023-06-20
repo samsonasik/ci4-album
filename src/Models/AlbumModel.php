@@ -42,7 +42,7 @@ final class AlbumModel extends Model
      * @var array<string, string>
      */
     protected $validationRules = [
-        'id'     => 'required_without[artist,title]',
+        'id'     => 'permit_empty|numeric',
         'artist' => 'required|alpha_numeric_space|min_length[3]|max_length[255]',
         'title'  => 'required|alpha_numeric_space|min_length[3]|max_length[255]|is_unique[album.title,id,{id}]',
     ];
