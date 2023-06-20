@@ -12,6 +12,7 @@
 namespace Album\Controllers;
 
 use Album\Domain\Album\AlbumRepository;
+use Album\Domain\Exception\DuplicatedRecordException;
 use Album\Domain\Exception\RecordNotFoundException;
 use Album\Domain\Track\TrackRepository;
 use Album\Models\TrackModel;
@@ -93,10 +94,17 @@ final class Track extends BaseController
         if ($this->request->getMethod() === 'post') {
             /** @var array $post */
             $post = $this->request->getPost();
-            if ($this->trackRepository->save($post)) {
-                session()->setFlashdata(self::STATUS, 'New album track has been added');
 
-                return redirect()->route(self::TRACK_INDEX, [$albumId]);
+            try {
+                if ($this->trackRepository->save($post)) {
+                    session()->setFlashdata(self::STATUS, 'New album track has been added');
+
+                    return redirect()->route(self::TRACK_INDEX, [$albumId]);
+                }
+            } catch (DuplicatedRecordException $recordNotFoundException) {
+                session()->setFlashdata(self::ERRORS, ['title' => $recordNotFoundException->getMessage()]);
+
+                return redirect()->withInput()->back();
             }
 
             session()->setFlashdata(self::ERRORS, model(TrackModel::class)->errors());
@@ -122,10 +130,17 @@ final class Track extends BaseController
         if ($this->request->getMethod() === 'post') {
             /** @var array $post */
             $post = $this->request->getPost();
-            if ($this->trackRepository->save($post)) {
-                session()->setFlashdata(self::STATUS, 'Album track has been updated');
 
-                return redirect()->route(self::TRACK_INDEX, [$albumId]);
+            try {
+                if ($this->trackRepository->save($post)) {
+                    session()->setFlashdata(self::STATUS, 'Album track has been updated');
+
+                    return redirect()->route(self::TRACK_INDEX, [$albumId]);
+                }
+            } catch (DuplicatedRecordException $recordNotFoundException) {
+                session()->setFlashdata(self::ERRORS, ['title' => $recordNotFoundException->getMessage()]);
+
+                return redirect()->withInput()->back();
             }
 
             session()->setFlashdata(self::ERRORS, model(TrackModel::class)->errors());
