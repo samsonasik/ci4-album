@@ -16,6 +16,7 @@ use Rector\Php55\Rector\String_\StringClassNameToClassConstantRector;
 use Rector\Set\ValueObject\LevelSetList;
 use Rector\Set\ValueObject\SetList;
 use Rector\PHPUnit\Set\PHPUnitLevelSetList;
+use Rector\Privatization\Rector\Class_\FinalizeClassesWithoutChildrenRector;
 
 return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->sets([
@@ -38,6 +39,10 @@ return static function (RectorConfig $rectorConfig): void {
         NewlineAfterStatementRector::class,
         // make invalid args usage in tests
         UnSpreadOperatorRector::class,
+
+        FinalizeClassesWithoutChildrenRector::class => [
+            __DIR__ . '/src/Domain/Exception/DuplicatedRecordException.php',
+        ],
     ]);
 
     $rectorConfig->bootstrapFiles([__DIR__ . '/bootstrap.php']);

@@ -13,7 +13,7 @@ namespace Album\Domain\Exception;
 
 use DomainException;
 
-final class DuplicatedRecordException extends DomainException
+class DuplicatedRecordException extends DomainException
 {
     protected function __construct(string $message)
     {
