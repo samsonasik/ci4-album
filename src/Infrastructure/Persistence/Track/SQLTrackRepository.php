@@ -14,14 +14,18 @@ namespace Album\Infrastructure\Persistence\Track;
 use Album\Config\Album as ConfigAlbum;
 use Album\Domain\Album\Album;
 use Album\Domain\Track\Track;
+use Album\Domain\Track\TrackDuplicatedRectorException;
 use Album\Domain\Track\TrackNotFoundException;
 use Album\Domain\Track\TrackRepository;
 use Album\Infrastructure\Persistence\DMLPersistence;
 use Album\Models\TrackModel;
+use Config\Services;
 
 final class SQLTrackRepository implements TrackRepository
 {
-    use DMLPersistence;
+    use DMLPersistence {
+        save as saveData;
+    }
 
     private readonly TrackModel $model;
 
@@ -69,5 +73,46 @@ final class SQLTrackRepository implements TrackRepository
         }
 
         return true;
+    }
+
+    public function save(?array $data = null): bool
+    {
+        // model->validate() check empty data early to run true
+        // which on controller test with invalid data, it bypassed
+        // so need to instantiate validation service with set rules here
+        $validation = Services::validation(null, false);
+        $isValid    = $validation->setRules($this->model->getValidationRules())
+            ->run($data);
+
+        if (! $isValid) {
+            return false;
+        }
+
+        if (isset($data['id'])) {
+            $this->model
+                ->builder()
+                ->where('id !=', $data['id'])
+                ->where('title', $data['title'])
+                ->where('album_id', $data['album_id']);
+
+            $result = $this->model->get()->getResult();
+            if ($result === []) {
+                return $this->saveData($data);
+            }
+
+            throw TrackDuplicatedRectorException::forDuplicatedTitle($data['album_id']);
+        }
+
+        $this->model
+            ->builder()
+            ->where('album_id', $data['album_id'])
+            ->where('title', $data['title']);
+
+        $result = $this->model->get()->getResult();
+        if ($result !== []) {
+            throw TrackDuplicatedRectorException::forDuplicatedTitle($data['album_id']);
+        }
+
+        return $this->saveData($data);
     }
 }
