@@ -89,6 +89,7 @@ final class SQLTrackRepository implements TrackRepository
         }
 
         if (isset($data['id'])) {
+            /** @var array{id: int, title: string, album_id:int} $data */
             $this->model
                 ->builder()
                 ->where('id !=', $data['id'])
@@ -103,6 +104,7 @@ final class SQLTrackRepository implements TrackRepository
             throw TrackDuplicatedRectorException::forDuplicatedTitle($data['album_id']);
         }
 
+        /** @var array{title: string, album_id:int} $data */
         $this->model
             ->builder()
             ->where('album_id', $data['album_id'])
