@@ -24,4 +24,12 @@ trait DMLPersistence
     {
         return $this->model->save(new $this->model->returnType($data));
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function getInsertID()
+    {
+        return $this->model->getInsertID();
+    }
 }

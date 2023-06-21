@@ -14,6 +14,7 @@ namespace AlbumTest\Database\Infrastructure\Persistence\Album;
 use Album\Database\Seeds\AlbumSeeder;
 use Album\Database\Seeds\TrackSeeder;
 use Album\Domain\Album\Album;
+use Album\Domain\Exception\DuplicatedRecordException;
 use Album\Domain\Track\Track;
 use Album\Domain\Track\TrackNotFoundException;
 use CodeIgniter\Test\CIUnitTestCase;
@@ -154,5 +155,56 @@ final class SQLTrackRepositoryTest extends CIUnitTestCase
     public function testDeleteTrackOfIdWithFoundIdInDatabase(): void
     {
         $this->assertTrue($this->repository->deleteOfId(1));
+    }
+
+    public function testSaveDuplicateDataInsert(): void
+    {
+        $this->assertTrue($this->repository->save(
+            [
+                'album_id' => 1,
+                'title'    => 'Sahabat Sejati',
+                'author'   => 'Erros Chandra',
+            ]
+        ));
+
+        $this->expectException(DuplicatedRecordException::class);
+        $this->repository->save(
+            [
+                'album_id' => 1,
+                'title'    => 'Sahabat Sejati',
+                'author'   => 'Erros Chandra',
+            ]
+        );
+    }
+
+    public function testSaveDuplicateDataUpdate(): void
+    {
+        $this->assertTrue($this->repository->save(
+            [
+                'album_id' => 1,
+                'title'    => 'Sahabat Sejati',
+                'author'   => 'Erros Chandra',
+            ]
+        ));
+
+        $this->assertTrue($this->repository->save(
+            [
+                'album_id' => 1,
+                'title'    => 'Temani Aku',
+                'author'   => 'Erros Chandra',
+            ]
+        ));
+
+        $lastId = $this->repository->getInsertID();
+
+        $this->expectException(DuplicatedRecordException::class);
+        $this->repository->save(
+            [
+                'id'       => $lastId,
+                'album_id' => 1,
+                'title'    => 'Sahabat Sejati',
+                'author'   => 'Erros Chandra',
+            ]
+        );
     }
 }
