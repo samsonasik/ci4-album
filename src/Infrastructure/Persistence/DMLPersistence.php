@@ -26,7 +26,7 @@ trait DMLPersistence
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function getInsertID()
     {
