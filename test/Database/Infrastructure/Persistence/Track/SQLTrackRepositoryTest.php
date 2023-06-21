@@ -19,6 +19,7 @@ use Album\Domain\Track\Track;
 use Album\Domain\Track\TrackNotFoundException;
 use CodeIgniter\Test\CIUnitTestCase;
 use CodeIgniter\Test\DatabaseTestTrait;
+use Config\Database;
 use Config\Services;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\PreserveGlobalState;
@@ -195,7 +196,7 @@ final class SQLTrackRepositoryTest extends CIUnitTestCase
             ]
         ));
 
-        $lastId = $this->repository->getInsertID();
+        $lastId = Database::connect()->insertID();
 
         $this->expectException(DuplicatedRecordException::class);
         $this->repository->save(

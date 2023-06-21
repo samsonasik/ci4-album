@@ -75,11 +75,6 @@ final class SQLTrackRepository implements TrackRepository
         return true;
     }
 
-    public function getInsertID(): int|string
-    {
-        return $this->model->getInsertID();
-    }
-
     public function save(?array $data = null): bool
     {
         // model->validate() check empty data early to run true

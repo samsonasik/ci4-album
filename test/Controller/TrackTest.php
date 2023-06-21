@@ -165,11 +165,9 @@ final class TrackTest extends CIUnitTestCase
             'author'   => 'Erros Chandra',
         ]);
 
-        $testResponse = $this->withRequest($request)
+        $this->withRequest($request)
             ->controller(Track::class)
             ->execute('add', 1);
-
-        $this->assertTrue($testResponse->isRedirect());
 
         $this->withRequest($request)
             ->controller(Track::class)
@@ -224,6 +222,49 @@ final class TrackTest extends CIUnitTestCase
 
         $this->assertTrue($testResponse->isRedirect());
         $this->assertSame('http://localhost:8080/index.php/album-track/1', $testResponse->getRedirectUrl());
+    }
+
+    public function testEditTrackDuplicatedData(): void
+    {
+        $request = Services::request();
+        $request = $request->withMethod('post');
+        $request->setGlobal('post', [
+            'album_id' => 1,
+            'title'    => 'Sahabat Sejati',
+            'author'   => 'Erros Chandra',
+        ]);
+
+        $testResponse = $this->withRequest($request)
+            ->controller(Track::class)
+            ->execute('add', 1);
+
+        $this->assertTrue($testResponse->isRedirect());
+
+        $request->setGlobal('post', [
+            'album_id' => 1,
+            'title'    => 'Temani Aku',
+            'author'   => 'Erros Chandra',
+        ]);
+
+        $this->withRequest($request)
+            ->controller(Track::class)
+            ->execute('add', 1);
+
+        $lastId = $this->db->insertID();
+
+        $request->setGlobal('post', [
+            'id'       => $lastId,
+            'album_id' => 1,
+            'title'    => 'Sahabat Sejati',
+            'author'   => 'Erros Chandra',
+        ]);
+
+        $this->withRequest($request)
+            ->controller(Track::class)
+            ->execute('edit', 1, 1);
+
+        $titleError = session()->getFlashdata('errors')['title'];
+        $this->assertSame('The track with album id 1 has duplicated title.', $titleError);
     }
 
     public function testDeleteUnexistenceTrack(): void
