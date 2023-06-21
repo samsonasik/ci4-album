@@ -75,10 +75,7 @@ final class SQLTrackRepository implements TrackRepository
         return true;
     }
 
-    /**
-     * @api test
-     */
-    public function getInsertID()
+    public function getInsertID(): int
     {
         return $this->model->getInsertID();
     }
