@@ -155,6 +155,30 @@ final class TrackTest extends CIUnitTestCase
         $this->assertTrue($testResponse->isRedirect());
     }
 
+    public function testAddTrackDuplicatedData(): void
+    {
+        $request = Services::request();
+        $request = $request->withMethod('post');
+        $request->setGlobal('post', [
+            'album_id' => 1,
+            'title'    => 'Sahabat Sejati',
+            'author'   => 'Erros Chandra',
+        ]);
+
+        $testResponse = $this->withRequest($request)
+            ->controller(Track::class)
+            ->execute('add', 1);
+
+        $this->assertTrue($testResponse->isRedirect());
+
+        $this->withRequest($request)
+            ->controller(Track::class)
+            ->execute('add', 1);
+
+        $titleError = session()->getFlashdata('errors')['title'];
+        $this->assertSame('The track with album id 1 has duplicated title.', $titleError);
+    }
+
     public function testEditUnexistenceTrack(): void
     {
         $testResponse = $this->controller(Track::class)
