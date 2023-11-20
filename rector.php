@@ -38,6 +38,7 @@ return static function (RectorConfig $rectorConfig): void {
         NewlineAfterStatementRector::class,
         FinalizeClassesWithoutChildrenRector::class => [
             __DIR__ . '/src/Domain/Exception/DuplicatedRecordException.php',
+            __DIR__ . '/src/Domain/Exception/RecordNotFoundException.php',
         ],
     ]);
 
