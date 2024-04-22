@@ -21,14 +21,14 @@
         "php": "~8.1.0 || ~8.2.0 || ~8.3.0"
     },
     "conflict": {
-        "codeigniter4/framework": "<4.3.6"
+        "codeigniter4/framework": "<4.3.0"
     },
     "require-dev": {
         "codeigniter/coding-standard": "^1.0",
-        "codeigniter4/framework": "^4.3.6",
+        "codeigniter4/framework": "4.3.0",
         "phpstan/phpstan": "^1.7.2",
         "phpunit/phpunit": "^10.5",
-        "rector/rector": "dev-main"
+        "rector/rector": "0.19.5"
     },
     "config": {
         "sort-packages": true,

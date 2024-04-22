@@ -36,10 +36,10 @@ return static function (RectorConfig $rectorConfig): void {
         StringClassNameToClassConstantRector::class,
         // conflict with cs fix
         NewlineAfterStatementRector::class,
-        FinalizeClassesWithoutChildrenRector::class => [
-            __DIR__ . '/src/Domain/Exception/DuplicatedRecordException.php',
-            __DIR__ . '/src/Domain/Exception/RecordNotFoundException.php',
-        ],
+      //  FinalizeClassesWithoutChildrenRector::class => [
+    //        __DIR__ . '/src/Domain/Exception/DuplicatedRecordException.php',
+      //      __DIR__ . '/src/Domain/Exception/RecordNotFoundException.php',
+       // ],
     ]);
 
     $rectorConfig->bootstrapFiles([__DIR__ . '/bootstrap.php']);
