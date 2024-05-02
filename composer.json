@@ -21,13 +21,13 @@
         "php": "~8.1.0 || ~8.2.0 || ~8.3.0"
     },
     "conflict": {
-        "codeigniter4/framework": "<4.3.6"
+        "codeigniter4/framework": "<4.5.1"
     },
     "require-dev": {
-        "codeigniter/coding-standard": "^1.0",
-        "codeigniter4/framework": "^4.3.6",
-        "phpstan/phpstan": "^1.7.2",
-        "phpunit/phpunit": "^10.5",
+        "codeigniter/coding-standard": "^1.7.15",
+        "codeigniter4/framework": "^4.5.1",
+        "phpstan/phpstan": "^1.10.67",
+        "phpunit/phpunit": "^10.5.20",
         "rector/rector": "dev-main"
     },
     "config": {
