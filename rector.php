@@ -11,11 +11,6 @@
 
 use Rector\CodingStyle\Rector\Stmt\NewlineAfterStatementRector;
 use Rector\Config\RectorConfig;
-use Rector\Php55\Rector\String_\StringClassNameToClassConstantRector;
-use Rector\Set\ValueObject\LevelSetList;
-use Rector\Set\ValueObject\SetList;
-use Rector\PHPUnit\Set\PHPUnitLevelSetList;
-use Rector\Privatization\Rector\Class_\FinalizeClassesWithoutChildrenRector;
 
 return RectorConfig::configure()
     ->withPreparedSets(
@@ -29,10 +24,8 @@ return RectorConfig::configure()
     ->withPhpSets(php81: true)
     ->withPaths([__DIR__ . '/src', __DIR__ . '/test'])
     ->withRootFiles()
-    ->withImportNames()
+    ->withImportNames(removeUnusedImports: true)
     ->withSkip([
-        // make error on controller load view
-        StringClassNameToClassConstantRector::class,
         // conflict with cs fix
         NewlineAfterStatementRector::class,
     ])
