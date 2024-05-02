@@ -31,7 +31,7 @@ final class AlbumModel extends Model
     protected $returnType = Album::class;
 
     /**
-     * @var string[]
+     * @var list<string>
      */
     protected $allowedFields = [
         'artist',

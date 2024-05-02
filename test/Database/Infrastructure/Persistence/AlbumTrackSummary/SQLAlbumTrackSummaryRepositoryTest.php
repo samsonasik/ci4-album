@@ -35,7 +35,7 @@ final class SQLAlbumTrackSummaryRepositoryTest extends CIUnitTestCase
     protected $namespace = 'Album';
 
     /**
-     * @var class-string[]
+     * @var list<class-string>
      */
     protected $seed = [
         AlbumSeeder::class,

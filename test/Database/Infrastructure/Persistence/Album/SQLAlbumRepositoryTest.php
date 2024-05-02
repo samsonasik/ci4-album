@@ -76,7 +76,7 @@ final class SQLAlbumRepositoryTest extends CIUnitTestCase
     }
 
     /**
-     * @return array<string, mixed[]>
+     * @return array<string, list<mixed>>
      */
     public static function invalidData(): array
     {
@@ -91,7 +91,7 @@ final class SQLAlbumRepositoryTest extends CIUnitTestCase
     }
 
     /**
-     * @param mixed[]|null $data
+     * @param list<mixed>|null $data
      */
     #[DataProvider('invalidData')]
     public function testSaveInvalidData(?array $data): void
