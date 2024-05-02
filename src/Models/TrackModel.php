@@ -31,7 +31,7 @@ final class TrackModel extends Model
     protected $returnType = Track::class;
 
     /**
-     * @var string[]
+     * @var list<string>
      */
     protected $allowedFields = [
         'album_id',
