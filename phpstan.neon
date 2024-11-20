@@ -2,14 +2,17 @@ parameters:
     bootstrapFiles:
         - bootstrap.php
     inferPrivatePropertyTypeFromConstructor: true
-    checkMissingIterableValueType: false
     excludePaths:
         - src/Config/*
         - src/Database/*
         - src/Views/*
     ignoreErrors:
         - '#Access to protected property [a-zA-Z0-9\\_]+Model::\$returnType.#'
-        - '#Call to an undefined static method Config\\Services::albumRepository\(\)#'
-        - '#Call to an undefined static method Config\\Services::trackRepository\(\)#'
-        - '#Call to an undefined static method Config\\Services::albumTrackSummary\(\)#'
         - '#Call to an undefined method CodeIgniter\\Model::get\(\)#'
+
+        -
+            identifier: missingType.iterableValue
+
+        -
+            identifier: method.nonObject
+            path: src/Infrastructure/Persistence/Track/SQLTrackRepository.php

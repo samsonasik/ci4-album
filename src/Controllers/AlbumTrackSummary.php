@@ -11,10 +11,10 @@
 
 namespace Album\Controllers;
 
+use Album\Config\Services;
 use Album\Domain\AlbumTrackSummary\AlbumTrackSummaryRepository;
 use Album\Models\AlbumModel;
 use App\Controllers\BaseController;
-use Config\Services;
 
 final class AlbumTrackSummary extends BaseController
 {

@@ -26,7 +26,7 @@
     "require-dev": {
         "codeigniter/coding-standard": "^1.7.15",
         "codeigniter4/framework": "^4.5.1",
-        "phpstan/phpstan": "^1.10.67",
+        "phpstan/phpstan": "^2.0",
         "phpunit/phpunit": "^10.5.20",
         "rector/rector": "dev-main"
     },

@@ -11,6 +11,7 @@
 
 namespace Album\Controllers;
 
+use Album\Config\Services;
 use Album\Domain\Album\AlbumRepository;
 use Album\Domain\Exception\DuplicatedRecordException;
 use Album\Domain\Exception\RecordNotFoundException;
@@ -20,7 +21,6 @@ use App\Controllers\BaseController;
 use CodeIgniter\Exceptions\PageNotFoundException;
 use CodeIgniter\HTTP\IncomingRequest;
 use CodeIgniter\HTTP\RedirectResponse;
-use Config\Services;
 
 final class Track extends BaseController
 {
