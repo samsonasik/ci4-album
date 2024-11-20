@@ -22,7 +22,7 @@ use CodeIgniter\Entity\Entity;
 final class Track extends Entity
 {
     /**
-     * @var array<string, null>|list<string>
+     * @var array<string, mixed>
      */
     protected $attributes = [
         'id'       => null,
