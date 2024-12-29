@@ -17,9 +17,9 @@ use Album\Domain\AlbumTrackSummary\AlbumTrackSummaryRepository;
 use Album\Models\AlbumModel;
 use Album\Models\TrackModel;
 
-final class SQLAlbumTrackSummaryRepository implements AlbumTrackSummaryRepository
+final readonly class SQLAlbumTrackSummaryRepository implements AlbumTrackSummaryRepository
 {
-    public function __construct(private readonly AlbumModel $albumModel, private readonly TrackModel $trackModel)
+    public function __construct(private AlbumModel $albumModel, private TrackModel $trackModel)
     {
     }
 

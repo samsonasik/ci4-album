@@ -18,11 +18,11 @@ use Album\Domain\Album\AlbumRepository;
 use Album\Infrastructure\Persistence\DMLPersistence;
 use Album\Models\AlbumModel;
 
-final class SQLAlbumRepository implements AlbumRepository
+final readonly class SQLAlbumRepository implements AlbumRepository
 {
     use DMLPersistence;
 
-    private readonly AlbumModel $model;
+    private AlbumModel $model;
 
     public function __construct(AlbumModel $albumModel)
     {
