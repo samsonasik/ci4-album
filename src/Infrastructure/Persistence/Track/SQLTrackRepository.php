@@ -21,7 +21,7 @@ use Album\Infrastructure\Persistence\DMLPersistence;
 use Album\Models\TrackModel;
 use Config\Services;
 
-final class SQLTrackRepository implements TrackRepository
+final readonly class SQLTrackRepository implements TrackRepository
 {
     use DMLPersistence {
         save as saveData;
