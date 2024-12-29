@@ -24,10 +24,10 @@
         "codeigniter4/framework": "<4.5.6"
     },
     "require-dev": {
-        "codeigniter/coding-standard": "^1.7.15",
+        "codeigniter/coding-standard": "^1.8.2",
         "codeigniter4/framework": "^4.5.6",
-        "phpstan/phpstan": "^2.0",
-        "phpunit/phpunit": "^10.5.20",
+        "phpstan/phpstan": "^2.0.4",
+        "phpunit/phpunit": "^11.5.2",
         "rector/rector": "dev-main"
     },
     "config": {
