@@ -21,13 +21,13 @@ use Album\Infrastructure\Persistence\DMLPersistence;
 use Album\Models\TrackModel;
 use Config\Services;
 
-final class SQLTrackRepository implements TrackRepository
+final readonly class SQLTrackRepository implements TrackRepository
 {
     use DMLPersistence {
         save as saveData;
     }
 
-    private readonly TrackModel $model;
+    private TrackModel $model;
 
     public function __construct(TrackModel $trackModel)
     {
