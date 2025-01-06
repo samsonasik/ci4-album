@@ -1,6 +1,6 @@
 parameters:
     bootstrapFiles:
-        - bootstrap.php
+        - vendor/codeigniter4/framework/system/Test/bootstrap.php
     inferPrivatePropertyTypeFromConstructor: true
     excludePaths:
         - src/Config/*
