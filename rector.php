@@ -30,6 +30,6 @@ return RectorConfig::configure()
         NewlineAfterStatementRector::class,
     ])
     ->withBootstrapFiles(
-        [__DIR__ . '/bootstrap.php']
+        [__DIR__ . '/vendor/codeigniter4/framework/system/Test/bootstrap.php']
     )
     ->withPHPStanConfigs([__DIR__ . '/phpstan.neon']);

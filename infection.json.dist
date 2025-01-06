@@ -22,5 +22,5 @@
         "ArrayItem": false,
         "ArrayItemRemoval": false
     },
-    "bootstrap":"./bootstrap.php"
+    "bootstrap":"./vendor/codeigniter4/framework/system/Test/bootstrap.php"
 }
