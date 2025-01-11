@@ -22,11 +22,8 @@ final class SQLAlbumRepository implements AlbumRepository
 {
     use DMLPersistence;
 
-    private readonly AlbumModel $model;
-
-    public function __construct(AlbumModel $albumModel)
+    public function __construct(private readonly AlbumModel $model)
     {
-        $this->model = $albumModel;
     }
 
     public function findPaginatedData(string $keyword = ''): ?array

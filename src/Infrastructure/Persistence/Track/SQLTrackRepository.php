@@ -27,11 +27,8 @@ final class SQLTrackRepository implements TrackRepository
         save as saveData;
     }
 
-    private readonly TrackModel $model;
-
-    public function __construct(TrackModel $trackModel)
+    public function __construct(private readonly TrackModel $model)
     {
-        $this->model = $trackModel;
     }
 
     public function findPaginatedData(Album $album, string $keyword = ''): ?array
