@@ -11,6 +11,7 @@
 
 use Rector\CodingStyle\Rector\Stmt\NewlineAfterStatementRector;
 use Rector\Config\RectorConfig;
+use Rector\Naming\Rector\Class_\RenamePropertyToMatchTypeRector;
 
 return RectorConfig::configure()
     ->withPreparedSets(
@@ -28,6 +29,7 @@ return RectorConfig::configure()
     ->withSkip([
         // conflict with cs fix
         NewlineAfterStatementRector::class,
+        RenamePropertyToMatchTypeRector::class,
     ])
     ->withBootstrapFiles(
         [__DIR__ . '/vendor/codeigniter4/framework/system/Test/bootstrap.php']
