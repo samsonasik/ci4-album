@@ -30,7 +30,7 @@ final class AlbumNotFoundExceptionTest extends TestCase
     {
         $this->assertInstanceOf(
             AlbumNotFoundException::class,
-            AlbumNotFoundException::forAlbumDoesnotExistOfId(1)
+            AlbumNotFoundException::forAlbumDoesnotExistOfId(1),
         );
     }
 }

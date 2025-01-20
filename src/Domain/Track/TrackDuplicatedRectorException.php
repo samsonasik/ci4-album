@@ -19,7 +19,7 @@ final class TrackDuplicatedRectorException extends DuplicatedRecordException
     {
         return new self(sprintf(
             'The track with album id %d has duplicated title.',
-            $id
+            $id,
         ));
     }
 }

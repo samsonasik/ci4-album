@@ -19,7 +19,7 @@ final class TrackNotFoundException extends RecordNotFoundException
     {
         return new self(sprintf(
             'The album track with track ID %d you requested does not exist.',
-            $id
+            $id,
         ));
     }
 }

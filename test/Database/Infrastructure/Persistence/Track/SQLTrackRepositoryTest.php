@@ -165,7 +165,7 @@ final class SQLTrackRepositoryTest extends CIUnitTestCase
                 'album_id' => 1,
                 'title'    => 'Sahabat Sejati',
                 'author'   => 'Erros Chandra',
-            ]
+            ],
         ));
 
         $this->expectException(DuplicatedRecordException::class);
@@ -174,7 +174,7 @@ final class SQLTrackRepositoryTest extends CIUnitTestCase
                 'album_id' => 1,
                 'title'    => 'Sahabat Sejati',
                 'author'   => 'Erros Chandra',
-            ]
+            ],
         );
     }
 
@@ -185,7 +185,7 @@ final class SQLTrackRepositoryTest extends CIUnitTestCase
                 'album_id' => 1,
                 'title'    => 'Sahabat Sejati',
                 'author'   => 'Erros Chandra',
-            ]
+            ],
         ));
 
         $this->assertTrue($this->repository->save(
@@ -193,7 +193,7 @@ final class SQLTrackRepositoryTest extends CIUnitTestCase
                 'album_id' => 1,
                 'title'    => 'Temani Aku',
                 'author'   => 'Erros Chandra',
-            ]
+            ],
         ));
 
         $lastId = Database::connect()->insertID();
@@ -205,7 +205,7 @@ final class SQLTrackRepositoryTest extends CIUnitTestCase
                 'album_id' => 1,
                 'title'    => 'Sahabat Sejati',
                 'author'   => 'Erros Chandra',
-            ]
+            ],
         );
     }
 }

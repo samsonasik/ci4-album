@@ -30,7 +30,7 @@ final class TrackNotFoundExceptionTest extends TestCase
     {
         $this->assertInstanceOf(
             TrackNotFoundException::class,
-            TrackNotFoundException::forAlbumTrackDoesnotExistOfId(1)
+            TrackNotFoundException::forAlbumTrackDoesnotExistOfId(1),
         );
     }
 }
