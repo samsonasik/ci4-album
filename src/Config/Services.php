@@ -46,7 +46,7 @@ final class Services extends BaseService
 
         return new SQLAlbumTrackSummaryRepository(
             model(AlbumModel::class),
-            model(TrackModel::class)
+            model(TrackModel::class),
         );
     }
 }

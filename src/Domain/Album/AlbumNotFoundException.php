@@ -19,7 +19,7 @@ final class AlbumNotFoundException extends RecordNotFoundException
     {
         return new self(sprintf(
             'The album with album ID %d you requested does not exist.',
-            $id
+            $id,
         ));
     }
 }

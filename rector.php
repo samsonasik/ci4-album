@@ -21,7 +21,8 @@ return RectorConfig::configure()
         naming: true,
         codingStyle: true
     )
-    ->withPhpSets(php81: true)
+    ->withPhpSets(php82: true)
+    ->withComposerBased(phpunit: true)
     ->withPaths([__DIR__ . '/src', __DIR__ . '/test'])
     ->withRootFiles()
     ->withImportNames(removeUnusedImports: true)
