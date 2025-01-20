@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php-versions: ['8.1', '8.2']
+        php-versions: ['8.2', '8.3', '8.4']
     steps:
       - name: Setup PHP Action
         uses: shivammathur/setup-php@v2
@@ -42,7 +42,7 @@ jobs:
           composer rectify
       - name: "Run test suite"
         run: "mv phpunit.xml.github-actions.dist phpunit.xml.dist && composer test"
-      - if: matrix.php-versions == '8.1'
+      - if: matrix.php-versions == '8.2'
         name: Run mutation test
         env:
           INFECTION_BADGE_API_KEY: ${{ secrets.INFECTION_BADGE_API_KEY }}
@@ -50,7 +50,7 @@ jobs:
         run: |
           composer require --dev infection/infection
           vendor/bin/infection
-      - if: matrix.php-versions == '8.1'
+      - if: matrix.php-versions == '8.2'
         name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
         with:
