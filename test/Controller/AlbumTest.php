@@ -18,10 +18,8 @@ use CodeIgniter\Test\ControllerTestTrait;
 use CodeIgniter\Test\DatabaseTestTrait;
 use Config\Database;
 use Config\Services;
-use PHPUnit\Framework\Attributes\PreserveGlobalState;
 use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 
-#[PreserveGlobalState(false)]
 #[RunTestsInSeparateProcesses]
 /**
  * @internal
