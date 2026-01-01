@@ -27,7 +27,7 @@ final readonly class SQLTrackRepository implements TrackRepository
         save as saveData;
     }
 
-    public function __construct(private readonly TrackModel $model)
+    public function __construct(private TrackModel $model)
     {
     }
 

@@ -22,7 +22,7 @@ final readonly class SQLAlbumRepository implements AlbumRepository
 {
     use DMLPersistence;
 
-    public function __construct(private readonly AlbumModel $model)
+    public function __construct(private AlbumModel $model)
     {
     }
 

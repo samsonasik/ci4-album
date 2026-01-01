@@ -76,9 +76,18 @@ final class SQLAlbumRepositoryTest extends CIUnitTestCase
     }
 
     /**
+     * @param list<mixed>|null $data
+     */
+    #[DataProvider('provideSaveInvalidData')]
+    public function testSaveInvalidData(?array $data): void
+    {
+        $this->assertFalse($this->repository->save($data));
+    }
+
+    /**
      * @return array<string, list<mixed>>
      */
-    public static function invalidData(): array
+    public static function provideSaveInvalidData(): iterable
     {
         return [
             'empty array' => [
@@ -91,18 +100,20 @@ final class SQLAlbumRepositoryTest extends CIUnitTestCase
     }
 
     /**
-     * @param list<mixed>|null $data
+     * @param array<string, int>|array<string, string> $data
      */
-    #[DataProvider('invalidData')]
-    public function testSaveInvalidData(?array $data): void
+    #[DataProvider('provideSaveValidData')]
+    #[PreserveGlobalState(false)]
+    #[RunInSeparateProcess]
+    public function testSaveValidData(array $data): void
     {
-        $this->assertFalse($this->repository->save($data));
+        $this->assertTrue($this->repository->save($data));
     }
 
     /**
      * @return array{insert: array<int, array{artist: string, title: string}>, update: array<int, array{id: int, artist: string, title: string}>}
      */
-    public static function validData(): array
+    public static function provideSaveValidData(): iterable
     {
         return [
             'insert' => [
@@ -119,17 +130,6 @@ final class SQLAlbumRepositoryTest extends CIUnitTestCase
                 ],
             ],
         ];
-    }
-
-    /**
-     * @param array<string, int>|array<string, string> $data
-     */
-    #[DataProvider('validData')]
-    #[PreserveGlobalState(false)]
-    #[RunInSeparateProcess]
-    public function testSaveValidData(array $data): void
-    {
-        $this->assertTrue($this->repository->save($data));
     }
 
     public function testDeleteAlbumOfIdWithNotFoundIdInDatabase(): void
