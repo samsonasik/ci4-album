@@ -18,9 +18,7 @@ use CodeIgniter\Test\ControllerTestTrait;
 use CodeIgniter\Test\DatabaseTestTrait;
 use Config\Database;
 use Config\Services;
-use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 
-#[RunTestsInSeparateProcesses]
 /**
  * @internal
  */
@@ -43,6 +41,12 @@ final class AlbumTest extends CIUnitTestCase
      * @var string
      */
     protected $seed = AlbumSeeder::class;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        Services::resetSingle('albumRepository');
+    }
 
     public function testIndexAlbumHasNoData(): void
     {

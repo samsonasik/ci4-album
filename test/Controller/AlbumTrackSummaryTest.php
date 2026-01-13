@@ -18,9 +18,8 @@ use CodeIgniter\Test\CIUnitTestCase;
 use CodeIgniter\Test\ControllerTestTrait;
 use CodeIgniter\Test\DatabaseTestTrait;
 use Config\Database;
-use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
+use Config\Services;
 
-#[RunTestsInSeparateProcesses]
 /**
  * @internal
  */
@@ -46,6 +45,12 @@ final class AlbumTrackSummaryTest extends CIUnitTestCase
         AlbumSeeder::class,
         TrackSeeder::class,
     ];
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        Services::resetSingle('albumTrackSummary');
+    }
 
     public function testTotalSongSummaryHasNoData(): void
     {

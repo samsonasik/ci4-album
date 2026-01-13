@@ -19,9 +19,7 @@ use CodeIgniter\Test\ControllerTestTrait;
 use CodeIgniter\Test\DatabaseTestTrait;
 use Config\Database;
 use Config\Services;
-use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 
-#[RunTestsInSeparateProcesses]
 /**
  * @internal
  */
@@ -47,6 +45,14 @@ final class TrackTest extends CIUnitTestCase
         AlbumSeeder::class,
         TrackSeeder::class,
     ];
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        Services::resetSingle('albumRepository');
+        Services::resetSingle('trackRepository');
+    }
 
     public function testIndexTrackByNotFoundAlbum(): void
     {
