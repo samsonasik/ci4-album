@@ -59,8 +59,8 @@ final class Track extends BaseController
 
     public function __construct()
     {
-        $this->albumRepository = Services::albumRepository(false);
-        $this->trackRepository = Services::trackRepository(false);
+        $this->albumRepository = Services::albumRepository();
+        $this->trackRepository = Services::trackRepository();
     }
 
     public function index(int $albumId): string

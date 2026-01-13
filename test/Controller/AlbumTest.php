@@ -13,6 +13,7 @@ namespace AlbumTest\Controller;
 
 use Album\Controllers\Album;
 use Album\Database\Seeds\AlbumSeeder;
+use CodeIgniter\Config\Factories;
 use CodeIgniter\Test\CIUnitTestCase;
 use CodeIgniter\Test\ControllerTestTrait;
 use CodeIgniter\Test\DatabaseTestTrait;
@@ -41,6 +42,12 @@ final class AlbumTest extends CIUnitTestCase
      * @var string
      */
     protected $seed = AlbumSeeder::class;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        Services::resetSingle('albumRepository');
+    }
 
     public function testIndexAlbumHasNoData(): void
     {

@@ -46,6 +46,14 @@ final class TrackTest extends CIUnitTestCase
         TrackSeeder::class,
     ];
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        Services::resetSingle('albumRepository');
+        Services::resetSingle('trackRepository');
+    }
+
     public function testIndexTrackByNotFoundAlbum(): void
     {
         $testResponse = $this->controller(Track::class)
