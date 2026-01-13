@@ -51,7 +51,7 @@ final class Album extends BaseController
 
     public function __construct()
     {
-        $this->albumRepository = Services::albumRepository();
+        $this->albumRepository = Services::albumRepository(false);
     }
 
     public function index(): string

@@ -22,7 +22,7 @@ final class AlbumTrackSummary extends BaseController
 
     public function __construct()
     {
-        $this->albumTrackSummaryRepository = Services::albumTrackSummary();
+        $this->albumTrackSummaryRepository = Services::albumTrackSummary(false);
     }
 
     public function totalsong(): string
