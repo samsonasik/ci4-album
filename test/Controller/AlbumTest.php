@@ -13,7 +13,6 @@ namespace AlbumTest\Controller;
 
 use Album\Controllers\Album;
 use Album\Database\Seeds\AlbumSeeder;
-use CodeIgniter\Config\Factories;
 use CodeIgniter\Test\CIUnitTestCase;
 use CodeIgniter\Test\ControllerTestTrait;
 use CodeIgniter\Test\DatabaseTestTrait;
