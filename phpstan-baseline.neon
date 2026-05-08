@@ -1,0 +1,31 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Method Album\\Infrastructure\\Persistence\\Album\\SQLAlbumRepository\:\:findPaginatedData\(\) never returns null so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: src/Infrastructure/Persistence/Album/SQLAlbumRepository.php
+
+		-
+			message: '#^Method Album\\Infrastructure\\Persistence\\AlbumTrackSummary\\SQLAlbumTrackSummaryRepository\:\:findPaginatedSummaryTotalSongData\(\) never returns null so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: src/Infrastructure/Persistence/AlbumTrackSummary/SQLAlbumTrackSummaryRepository.php
+
+		-
+			message: '#^Method Album\\Infrastructure\\Persistence\\Track\\SQLTrackRepository\:\:findPaginatedData\(\) never returns null so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: src/Infrastructure/Persistence/Track/SQLTrackRepository.php
+
+		-
+			message: '#^PHPDoc type string of property Album\\Models\\AlbumModel\:\:\$returnType is not covariant with PHPDoc type ''array''\|''object''\|class\-string of overridden property CodeIgniter\\BaseModel\:\:\$returnType\.$#'
+			identifier: property.phpDocType
+			count: 1
+			path: src/Models/AlbumModel.php
+
+		-
+			message: '#^PHPDoc type string of property Album\\Models\\TrackModel\:\:\$returnType is not covariant with PHPDoc type ''array''\|''object''\|class\-string of overridden property CodeIgniter\\BaseModel\:\:\$returnType\.$#'
+			identifier: property.phpDocType
+			count: 1
+			path: src/Models/TrackModel.php
