@@ -1,6 +1,3 @@
-includes:
-    - phpstan-baseline.neon
-
 parameters:
     bootstrapFiles:
         - vendor/codeigniter4/framework/system/Test/bootstrap.php
