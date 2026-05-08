@@ -21,4 +21,7 @@ return Architecture::define()
             __DIR__ . '/src/Database/Migrations',
         ],
     ])
-    ->withPreset(Preset::PSR4());
+    ->layer('Domain', 'src/Domain/')
+    ->layer('Application', 'src/Controllers/')
+    ->layer('Infrastructure', 'src/Infrastructure/')
+    ->withPresets(Preset::PSR4(), Preset::DDD(maxMethodLength: 36));
