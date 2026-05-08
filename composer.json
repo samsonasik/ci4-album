@@ -24,6 +24,7 @@
         "codeigniter4/framework": "<4.6"
     },
     "require-dev": {
+        "boundwize/structarmed": "^0.0.1",
         "codeigniter/coding-standard": "^1.8.2",
         "codeigniter4/framework": "^4.6",
         "phpstan/phpstan": "^2.0.4",
@@ -57,6 +58,7 @@
         "rectify": "rector --dry-run",
         "cs-check": "php-cs-fixer fix --dry-run --diff",
         "cs-fix": "php-cs-fixer fix",
-        "test": "phpunit --colors=always"
+        "test": "phpunit --colors=always",
+        "structarmed": "structarmed analyze"
     }
 }
