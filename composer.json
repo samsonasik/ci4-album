@@ -24,7 +24,7 @@
         "codeigniter4/framework": "<4.6"
     },
     "require-dev": {
-        "boundwize/structarmed": "^0.0.1",
+        "boundwize/structarmed": "^0.0.2",
         "codeigniter/coding-standard": "^1.8.2",
         "codeigniter4/framework": "^4.6",
         "phpstan/phpstan": "^2.0.4",
