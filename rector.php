@@ -20,7 +20,7 @@ return RectorConfig::configure()
         codingStyle: true,
         typeDeclarations: true,
         privatization: true,
-        naming: true
+        naming: true,
     )
     ->withPhpSets(php82: true)
     ->withComposerBased(phpunit: true)
@@ -33,6 +33,6 @@ return RectorConfig::configure()
         NewlineBetweenClassLikeStmtsRector::class,
     ])
     ->withBootstrapFiles(
-        [__DIR__ . '/vendor/codeigniter4/framework/system/Test/bootstrap.php']
+        [__DIR__ . '/vendor/codeigniter4/framework/system/Test/bootstrap.php'],
     )
     ->withPHPStanConfigs([__DIR__ . '/phpstan.neon']);
