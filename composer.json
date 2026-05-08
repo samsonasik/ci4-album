@@ -24,16 +24,20 @@
         "codeigniter4/framework": "<4.6"
     },
     "require-dev": {
+        "boundwize/structarmed": "^0.0.2",
         "codeigniter/coding-standard": "^1.8.2",
-        "codeigniter4/framework": "^4.6",
+        "codeigniter4/framework": "4.6.5",
         "phpstan/phpstan": "^2.0.4",
-        "phpunit/phpunit": "^11.5.2",
+        "phpunit/phpunit": "^11.5",
         "rector/rector": "dev-main"
     },
     "config": {
         "sort-packages": true,
         "allow-plugins": {
             "infection/extension-installer": true
+        },
+        "audit": {
+            "ignore": ["PKSA-z3gr-8qht-p93v"]
         }
     },
     "autoload": {
@@ -57,6 +61,7 @@
         "rectify": "rector --dry-run",
         "cs-check": "php-cs-fixer fix --dry-run --diff",
         "cs-fix": "php-cs-fixer fix",
-        "test": "phpunit --colors=always"
+        "test": "phpunit --colors=always",
+        "structarmed": "structarmed analyze"
     }
 }

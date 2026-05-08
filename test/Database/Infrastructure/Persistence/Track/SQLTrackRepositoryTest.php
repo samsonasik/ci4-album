@@ -9,7 +9,7 @@
  * the LICENSE file that was distributed with this source code.
  */
 
-namespace AlbumTest\Database\Infrastructure\Persistence\Album;
+namespace AlbumTest\Database\Infrastructure\Persistence\Track;
 
 use Album\Database\Seeds\AlbumSeeder;
 use Album\Database\Seeds\TrackSeeder;
