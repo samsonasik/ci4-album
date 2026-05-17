@@ -40,6 +40,7 @@ jobs:
         run: |
           composer analyze
           composer rectify
+          vendor/bin/structarmed analyze
       - name: "Run test suite"
         run: "mv phpunit.xml.github-actions.dist phpunit.xml.dist && composer test"
       - if: matrix.php-versions == '8.2'
