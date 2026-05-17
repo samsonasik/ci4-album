@@ -50,6 +50,7 @@ jobs:
         run: |
           composer require --dev infection/infection
           vendor/bin/infection
+          vendor/bin/structarmed analyze
       - if: matrix.php-versions == '8.2'
         name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
