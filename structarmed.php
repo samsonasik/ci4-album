@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 use Boundwize\StructArmed\Architecture;
 use Boundwize\StructArmed\Preset\Preset;
+use Boundwize\StructArmed\Preset\Presets\MvcPreset;
 use Boundwize\StructArmed\Preset\Presets\Psr4Preset;
 
 return Architecture::define()
@@ -20,6 +21,8 @@ return Architecture::define()
         Psr4Preset::CLASSES_MUST_MATCH_COMPOSER => [
             __DIR__ . '/src/Database/Migrations',
         ],
+        MvcPreset::CONTROLLER_NAME_MUST_END_WITH_CONTROLLER,
     ])
     ->layer('Application', 'src/Controllers/')
-    ->withPresets(Preset::PSR4(), Preset::DDD(maxMethodLength: 36));
+    ->layer('Controller', 'src/Controllers/')
+    ->withPresets(Preset::PSR4(), Preset::DDD(maxMethodLength: 36), Preset::MVC(controllerMaxMethodLength: 33));
