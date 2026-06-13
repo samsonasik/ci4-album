@@ -56,6 +56,7 @@ final class Album extends BaseController
 
     public function index(): string
     {
+        /** @var array<string, mixed> $data */
         $data = [];
         /** @var string $keyword */
         $keyword             = $this->request->getGet(self::KEYWORD) ?? '';
@@ -69,7 +70,7 @@ final class Album extends BaseController
     public function add(): RedirectResponse|string
     {
         if ($this->request->getMethod() === 'post') {
-            /** @var array $post */
+            /** @var array<string, mixed> $post */
             $post = $this->request->getPost();
             if ($this->albumRepository->save($post)) {
                 session()->setFlashdata(self::STATUS, 'New album has been added');
@@ -94,7 +95,7 @@ final class Album extends BaseController
         }
 
         if ($this->request->getMethod() === 'post') {
-            /** @var array $post */
+            /** @var array<string, mixed> $post */
             $post = $this->request->getPost();
             if ($this->albumRepository->save($post)) {
                 session()->setFlashdata(self::STATUS, 'Album has been updated');

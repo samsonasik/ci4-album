@@ -20,6 +20,9 @@ use CodeIgniter\Model;
  */
 trait DMLPersistence
 {
+    /**
+     * @param array<string, mixed>|null $data
+     */
     public function save(?array $data = null): bool
     {
         return $this->model->save(new $this->model->returnType($data));

@@ -31,7 +31,7 @@ final readonly class SQLTrackRepository implements TrackRepository
     {
     }
 
-    public function findPaginatedData(Album $album, string $keyword = ''): ?array
+    public function findPaginatedData(Album $album, string $keyword = ''): array
     {
         $this->model
             ->builder()
