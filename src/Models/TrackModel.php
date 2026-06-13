@@ -27,7 +27,9 @@ final class TrackModel extends Model
      */
     protected $table = 'track';
 
-    /** @var class-string<Track> */
+    /**
+     * @var class-string<Track>
+     */
     protected $returnType = Track::class;
 
     /**

@@ -27,7 +27,9 @@ final class AlbumModel extends Model
      */
     protected $table = 'album';
 
-    /** @var class-string<Album> */
+    /**
+     * @var class-string<Album>
+     */
     protected $returnType = Album::class;
 
     /**
