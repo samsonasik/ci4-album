@@ -45,6 +45,10 @@ final class AlbumTest extends CIUnitTestCase
     protected function setUp(): void
     {
         parent::setUp();
+
+        Services::superglobals()->setGetArray([]);
+        Services::superglobals()->setPostArray([]);
+
         Services::resetSingle('albumRepository');
     }
 
@@ -72,7 +76,7 @@ final class AlbumTest extends CIUnitTestCase
 
     public function testIndexSearchAlbumFound(): void
     {
-        $request = Services::request();
+        $request = Services::request(null, false);
         $request = $request->withMethod('get');
         $request->setGlobal('get', [
             'keyword' => 'Sheila',
@@ -87,7 +91,7 @@ final class AlbumTest extends CIUnitTestCase
 
     public function testIndexSearchAlbumNotFound(): void
     {
-        $request = Services::request();
+        $request = Services::request(null, false);
         $request = $request->withMethod('get');
         $request->setGlobal('get', [
             'keyword' => 'Siti',
@@ -122,7 +126,7 @@ final class AlbumTest extends CIUnitTestCase
 
     public function testAddAlbumValidData(): void
     {
-        $request = Services::request();
+        $request = Services::request(null, false);
         $request = $request->withMethod('post');
         $request->setGlobal('post', [
             'artist' => 'Siti Nurhaliza',
@@ -166,7 +170,7 @@ final class AlbumTest extends CIUnitTestCase
 
     public function testEditAlbumValidData(): void
     {
-        $request = Services::request();
+        $request = Services::request(null, false);
         $request = $request->withMethod('post');
         $request->setGlobal('post', [
             'id'     => 1,

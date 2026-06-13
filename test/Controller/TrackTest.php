@@ -50,6 +50,9 @@ final class TrackTest extends CIUnitTestCase
     {
         parent::setUp();
 
+        Services::superglobals()->setGetArray([]);
+        Services::superglobals()->setPostArray([]);
+
         Services::resetSingle('albumRepository');
         Services::resetSingle('trackRepository');
     }
@@ -86,7 +89,7 @@ final class TrackTest extends CIUnitTestCase
 
     public function testIndexSearchTrackFound(): void
     {
-        $request = Services::request();
+        $request = Services::request(null, false);
         $request = $request->withMethod('get');
         $request->setGlobal('get', [
             'keyword' => 'kisah',
@@ -101,7 +104,7 @@ final class TrackTest extends CIUnitTestCase
 
     public function testIndexSearchTrackNotFound(): void
     {
-        $request = Services::request();
+        $request = Services::request(null, false);
         $request = $request->withMethod('get');
         $request->setGlobal('get', [
             'keyword' => 'Purnama',
@@ -144,7 +147,7 @@ final class TrackTest extends CIUnitTestCase
 
     public function testAddTrackValidData(): void
     {
-        $request = Services::request();
+        $request = Services::request(null, false);
         $request = $request->withMethod('post');
         $request->setGlobal('post', [
             'album_id' => 1,
@@ -161,7 +164,7 @@ final class TrackTest extends CIUnitTestCase
 
     public function testAddTrackDuplicatedData(): void
     {
-        $request = Services::request();
+        $request = Services::request(null, false);
         $request = $request->withMethod('post');
         $request->setGlobal('post', [
             'album_id' => 1,
@@ -211,7 +214,7 @@ final class TrackTest extends CIUnitTestCase
 
     public function testEditTrackValidData(): void
     {
-        $request = Services::request();
+        $request = Services::request(null, false);
         $request = $request->withMethod('post');
         $request->setGlobal('post', [
             'id'       => 1,
@@ -230,7 +233,7 @@ final class TrackTest extends CIUnitTestCase
 
     public function testEditTrackDuplicatedData(): void
     {
-        $request = Services::request();
+        $request = Services::request(null, false);
         $request = $request->withMethod('post');
         $request->setGlobal('post', [
             'album_id' => 1,
