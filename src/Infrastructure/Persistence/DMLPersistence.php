@@ -20,16 +20,11 @@ use CodeIgniter\Model;
  */
 trait DMLPersistence
 {
+    /**
+     * @param array<string, mixed>|null $data
+     */
     public function save(?array $data = null): bool
     {
-        $payload = [];
-
-        foreach ($data ?? [] as $key => $value) {
-            if (is_string($key)) {
-                $payload[$key] = $value;
-            }
-        }
-
-        return $this->model->save(new $this->model->returnType($payload));
+        return $this->model->save(new $this->model->returnType($data));
     }
 }
