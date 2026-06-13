@@ -22,6 +22,14 @@ trait DMLPersistence
 {
     public function save(?array $data = null): bool
     {
-        return $this->model->save(new $this->model->returnType($data));
+        $payload = [];
+
+        foreach ($data ?? [] as $key => $value) {
+            if (is_string($key)) {
+                $payload[$key] = $value;
+            }
+        }
+
+        return $this->model->save(new $this->model->returnType($payload));
     }
 }

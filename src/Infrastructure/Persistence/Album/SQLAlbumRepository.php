@@ -26,7 +26,7 @@ final readonly class SQLAlbumRepository implements AlbumRepository
     {
     }
 
-    public function findPaginatedData(string $keyword = ''): ?array
+    public function findPaginatedData(string $keyword = ''): array
     {
         if ($keyword !== '') {
             $this->model

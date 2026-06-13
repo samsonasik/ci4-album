@@ -23,7 +23,7 @@ final readonly class SQLAlbumTrackSummaryRepository implements AlbumTrackSummary
     {
     }
 
-    public function findPaginatedSummaryTotalSongData(): ?array
+    public function findPaginatedSummaryTotalSongData(): array
     {
         $this->albumModel->builder()
             ->select([
