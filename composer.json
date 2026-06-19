@@ -24,6 +24,7 @@
         "codeigniter4/framework": "<4.7.3"
     },
     "require-dev": {
+        "boundwize/pyrameter": "^0.3.8",
         "boundwize/structarmed": "^0.13",
         "codeigniter/coding-standard": "^1.8.2",
         "codeigniter4/framework": "4.7.3",
