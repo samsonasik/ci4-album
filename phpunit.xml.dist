@@ -40,7 +40,7 @@
       <directory suffix=".php">./src/Views</directory>
     </exclude>
   </source>
-<extensions>
-    <bootstrap class="Boundwize\Pyrameter\Extension"/>
-</extensions>
+  <extensions>
+      <bootstrap class="Boundwize\Pyrameter\Extension"/>
+  </extensions>
 </phpunit>
