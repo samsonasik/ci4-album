@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 use Boundwize\Pyrameter\Config\PyrameterConfig;
-use Boundwize\Pyrameter\TestKind;
 
 return PyrameterConfig::defaults()
     ->targetShape(
