@@ -25,7 +25,7 @@
     },
     "require-dev": {
         "boundwize/pyrameter": "^0.3.8",
-        "boundwize/structarmed": "^0.13",
+        "boundwize/structarmed": "^0.14",
         "codeigniter/coding-standard": "^1.8.2",
         "codeigniter4/framework": "4.7.3",
         "phpstan/phpstan": "^2.2",
