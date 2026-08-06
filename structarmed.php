@@ -24,5 +24,4 @@ return Architecture::define()
         MvcPreset::CONTROLLER_NAME_MUST_END_WITH_CONTROLLER,
     ])
     ->layer('Application', 'src/Controllers/')
-    ->layer('Controller', 'src/Controllers/')
     ->withPresets(Preset::PSR4(), Preset::DDD(maxMethodLength: 36), Preset::MVC(controllerMaxMethodLength: 33));
