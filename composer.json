@@ -21,13 +21,13 @@
         "php": "~8.2.0 || ~8.3.0 || ~8.4.0 || ~8.5.0"
     },
     "conflict": {
-        "codeigniter4/framework": "<4.7.3"
+        "codeigniter4/framework": "<4.7.4"
     },
     "require-dev": {
         "boundwize/pyrameter": "^0.5",
         "boundwize/structarmed": "^0.16",
         "codeigniter/coding-standard": "^1.8.2",
-        "codeigniter4/framework": "4.7.3",
+        "codeigniter4/framework": "4.7.4",
         "phpstan/phpstan": "^2.2",
         "phpunit/phpunit": "^11.5",
         "rector/rector": "dev-main"
