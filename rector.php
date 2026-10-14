@@ -22,7 +22,6 @@ return RectorConfig::configure()
         codingStyle: true,
         typeDeclarations: true,
         privatization: true,
-        naming: true,
     )
     ->withPhpSets(php82: true)
     ->withComposerBased(phpunit: true)
